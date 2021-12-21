@@ -21,21 +21,21 @@ export default function TabelaDashboard() {
         <thead>
           <tr>
             <th>#</th>
+            <th>Cliente</th>
             <th>Veículo</th>
             <th>Placa</th>
-            <th>Cliente</th>
             <th>Mecânico</th>
             <th>Situação</th>
           </tr>
         </thead>
-        {os.map((e) => {
-          return <tbody>
+        {os.map((camp, index) => {
+          return <tbody key={index}>
             <tr>
-              <td>{e.id}</td>
-              <td>{e.nome_cliente}</td>
-              <td>{e.carro_modelo}</td>
-              <td>{e.carro_placa}</td>
-              <td>{e.nome_mecanico}</td>
+              <td >{camp.id}</td>
+              <td >{camp.nome_cliente}</td>
+              <td >{camp.carro_modelo}</td>
+              <td >{camp.carro_placa}</td>
+              <td >{camp.nome_mecanico}</td>
               <td>x</td>
             </tr>
           </tbody>

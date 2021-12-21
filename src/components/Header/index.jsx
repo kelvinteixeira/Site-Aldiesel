@@ -4,21 +4,23 @@ import { STORAGE_KEY } from '../../utils/auth'
 
 import { Navbar, Container, Nav, Form, FormControl, Button } from 'react-bootstrap'
 import Logo from '../../Assets/logo.png'
-import LoadSpinner from '../../components/LoadSpinner'
+import { ModalLoger } from '../Modal'
 
 export default function Header() {
+  // const [loading, setLoading] = useState(false)
+  const [show, setShow] = useState(false);
+
   const history = useHistory()
-  const [loading, setLoading] = useState(false)
 
   const goToDashboard = () => history.push('/dashboard')
   const goToOrdemDeServico = () => history.push('/ordemdeservico')
-
+  
   const singout = () => {
+    setShow(true);
     localStorage.removeItem(STORAGE_KEY)
     setTimeout(() => {
       history.push('/')
-    }, 2000)
-    setLoading(true)
+    }, 3000)
   }
 
 
@@ -55,7 +57,8 @@ export default function Header() {
           </Container>
         </Navbar>
       </div>
-      {loading ? <LoadSpinner texto="Saindo, até mais!"></LoadSpinner> : null}
+      {show ? <ModalLoger show="show" titulo="Até a próxima!" subtitulo="Salvando as informações, por favor aguarde." /> : null}
+      {/* {loading ? <LoadSpinner texto="Saindo, até mais!"></LoadSpinner> : null} */}
     </>
   )
 }

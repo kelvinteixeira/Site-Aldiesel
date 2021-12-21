@@ -1,9 +1,7 @@
-.spinner {
+.modal {
   display: flex;
-  margin: auto;
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  align-items: center;
-  margin-top: 50px;
+  margin: auto;
 }

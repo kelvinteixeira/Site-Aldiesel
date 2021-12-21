@@ -1,8 +1,15 @@
 .form-ordemDeServico {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 600px;
+  max-width: 500px;
   text-align: center;
-  margin: 10px;
+  margin: auto;
+}
+
+@media print {
+  Button {
+    visibility: hidden;
+  }
+
+  img {
+    align-items: center;
+  }
 }

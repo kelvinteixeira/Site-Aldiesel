@@ -2,20 +2,20 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { STORAGE_KEY } from '../../utils/auth'
 
-import Form from 'react-bootstrap/Form'
-import FloatingLabel from 'react-bootstrap/FloatingLabel'
-import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
-import LoadSpinner from '../../components/LoadSpinner'
+import { Form, FloatingLabel, Container, Button } from 'react-bootstrap'
+import { ModalLoger } from '../Modal'
+// import LoadSpinner from '../../components/LoadSpinner'
 
 
 
 export default function FormularioLogin() {
+  const [show, setShow] = useState(false);
   const [usuario, setUsuario] = useState('')
   const [senha, setSenha] = useState('')
-  const [loading, setLoading] = useState(false)
 
+  const handleShow = () => setShow(true);
   const history = useHistory()
+  
 
   const rand = () => {
     return Math.random().toString(36).substr(2)
@@ -33,10 +33,8 @@ export default function FormularioLogin() {
         history.push('/dashboard')
       } else {
         window.alert('Usuário ou senha inválidos')
-        setLoading(false)
       }
-    }, 2000)
-    setLoading(true)
+    }, 3000)
   }
 
 
@@ -56,11 +54,13 @@ export default function FormularioLogin() {
             </Form.Control.Feedback>
           </FloatingLabel>
         </Form.Group>
-        <Button type="submit" variant="outline-primary">
+        <Button type="submit" onClick={handleShow} variant="outline-primary">
           Entrar
         </Button>
       </Form >
-      {loading ? <LoadSpinner texto="Seja Bem vindo!"></LoadSpinner> : null}
+
+      {show ? <ModalLoger show="show" titulo="Seja bem vindo!" subtitulo="Carregando as informações, por favor aguarde." /> : null}
+
     </Container>
   )
 }
