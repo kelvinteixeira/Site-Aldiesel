@@ -1,0 +1,73 @@
+.form-title {
+  text-align: center;
+}
+
+.horarioText {
+  text-align: right;
+  display: none;
+}
+
+.row {
+  --bs-gutter-x: 5px !important;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  width: 700px;
+  border: 1px solid;
+  padding: 10px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  outline: 0;
+  border: 0;
+  border-bottom: 1px solid;
+  border-right: 0;
+}
+
+@media print {
+  * {
+      background: transparent;
+      color: #000;
+      text-shadow: none; 
+      filter: none;
+     -ms-filter: none;
+  }
+
+  .print{
+    display: block !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+}
+
+.text-right {
+  text-align: right;
+}
+
+.logo{
+  margin: auto;
+  width: 230px;
+}
+
+.print {
+  display: none; 
+}
+.no-print {
+  display: block;
+}
+
+.btn{
+  margin: auto;
+  width: 100px;
+}
