@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { STORAGE_KEY } from '../../utils/auth'
+import { token } from '../../utils/token'
+import './formularioLogin.css'
 
-import { Form, FloatingLabel, Container, Button } from 'react-bootstrap'
+import { Form, Container, Button } from 'react-bootstrap'
 import { ModalLoger } from '../Modal'
-// import LoadSpinner from '../../components/LoadSpinner'
-
-
 
 export default function FormularioLogin() {
   const [show, setShow] = useState(false);
@@ -15,15 +14,6 @@ export default function FormularioLogin() {
 
   const handleShow = () => setShow(true);
   const history = useHistory()
-  
-
-  const rand = () => {
-    return Math.random().toString(36).substr(2)
-  }
-
-  const token = () => {
-    return rand() + rand()
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -34,6 +24,7 @@ export default function FormularioLogin() {
       } else {
         window.alert('Usuário ou senha inválidos')
       }
+      setShow(false)
     }, 3000)
   }
 
@@ -41,25 +32,18 @@ export default function FormularioLogin() {
   return (
     <Container>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="validationUsuario">
-          <FloatingLabel controlId="floatingInput" label="Usuário">
-            <Form.Control onChange={e => setUsuario(e.target.value)} type="text" placeholder="tuba" required />
-          </FloatingLabel>
+        <Form.Group className="mb-3 inputLogin" controlId="validationUsuario">
+          <Form.Control size='sm' onChange={e => setUsuario(e.target.value)} type="text" placeholder="tuba" required />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="validationSenha">
-          <FloatingLabel controlId="floatingPassword" label="Senha">
-            <Form.Control onChange={e => setSenha(e.target.value)} type="password" placeholder="Senha" required />
-            <Form.Control.Feedback type="invalid">
-              Por favor insira uma senha válida
-            </Form.Control.Feedback>
-          </FloatingLabel>
+        <Form.Group className="mb-3 inputLogin" controlId="validationSenha">
+          <Form.Control size='sm' onChange={e => setSenha(e.target.value)} type="password" placeholder="Senha" required />
         </Form.Group>
         <Button type="submit" onClick={handleShow} variant="outline-primary">
           Entrar
         </Button>
       </Form >
 
-      {show ? <ModalLoger show="show" titulo="Seja bem vindo!" subtitulo="Carregando as informações, por favor aguarde." /> : null}
+      {show ? <ModalLoger show="show" titulo="Seja bem vindo!" subtitulo="Verificando credenciais, aguarde." /> : null}
 
     </Container>
   )
