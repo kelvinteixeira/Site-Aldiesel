@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Container } from 'react-bootstrap'
 import './dash.css'
-import api from '../../api'
+import {api} from '../../api'
 
 export default function TabelaDashboard() {
   const [os, setOs] = useState([])
@@ -11,8 +11,13 @@ export default function TabelaDashboard() {
       .then((response) => setOs(response.data))
       .catch((err) => {
         console.error("Erro" + err)
+        return () => {
+          setOs({})
+        }
       })
   }, [])
+
+
 
   return (
     < Container >

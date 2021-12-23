@@ -1,8 +1,18 @@
 .form-ordemDeServico {
-  max-width: 500px;
+  max-width: 700px;
   text-align: center;
   margin: auto;
 }
+
+/* .inputOs {
+  border: 0;
+  border-bottom: 1px solid #dad3d3;
+  background-color: transparent;
+  outline: 0;
+  width: 150px;
+  margin: auto;
+  
+} */
 
 @media print {
   Button {

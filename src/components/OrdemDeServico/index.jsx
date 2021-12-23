@@ -14,21 +14,30 @@ export default function FormularioOrdemDeServico() {
       <Form onSubmit={handleSubmit}>
         <h3>Ordem de serviço</h3>
 
-        <Row>
-          <Col>
-            <Form.Group className="mb-3" controlId="formBasicCliente">
-              <Form.Control size="sm" autoComplete='off' type="text" placeholder="Cliente" />
-            </Form.Group>
-          </Col>
+        <Row className='g-2'>
 
-          <Col>
-            <Form.Group className="mb-3" controlId="formBasicCliente">
-              <Form.Control size="sm" autoComplete='off' type="text" placeholder="Telefone" />
+          <Col >
+            <Form.Group as={Row}  controlId="formBasicCliente">
+              <Form.Label column sm="3">Nome:</Form.Label>
+              <Col>
+                <Form.Control size="sm" autoComplete='off' type="text" />
+              </Col>
+            </Form.Group>
+          </Col>
+          <Col >
+            <Form.Group as={Row} className="g-4" controlId="formBasicCliente">
+              <Form.Label column sm="3">Telefone:</Form.Label>
+              <Col>
+                <Form.Control size="sm" autoComplete='off' type="text" />
+              </Col>
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group className="mb-3" controlId="formBasicMecanico">
-              <Form.Control size="sm" autoComplete='off' type="text" placeholder="Mecânico" />
+            <Form.Group as={Row} className="g-5" controlId="formBasicCliente">
+              <Form.Label column sm="2">Mecânico:</Form.Label>
+              <Col>
+                <Form.Control size="sm" autoComplete='off' type="text" />
+              </Col>
             </Form.Group>
           </Col>
         </Row>
@@ -68,7 +77,7 @@ export default function FormularioOrdemDeServico() {
           <Form.Label>DTCs</Form.Label>
 
           <Row>
-            <Col>
+            <Col >
               <Form.Group className="mb-3" controlId="formCodigoDtcs">
                 <Form.Control size="sm" autoComplete='off' type="text" placeholder="Codigo" />
               </Form.Group>
@@ -86,103 +95,6 @@ export default function FormularioOrdemDeServico() {
               </Form.Group>
             </Col>
           </Row>
-
-          <Row>
-            <Col>
-              <Form.Group className="mb-3" controlId="formCodigoDtcs">
-                <Form.Control size="sm" autoComplete='off' type="text" placeholder="Codigo" />
-              </Form.Group>
-            </Col>
-
-            <Col xs={6}>
-              <Form.Group className="mb-3" controlId="formDescricaoDtcs">
-                <Form.Control size="sm" autoComplete='off' type="text" placeholder="DTCs" />
-              </Form.Group>
-            </Col>
-
-            <Col >
-              <Form.Group className="mb-3" controlId="formSituacaoDtcs">
-                <Form.Control size="sm" autoComplete='off' type="text" placeholder="Situação" />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form.Group className="mb-3" controlId="formCodigoDtcs">
-                <Form.Control size="sm" autoComplete='off' type="text" placeholder="Codigo" />
-              </Form.Group>
-            </Col>
-
-            <Col xs={6}>
-              <Form.Group className="mb-3" controlId="formDescricaoDtcs">
-                <Form.Control size="sm" autoComplete='off' type="text" placeholder="DTCs" />
-              </Form.Group>
-            </Col>
-
-            <Col >
-              <Form.Group className="mb-3" controlId="formSituacaoDtcs">
-                <Form.Control size="sm" autoComplete='off' type="text" placeholder="Situação" />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form.Group className="mb-3" controlId="formCodigoDtcs">
-                <Form.Control size="sm" autoComplete='off' type="text" placeholder="Codigo" />
-              </Form.Group>
-            </Col>
-
-            <Col xs={6}>
-              <Form.Group className="mb-3" controlId="formDescricaoDtcs">
-                <Form.Control size="sm" autoComplete='off' type="text" placeholder="DTCs" />
-              </Form.Group>
-            </Col>
-
-            <Col >
-              <Form.Group className="mb-3" controlId="formSituacaoDtcs">
-                <Form.Control size="sm" autoComplete='off' type="text" placeholder="Situação" />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form.Group className="mb-3" controlId="formCodigoDtcs">
-                <Form.Control size="sm" autoComplete='off' type="text" placeholder="Codigo" />
-              </Form.Group>
-            </Col>
-
-            <Col xs={6}>
-              <Form.Group className="mb-3" controlId="formDescricaoDtcs">
-                <Form.Control size="sm" autoComplete='off' type="text" placeholder="DTCs" />
-              </Form.Group>
-            </Col>
-
-            <Col >
-              <Form.Group className="mb-3" controlId="formSituacaoDtcs">
-                <Form.Control size="sm" autoComplete='off' type="text" placeholder="Situação" />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Form.Group className="mb-3" controlId="formCodigoDtcs">
-                <Form.Control size="sm" autoComplete='off' type="text" placeholder="Codigo" />
-              </Form.Group>
-            </Col>
-
-            <Col xs={6}>
-              <Form.Group className="mb-3" controlId="formDescricaoDtcs">
-                <Form.Control size="sm" autoComplete='off' type="text" placeholder="DTCs" />
-              </Form.Group>
-            </Col>
-
-            <Col >
-              <Form.Group className="mb-3" controlId="formSituacaoDtcs">
-                <Form.Control size="sm" autoComplete='off' type="text" placeholder="Situação" />
-              </Form.Group>
-            </Col>
-          </Row>
-
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formProcedimentos">
@@ -194,7 +106,7 @@ export default function FormularioOrdemDeServico() {
           <Col >
             <Form.Group className="mb-3" controlId="formBasicData">
               <Form.Select size="sm" defaultValue={"default"} aria-label="FloatingLabel">
-                <option value="default">Selecione</option>
+                <option value="default">Situação</option>
                 <option value="1">Em andamanto</option>
                 <option value="2">Aguardando</option>
               </Form.Select>
@@ -202,7 +114,7 @@ export default function FormularioOrdemDeServico() {
           </Col>
           <Col xs={7}>
             <Form.Group className="mb-3" controlId="formObservacoes">
-              <Form.Control size="sm" autoComplete='off' type="text" placeholder="Insira a situação atual" />
+              <Form.Control size="sm" autoComplete='off' type="text" placeholder="Observações" />
             </Form.Group>
           </Col>
         </Row>
@@ -217,6 +129,7 @@ export default function FormularioOrdemDeServico() {
         </Button>
       </Form>
     </div>
+
 
   )
 }
