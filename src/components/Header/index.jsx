@@ -26,11 +26,11 @@ export default function Header() {
 
   return (
     <>
-      <div>
-        <Navbar bg="light" expand="lg">
+      <div className='navBar no-print'>
+        <Navbar bg="light" variant="light" expand="lg" expanded>
           <Container fluid>
             <Navbar.Brand>
-              <img src={Logo} alt="img da Aldisel"></img>
+              <img className='no-print' src={Logo} alt="img da Aldisel"></img>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
@@ -39,25 +39,25 @@ export default function Header() {
                 style={{ maxHeight: '100px' }}
                 navbarScroll
               >
-                <Nav.Link onClick={goToOrdemDeServico}>Nova ordem de serviço</Nav.Link>
+                <Nav.Link onClick={goToOrdemDeServico}>Nova ordem de serviço |</Nav.Link>
                 <Nav.Link onClick={goToDashboard}>Pátio</Nav.Link>
 
               </Nav>
               <Form className="d-flex">
                 <FormControl
                   type="search"
-                  placeholder="Search"
+                  placeholder="Buscar O.s."
                   className="me-2"
                   aria-label="Search"
                 />
-                <Button className="me-2" variant="outline-primary">Search</Button>
-                <Button onClick={singout} variant="dark">Sair</Button>
+                <Button className="me-2" variant="dark">Procurar</Button>
+                <Button onClick={singout} variant="danger">Sair</Button>
               </Form>
             </Navbar.Collapse>
           </Container>
         </Navbar>
       </div>
-      {show ? <ModalLoger show="show" titulo="Até a próxima!" subtitulo="Salvando as informações, por favor aguarde." /> : null}
+      {show ? <ModalLoger show="show" titulo="Saindo!" subtitulo="Salvando as informações, aguarde." /> : null}
       {/* {loading ? <LoadSpinner texto="Saindo, até mais!"></LoadSpinner> : null} */}
     </>
   )
