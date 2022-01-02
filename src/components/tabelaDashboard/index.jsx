@@ -34,18 +34,15 @@ export default function TabelaDashboard() {
     setShowUpdate(true)
   }
 
-  function mudarSituacao(id) {
-    api.put(`/ordemdeservicos/${id}`, { situacao_atual: situacao })
-    setOs(os.map(camp => {
-      // console.log(camp.situacao_atual)
-      return camp.situacao_atual !== situacao
-    }))
+  async function mudarSituacao(id) {
+    await api.put(`/ordemdeservicos/${id}`, { situacao_atual: situacao })
+    setOs(os.map(camp => camp.id !== id))
     setShowUpdate(false)
-    // console.log(id)
+
   }
 
-  function confirmDelete(id) {
-    api.delete(`/ordemdeservicos/${id}`)
+  async function deleteClient(id) {
+    await api.delete(`/ordemdeservicos/${id}`)
     setOs(os.filter(camp => camp.id !== id))
     setShowDelete(false)
   }
@@ -57,7 +54,7 @@ export default function TabelaDashboard() {
       <Table size='sm' bordered hover responsive variant='light'>
         <thead>
           <tr>
-            <th>nº</th>
+            <th>nº OS</th>
             <th>Cliente</th>
             <th>Veículo</th>
             <th>Placa</th>
@@ -94,9 +91,9 @@ export default function TabelaDashboard() {
                     <Button onClick={getModalDelete} className='btn-dash' size='sm' variant='danger'><GrTrash /></Button>
                   </Col>
                 </Row>
-                <ModalExclusao show={showDelete} titulo='Todos os dados desse cliente serão excluidos permanentemente da base de dados' subtitulo='Desejar realmente excluir?' close={handleClose} deleteOs={() => confirmDelete(camp.id)} />
+                <ModalExclusao show={showDelete} titulo='Todos os dados desse cliente serão excluidos permanentemente da base de dados' subtitulo='Desejar realmente excluir?' close={handleClose} deleteOs={() => deleteClient(camp.id)} />
 
-                <ModalAtualizacao show={showUpdate} titulo='Deseja atualizar a situação da OS?' close={handleClose} atualizarOs={() => mudarSituacao(camp.id)} />
+                <ModalAtualizacao show={showUpdate} titulo='Deseja atualizar a situação atual?' close={handleClose} atualizarOs={() => mudarSituacao(camp.id)} />
               </td>
             </tr>
           </tbody>

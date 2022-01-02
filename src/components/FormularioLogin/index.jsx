@@ -5,42 +5,62 @@ import { token } from '../../utils/token'
 import './formularioLogin.css'
 import { Form, Button } from 'react-bootstrap'
 import Logo from '../../Assets/logo.png'
-
-
+import { Formik, Field } from 'formik'
+import { SignupSchema } from '../../utils/schema'
+import { ModalValidacao } from '../ModalValidacao'
 
 export default function FormularioLogin() {
-  const [usuario, setUsuario] = useState('')
-  const [senha, setSenha] = useState('')
+  const [show, setShow] = useState(false)
   const history = useHistory()
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (usuario === process.env.REACT_APP_USUARIO && senha === process.env.REACT_APP_SENHA) {
+  function handleClose() {
+    setShow(false)
+  }
+
+  function onSubmit(values, actions) {
+    if (values.usuario === process.env.REACT_APP_USUARIO && values.senha === process.env.REACT_APP_SENHA) {
       localStorage.setItem(STORAGE_KEY, token())
       history.push('/dashboard')
     } else {
-      window.alert('Usuário ou senha inválidos')
+      setShow(true)
     }
   }
 
   return (
-
     <div className='container-login'>
       <div className='form-login'>
         <img src={Logo} alt="img da Aldisel"></img>
-        <Form onSubmit={handleSubmit} >
-          <Form.Group className="mb-1 inputLogin" controlId="validationUsuario">
-            <Form.Label >Usuário</Form.Label>
-            <Form.Control size='sm' onChange={e => setUsuario(e.target.value)} type="text" placeholder="tuba" required />
-          </Form.Group>
-          <Form.Group className="mb-3 inputLogin" controlId="validationSenha">
-            <Form.Label>Senha</Form.Label>
-            <Form.Control size='sm' onChange={e => setSenha(e.target.value)} type="password" placeholder="Senha" required />
-          </Form.Group>
-          <Button className='btn-login' size='sm' type="submit" variant="outline-danger">
-            Entrar
-          </Button>
-        </Form >
+        <Formik
+          initialValues={{
+            usuario: '',
+            senha: ''
+          }}
+          validationSchema={SignupSchema}
+          onSubmit={onSubmit}
+        >
+          {props => (
+
+            <Form onSubmit={props.handleSubmit} >
+
+              <Form.Group className="inputLogin" >
+                <Form.Label >Usuário</Form.Label>
+                <Field name='usuario' className='form-control' />
+                {props.errors.usuario ? <span className='error-msg'>{props.errors.usuario}</span> : null}
+              </Form.Group>
+
+              <Form.Group className="mb-3 inputLogin">
+                <Form.Label>Senha</Form.Label>
+                <Field name='senha' className='form-control' type="password" />
+                {props.errors.senha ? <span className='error-msg'>{props.errors.senha}</span> : null}
+              </Form.Group>
+
+              <Button className='btn-login' type="submit" variant="outline-danger">Entrar</Button>
+
+            </Form >
+          )}
+        </Formik>
+
+        <ModalValidacao show={show} titulo='Ops... Algo deu errado!' subtitulo='Usúario ou senha podem estar errados' close={handleClose} />
       </div>
     </div>
   )
