@@ -7,15 +7,15 @@ import './header.css'
 
 import { Navbar, Container, Nav, Form, FormControl, Button } from 'react-bootstrap'
 import Logo from '../../Assets/logo.png'
-import {ModalLogout} from '../ModalLogOut'
+import { ModalLogout } from '../ModalLogOut'
+
 
 export default function Header() {
   const [show, setShow] = useState(false);
-
   const history = useHistory()
 
   const goToDashboard = () => history.push('/dashboard')
-  const goToOrdemDeServico = () =>history.push('/ordemdeservico')
+  const goToOrdemDeServico = () => history.push('/ordemdeservico')
 
   const singout = () => {
     setShow(true);
@@ -52,7 +52,7 @@ export default function Header() {
                 className="me-2"
                 aria-label="Search"
               />
-              <Button className="me-2" variant="outline-dark"><GrSearch/></Button>
+              <Button className="me-2" variant="outline-dark"><GrSearch /></Button>
               <Button onClick={singout} variant="danger">Sair</Button>
             </Form>
           </Navbar.Collapse>

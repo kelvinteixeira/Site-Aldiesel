@@ -7,15 +7,15 @@ import { Form, Button } from 'react-bootstrap'
 import Logo from '../../Assets/logo.png'
 
 
-export default function FormularioLogin() {
 
+export default function FormularioLogin() {
   const [usuario, setUsuario] = useState('')
   const [senha, setSenha] = useState('')
   const history = useHistory()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (usuario === 'tuba' && senha === '123456') {
+    if (usuario === process.env.REACT_APP_USUARIO && senha === process.env.REACT_APP_SENHA) {
       localStorage.setItem(STORAGE_KEY, token())
       history.push('/dashboard')
     } else {
@@ -24,6 +24,7 @@ export default function FormularioLogin() {
   }
 
   return (
+
     <div className='container-login'>
       <div className='form-login'>
         <img src={Logo} alt="img da Aldisel"></img>

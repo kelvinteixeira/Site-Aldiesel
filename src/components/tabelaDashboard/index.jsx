@@ -36,9 +36,9 @@ export default function TabelaDashboard() {
 
   function mudarSituacao(id) {
     api.put(`/ordemdeservicos/${id}`, { situacao_atual: situacao })
-    setOs(os.filter(camp => {
+    setOs(os.map(camp => {
       // console.log(camp.situacao_atual)
-      return camp.situacao_atual !== id
+      return camp.situacao_atual !== situacao
     }))
     setShowUpdate(false)
     // console.log(id)
@@ -77,8 +77,7 @@ export default function TabelaDashboard() {
               <td className='td-center' >{camp.nome_mecanico}</td>
               <td className='td-center'>  {camp.data_criacao}</td>
               <td className='td-situacao td-center' >
-                <Form.Select onChange={e => setSituacao(e.target.value)} className='form-select-dash' aria-label="situacaoDTC">
-                  <option value=''>{camp.situacao_atual}</option>
+                <Form.Select defaultValue={camp.situacao_atual} onChange={e => setSituacao(e.target.value)} className='form-select-dash' aria-label="situacaoDTC">
                   {(getSelect())}
                 </Form.Select>
               </td>
@@ -95,7 +94,7 @@ export default function TabelaDashboard() {
                     <Button onClick={getModalDelete} className='btn-dash' size='sm' variant='danger'><GrTrash /></Button>
                   </Col>
                 </Row>
-                <ModalExclusao show={showDelete} titulo='ATENÇÂO! Todos os dados desse cliente serão excluidos da base de dados' subtitulo='Desejar realmente excluir?' close={handleClose} deleteOs={() => confirmDelete(camp.id)} />
+                <ModalExclusao show={showDelete} titulo='Todos os dados desse cliente serão excluidos permanentemente da base de dados' subtitulo='Desejar realmente excluir?' close={handleClose} deleteOs={() => confirmDelete(camp.id)} />
 
                 <ModalAtualizacao show={showUpdate} titulo='Deseja atualizar a situação da OS?' close={handleClose} atualizarOs={() => mudarSituacao(camp.id)} />
               </td>

@@ -5,7 +5,7 @@ import './modal.css'
 export const ModalExclusao = (props) => {
   return (
     <Modal centered size="xs" show={props.show} onHide={props.close}>
-      <Modal.Header closeButton></Modal.Header>
+      <Modal.Header ><h1>Atenção</h1></Modal.Header>
       <Modal.Title>{props.titulo}</Modal.Title>
       <Modal.Body>{props.subtitulo}</Modal.Body>
       <Modal.Footer>
