@@ -1,7 +1,6 @@
-import dotenv from 'dotenv'
 import React from 'react'
 import Routing from './routes'
-dotenv.config()
+import './app.css'
 
 function App() {
   return (

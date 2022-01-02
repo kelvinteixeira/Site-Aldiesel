@@ -1,6 +1,6 @@
-
-  @media (min-width: 320px) {
-    img {
-      width: 300px;
-    }
+@media (min-width: 320px) {
+  img {
+    width: 300px;
   }
+}
+

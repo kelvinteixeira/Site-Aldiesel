@@ -13,6 +13,11 @@
 
 }
 
-.form-control-sm {
-  padding: 14px !important;
+.nav-link {
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+.d-flex {
+  width: 400px;
 }

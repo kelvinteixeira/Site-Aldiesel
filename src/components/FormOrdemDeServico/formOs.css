@@ -1,0 +1,104 @@
+.form-title {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.horarioText {
+  text-align: right;
+  display: none;
+}
+
+.row {
+  --bs-gutter-x: 5px !important;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  width: 700px;
+  border: 1px solid;
+  padding: 10px;
+  background-color: white;
+}
+
+@media print {
+  * {
+    background: transparent;
+    color: #000;
+    text-shadow: none;
+    filter: none;
+    -ms-filter: none;
+  }
+
+  .print {
+    display: block !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+}
+
+.text-right {
+  text-align: right;
+}
+
+.logo {
+  margin: auto;
+  width: 230px;
+}
+
+.print {
+  display: none;
+}
+
+.no-print {
+  display: block;
+}
+
+.btn {
+  margin: auto;
+  width: 100px;
+}
+
+.input {
+  height: 20px !important;
+  font-size: 12px !important;
+  padding: 5px !important;
+  font-weight: bold !important;
+}
+
+.form-label {
+  margin-bottom: 0 !important;
+  font-size: 12px !important;
+  text-align: center !important;
+  font-weight: bold !important;
+}
+
+.form-select {
+  height: 20px ;
+  font-size: 12px !important;
+  padding: 0 0 0 4px !important;
+  font-weight: bold !important;
+}
+
+.form-control {
+  font-weight: bold !important;
+}
+
+option {
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+
+h3 {
+  font-weight: bold;
+  text-decoration: underline;
+}

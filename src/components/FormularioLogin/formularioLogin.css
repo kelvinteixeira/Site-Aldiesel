@@ -1,4 +1,32 @@
 .inputLogin {
   width: 150px;
   margin: auto;
+  text-align: left;
+}
+
+.container-login {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100vh !important;
+}
+
+.form-login {
+  max-width: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: rgb(253, 253, 253);
+  box-shadow: 3px 4px 8px 0px #000;
+}
+
+.btn-login {
+  width: auto !important; 
 }
