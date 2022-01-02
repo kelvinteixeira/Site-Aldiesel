@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { Formik, Field, ErrorMessage } from 'formik'
+import { ModalValidacao } from '../ModalValidacao'
+import { Form, Button } from 'react-bootstrap'
+import { SignupSchema } from '../../utils/schema'
 import { STORAGE_KEY } from '../../utils/auth'
 import { token } from '../../utils/token'
-import './formularioLogin.css'
-import { Form, Button } from 'react-bootstrap'
 import Logo from '../../Assets/logo.png'
-import { Formik, Field } from 'formik'
-import { SignupSchema } from '../../utils/schema'
-import { ModalValidacao } from '../ModalValidacao'
+import './formularioLogin.css'
 
 export default function FormularioLogin() {
   const [show, setShow] = useState(false)
@@ -37,21 +37,21 @@ export default function FormularioLogin() {
           }}
           validationSchema={SignupSchema}
           onSubmit={onSubmit}
-        >
+          >
           {props => (
 
             <Form onSubmit={props.handleSubmit} >
 
               <Form.Group className="inputLogin" >
                 <Form.Label >Usuário</Form.Label>
+                <ErrorMessage name='usuario'/>
                 <Field name='usuario' className='form-control' />
-                {props.errors.usuario ? <span className='error-msg'>{props.errors.usuario}</span> : null}
               </Form.Group>
 
               <Form.Group className="mb-3 inputLogin">
                 <Form.Label>Senha</Form.Label>
+                <ErrorMessage name='senha' />
                 <Field name='senha' className='form-control' type="password" />
-                {props.errors.senha ? <span className='error-msg'>{props.errors.senha}</span> : null}
               </Form.Group>
 
               <Button className='btn-login' type="submit" variant="outline-danger">Entrar</Button>

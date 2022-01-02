@@ -8,7 +8,7 @@ export function ModalValidacao(props) {
       <Modal.Title>{props.titulo}</Modal.Title>
       <Modal.Body>{props.subtitulo}</Modal.Body>
       <Modal.Footer>
-        <Button variant="danger" onClick={props.close}>Fechar</Button>
+        <Button variant="primary" onClick={props.close}>Fechar</Button>
       </Modal.Footer>
     </Modal>
   );

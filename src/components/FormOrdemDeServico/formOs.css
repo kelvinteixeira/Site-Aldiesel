@@ -79,7 +79,7 @@
 }
 
 .form-select {
-  height: 20px ;
+  height: 20px;
   font-size: 12px !important;
   padding: 0 0 0 4px !important;
   font-weight: bold !important;
@@ -101,4 +101,8 @@ h6 {
 h3 {
   font-weight: bold;
   text-decoration: underline;
+}
+
+.textarea {
+  height: 50px !important;
 }
