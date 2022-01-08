@@ -11,8 +11,8 @@ Yup.setLocale({
 });
 
 export const SignupSchema = Yup.object().shape({
-  usuario: Yup.string().required(<FcHighPriority/>),
-  senha: Yup.string().required(<FcHighPriority/>),
+  usuario: Yup.string().required(),
+  senha: Yup.string().required(),
 })
 
 export const FormularioOsSchema = Yup.object().shape({
