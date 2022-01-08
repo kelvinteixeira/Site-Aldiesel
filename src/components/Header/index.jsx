@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import styled from 'styled-components';
 import { useHistory } from 'react-router-dom'
 import { STORAGE_KEY } from '../../utils/auth'
 import { GrDocumentText, GrCar, GrSearch } from "react-icons/gr";
+import { AiOutlineUserAdd, AiFillCar, AiOutlineSearch } from "react-icons/ai";
 
 import './header.css'
 
@@ -32,7 +34,7 @@ export default function Header() {
         <Container fluid>
 
           <Navbar.Brand>
-            <img className='no-print' src={Logo} alt="img da Aldisel"></img>
+            <ImgLogo className='no-print' src={Logo} alt="img da Aldisel" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -41,19 +43,22 @@ export default function Header() {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link onClick={goToOrdemDeServico} > <GrDocumentText /> Nova ordem de serviço</Nav.Link>
-              <Nav.Link onClick={goToDashboard} ><GrCar /> Pátio</Nav.Link>
+
+              <Nav.Link onClick={goToDashboard} ><AiOutlineUserAddStyled /> Cadastrar Cliente</Nav.Link>
+              <Nav.Link onClick={goToDashboard} ><AiFillCarStyled /> Pátio</Nav.Link>
+              {/* <Nav.Link onClick={goToOrdemDeServico} > <GrDocumentText /> Nova ordem de serviço</Nav.Link> */}
+
 
             </Nav>
             <Form className="d-flex">
-              <FormControl
+              <FormControlStyled
                 type="search"
-                placeholder="Buscar OS"
+                placeholder="Buscar"
                 className="me-2"
                 aria-label="Search"
               />
-              <Button className="me-2" variant="outline-dark"><GrSearch /></Button>
-              <Button onClick={singout} variant="danger">Sair</Button>
+              <ButtonStyled className="me-2" variant='outline' ><AiOutlineSearch /></ButtonStyled>
+              <ButtonStyled onClick={singout} variant='outline' >Sair</ButtonStyled>
             </Form>
           </Navbar.Collapse>
         </Container>
@@ -63,3 +68,34 @@ export default function Header() {
     </>
   )
 }
+
+const ImgLogo = styled.img`
+  width: 10rem;
+`;
+
+const AiOutlineUserAddStyled = styled(AiOutlineUserAdd)`
+font-size: 1.5rem;
+`;
+
+const AiFillCarStyled = styled(AiFillCar)`
+font-size: 1.5rem;
+`;
+
+const ButtonStyled = styled(Button)`
+  color: #8e9cca;
+  border-color: #8e9cca;
+  transition: ease-in-out 0.5s;
+  font-weight: bold;
+  :hover{
+   background-color: #8e9cca ;
+   border-color: #000 ;
+   color: #fff
+
+  }
+`;
+
+const FormControlStyled = styled(FormControl)`
+::-webkit-input-placeholder{
+  color: #8e9cca; 
+}
+`

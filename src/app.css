@@ -10,8 +10,3 @@ body {
   background: #c9d6ff;
   background: linear-gradient(to right, #c9d6ff, #e2e2e2);
 }
-
-.msg-err {
-  color: red;
-  font-size: 0.6rem;
-}
