@@ -1,16 +1,16 @@
 import React from 'react'
 import Spinner from 'react-bootstrap/Spinner'
+import styled from 'styled-components'
 import './spinner.css'
 
-export default function LoadSpinner(props) {
+export default function LoadSpinner() {
   return (
-    <div className="spinner">
-      <div>
-        <Spinner animation="border" variant="primary" />
-      </div>
-      <div>
-        <span>{props.texto}</span>
-      </div>
-    </div>
+    <SpinnerStyled animation="border" variant='danger' />
   )
 }
+
+const SpinnerStyled = styled(Spinner)`
+  margin: auto;
+  margin-top: 2rem;
+
+`;

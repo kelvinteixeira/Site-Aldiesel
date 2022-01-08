@@ -1,38 +1,29 @@
 import React, { useState } from 'react'
-import styled from 'styled-components';
-import { useHistory } from 'react-router-dom'
-import { STORAGE_KEY } from '../../utils/auth'
-import { GrDocumentText, GrCar, GrSearch } from "react-icons/gr";
+import { Navbar, Container, Nav, Form, FormControl, Button, Modal, Spinner } from 'react-bootstrap'
 import { AiOutlineUserAdd, AiFillCar, AiOutlineSearch } from "react-icons/ai";
-
-import './header.css'
-
-import { Navbar, Container, Nav, Form, FormControl, Button } from 'react-bootstrap'
+import { STORAGE_KEY } from '../../utils/auth'
+import { useHistory } from 'react-router-dom'
 import Logo from '../../Assets/logo.png'
-import { ModalLogout } from '../ModalLogOut'
-
+import styled from 'styled-components';
 
 export default function Header() {
-  const [show, setShow] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const history = useHistory()
 
   const goToDashboard = () => history.push('/dashboard')
-  const goToOrdemDeServico = () => history.push('/ordemdeservico')
 
   const singout = () => {
-    setShow(true);
+    setShowModal(true);
     localStorage.removeItem(STORAGE_KEY)
     setTimeout(() => {
       history.push('/')
-    }, 1000)
+    }, 1500)
   }
-
 
   return (
     <>
       <Navbar className='no-print' bg="light" expand="lg" expanded >
         <Container fluid>
-
           <Navbar.Brand>
             <ImgLogo className='no-print' src={Logo} alt="img da Aldisel" />
           </Navbar.Brand>
@@ -43,12 +34,8 @@ export default function Header() {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-
               <Nav.Link onClick={goToDashboard} ><AiOutlineUserAddStyled /> Cadastrar Cliente</Nav.Link>
               <Nav.Link onClick={goToDashboard} ><AiFillCarStyled /> Pátio</Nav.Link>
-              {/* <Nav.Link onClick={goToOrdemDeServico} > <GrDocumentText /> Nova ordem de serviço</Nav.Link> */}
-
-
             </Nav>
             <Form className="d-flex">
               <FormControlStyled
@@ -63,8 +50,13 @@ export default function Header() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      {show ? <ModalLogout show="show" titulo="Saindo!" subtitulo="Salvando as informações, aguarde." /> : null}
-      {/* {loading ? <LoadSpinner texto="Saindo, até mais!"></LoadSpinner> : null} */}
+
+      <Modal centered size="sm" show={showModal}>
+        <SpinnerStyled animation="border" variant='danger' />
+        <Modal.Title><Title>Saindo!</Title></Modal.Title>
+        <Modal.Body><SubTitle>Salvando informações...</SubTitle></Modal.Body>
+      </Modal>
+
     </>
   )
 }
@@ -90,7 +82,6 @@ const ButtonStyled = styled(Button)`
    background-color: #8e9cca ;
    border-color: #000 ;
    color: #fff
-
   }
 `;
 
@@ -99,3 +90,20 @@ const FormControlStyled = styled(FormControl)`
   color: #8e9cca; 
 }
 `
+const Title = styled.h3`
+  text-align: center;
+  padding: 2rem 0 1rem 0;
+  color: #8e9cca;
+  font-weight: bold;
+`;
+
+const SubTitle = styled.h6`
+  text-align: center;
+  color: #8e9cca;
+  font-weight: bold;
+`;
+
+const SpinnerStyled = styled(Spinner)`
+  margin: auto;
+  margin-top: 2rem;
+`;

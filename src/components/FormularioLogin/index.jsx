@@ -77,7 +77,6 @@ export default function FormularioLogin() {
       </Card>
 
       <Modal centered size='xs' className="no-print" show={showModal} onHide={handleClose}>
-        <Modal.Header></Modal.Header>
         <Modal.Title> <Title>Algo deu errado! </Title></Modal.Title>
 
         <Modal.Body><SubTitle>Usúario ou senha podem estar errados</SubTitle></Modal.Body>
