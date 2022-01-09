@@ -15,6 +15,17 @@ export const SignupSchema = Yup.object().shape({
   senha: Yup.string().required(),
 })
 
+export const SinginSchema = Yup.object().shape({
+  nome: Yup.string().required(),
+  telefone: Yup.string().required(),
+  rua: Yup.string().required(),
+  numero: Yup.string().required(),
+  bairro: Yup.string().required(),
+  cidade: Yup.string().required(),
+  estado: Yup.string().required(),
+
+})
+
 export const FormularioOsSchema = Yup.object().shape({
   cliente: Yup.string().required(<FcHighPriority/>),
   telefone: Yup.string().required(<FcHighPriority/>),

@@ -11,6 +11,7 @@ export default function Header() {
   const history = useHistory()
 
   const goToDashboard = () => history.push('/dashboard')
+  const goToCadastrarCliente = () => history.push('/cadastrarcliente')
 
   const singout = () => {
     setShowModal(true);
@@ -22,7 +23,7 @@ export default function Header() {
 
   return (
     <>
-      <Navbar className='no-print' bg="light" expand="lg" expanded >
+      <NavbarStyled className='no-print' bg="light" expand="lg" expanded >
         <Container fluid>
           <Navbar.Brand>
             <ImgLogo className='no-print' src={Logo} alt="img da Aldisel" />
@@ -34,7 +35,7 @@ export default function Header() {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link onClick={goToDashboard} ><AiOutlineUserAddStyled /> Cadastrar Cliente</Nav.Link>
+              <Nav.Link onClick={goToCadastrarCliente} ><AiOutlineUserAddStyled /> Cadastrar Cliente</Nav.Link>
               <Nav.Link onClick={goToDashboard} ><AiFillCarStyled /> Pátio</Nav.Link>
             </Nav>
             <Form className="d-flex">
@@ -49,7 +50,7 @@ export default function Header() {
             </Form>
           </Navbar.Collapse>
         </Container>
-      </Navbar>
+      </NavbarStyled>
 
       <Modal centered size="sm" show={showModal}>
         <SpinnerStyled animation="border" variant='danger' />
@@ -60,6 +61,10 @@ export default function Header() {
     </>
   )
 }
+
+const NavbarStyled = styled(Navbar)`
+  margin-bottom: 0 !important;
+`;
 
 const ImgLogo = styled.img`
   width: 10rem;

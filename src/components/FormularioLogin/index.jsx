@@ -42,6 +42,7 @@ export default function FormularioLogin() {
           }}
           validationSchema={SignupSchema}
           onSubmit={onSubmit}
+          
         >
           {props => (
             <Form onSubmit={props.handleSubmit} >
@@ -49,7 +50,7 @@ export default function FormularioLogin() {
 
                 <Title>Entrar na sua conta</Title>
 
-                <FormGroupStyled >
+                <FormGroupStyled className='mb-2' >
                   <IoMdLogInStyled />
                   <Form.Label  >Usuário</Form.Label>
                   <FieldStyled name='usuario' />
@@ -58,7 +59,7 @@ export default function FormularioLogin() {
                   </ErrorMessage>
                 </FormGroupStyled>
 
-                <FormGroupStyled>
+                <FormGroupStyled className='mb-2'>
                   <IoMdLockStyled />
                   <Form.Label>Senha</Form.Label>
                   <FieldStyled name='senha' type="password" />
