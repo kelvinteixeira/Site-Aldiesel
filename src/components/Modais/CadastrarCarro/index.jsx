@@ -112,7 +112,7 @@ export default function ModalCadastrarCarro(params) {
 
       <Modal centered size='sm' className="no-print" show={showModal} onHide={() => setShowModal(false)}>
         <SpinnerStyled animation="border" variant='danger' />
-        <Modal.Title> <SubTitle>Cadastrando veiculo!</SubTitle></Modal.Title>
+        <Modal.Title> <SubTitle>Cadastrando veiculo...</SubTitle></Modal.Title>
       </Modal>
 
     </Container >

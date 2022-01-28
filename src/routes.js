@@ -1,11 +1,11 @@
-import React from 'react'
-import { Route, BrowserRouter, Switch } from 'react-router-dom'
+import React from 'react';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
-import CadastrarCliente from './screens/CadastrarCliente'
-import PrivateRoute from './components/PrivateRoute'
-import Dashboard from './screens/Dashboard'
-import OrdemDeServico from './screens/OrdemDeServico'
-import Login from './screens/Login'
+import CadastrarCliente from './screens/CadastrarCliente';
+import PrivateRoute from './components/PrivateRoute';
+import OrdemDeServico from './screens/OrdemDeServico';
+import Dashboard from './screens/Dashboard';
+import Login from './screens/Login';
 
 export default function Routing() {
   return (

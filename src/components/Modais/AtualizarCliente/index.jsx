@@ -151,7 +151,7 @@ export default function ModalAtualizarDadosCliente(params) {
 
         <Modal centered size='sm' className="no-print" show={showModal} onHide={() => setShowModal(false)}>
           <SpinnerStyled animation="border" variant='danger' />
-          <Modal.Title> <ModalTitle>Atualizando Dados!</ModalTitle></Modal.Title>
+          <Modal.Title> <ModalTitle>Atualizando Dados...</ModalTitle></Modal.Title>
         </Modal>
 
       </Modal>

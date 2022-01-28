@@ -14,8 +14,6 @@ import { BiTrash } from "react-icons/bi";
 import { BiFile } from "react-icons/bi";
 import styled from 'styled-components';
 import { api } from '../../api';
-
-
 import './dash.css';
 
 export default function TabelaDashboard() {
@@ -65,7 +63,6 @@ export default function TabelaDashboard() {
   function atualizarCliente(id) {
     setShowModalAtualizarCliente(true)
     setIdCliente(id)
-    // history.push(`/clientes/atualizar/${id}`)
   }
 
   function adicionarCarro(id) {

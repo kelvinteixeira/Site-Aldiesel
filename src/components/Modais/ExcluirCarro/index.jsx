@@ -38,7 +38,7 @@ export default function ModalExlcuirCarro(params) {
 
       <Modal centered size='sm' className="no-print" show={showModal} onHide={() => setShowModal(false)}>
         <SpinnerStyled animation="border" variant='danger' />
-        <Modal.Title> <SubTitle>Excluindo veiculo!</SubTitle></Modal.Title>
+        <Modal.Title> <SubTitle>Excluindo veiculo...</SubTitle></Modal.Title>
       </Modal>
     </Container >
   )
