@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route, BrowserRouter, Switch } from 'react-router-dom'
 
-import AtualizarCliente from './screens/AtualizarCliente'
 import CadastrarCliente from './screens/CadastrarCliente'
 import PrivateRoute from './components/PrivateRoute'
 import Dashboard from './screens/Dashboard'
@@ -15,7 +14,6 @@ export default function Routing() {
         <Route path="/" exact component={Login} />
         <PrivateRoute path="/dashboard" exact component={Dashboard} />
         <PrivateRoute path="/cadastrarcliente" exact component={CadastrarCliente} />
-        <PrivateRoute path="/clientes/atualizar/:id" exact component={AtualizarCliente} />
         <PrivateRoute path="/clientes/ordemdeservico/encontrar/:id" exact component={GerarOs} />
       </Switch>
     </BrowserRouter>

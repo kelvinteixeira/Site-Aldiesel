@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
+import ModalAtualizarDadosCliente from '../Modais/AtualizarCliente';
 import { AiOutlineEdit, AiOutlinePrinter } from "react-icons/ai";
 import ModalGerarOrdemDeServico from '../Modais/OrdemDeServico';
 import ModalCadastrarCarro from '../Modais/CadastrarCarro';
@@ -20,6 +21,7 @@ import './dash.css';
 export default function TabelaDashboard() {
   const [showModalCadastrarCarro, setShowModalCadastrarCarro] = useState(false)
   const [showModalExcluirCliente, setShowModaExcluirCliente] = useState(false)
+  const [showModalAtualizarCliente, setShowModalAtualizarCliente] = useState(false)
   const [showModalExcluircarro, setShowModaExcluirCarro] = useState(false)
   const [showModalOrdemDeServico, setShowModalOrdemDeServico] = useState(false)
   const [showModalOrdemExistente, setShowModalOrdemExistente] = useState(false)
@@ -61,7 +63,9 @@ export default function TabelaDashboard() {
 
 
   function atualizarCliente(id) {
-    history.push(`/clientes/atualizar/${id}`)
+    setShowModalAtualizarCliente(true)
+    setIdCliente(id)
+    // history.push(`/clientes/atualizar/${id}`)
   }
 
   function adicionarCarro(id) {
@@ -70,8 +74,6 @@ export default function TabelaDashboard() {
   }
 
   function excluirCarro(id) {
-    // const idOs = ordemDeServico.map(ordem => ordem).find(element => element.id_carros === id)
-    // console.log(idOs)
     setShowModaExcluirCarro(true)
     setIdCarro(id)
   }
@@ -156,6 +158,8 @@ export default function TabelaDashboard() {
       <ModalExlcuirCliente show={showModalExcluirCliente} id_cliente={idCliente} onHide={() => setShowModaExcluirCliente(false)} />
 
       <ModalGerarOrdemDeServico show={showModalOrdemDeServico} id_carro={idCarro} onHide={() => setShowModalOrdemDeServico(false)} />
+
+      <ModalAtualizarDadosCliente show={showModalAtualizarCliente} id_cliente={idCliente} onHide={() => setShowModalAtualizarCliente(false)}  />
 
       <Modal centered size='xs' show={showModalOrdemExistente} onHide={() => setShowModalOrdemExistente(false)}>
         <Modal.Header closeButton></Modal.Header>

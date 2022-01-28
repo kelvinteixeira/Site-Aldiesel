@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
 
 import { Form, Button, Modal, Row, Col, Spinner } from 'react-bootstrap'
 import { Formik, Field, ErrorMessage } from 'formik'
-import { UpdateClient } from '../../utils/schema'
+import { UpdateClient } from '../../../utils/schema'
 import { AiOutlineHome } from "react-icons/ai";
 import styled from 'styled-components'
-import { api } from '../../api'
+import { api } from '../../../api'
 
-export default function AtualizarDadosCliente() {
+export default function ModalAtualizarDadosCliente(params) {
   const [showModal, setShowModal] = useState(false)
   const [clientes, setClientes] = useState([])
-  const history = useHistory()
-  const { id } = useParams()
 
   useEffect(() => {
-    api.get(`/clientes/encontrar/${id}`)
+    api.get(`/clientes/encontrar/${params.id_cliente}`)
       .then((response) => setClientes(response.data))
-  }, [id])
+  }, [params.id_cliente])
 
   function onSubmit(values, actions) {
-    api.put(`/clientes/atualizar/${id}`, {
+    api.put(`/clientes/atualizar/${params.id_cliente}`, {
       nome: values.nome,
       telefone: values.telefone,
       endereco_rua: values.rua,
@@ -33,15 +30,19 @@ export default function AtualizarDadosCliente() {
     actions.resetForm()
     setShowModal(true)
     setTimeout(() => {
-      history.push('/dashboard')
+      setShowModal(false)
+      params.onHide()
+      window.location.reload();
     }, 1500)
   }
 
   return (
     < Container >
-      {clientes.map((cliente, index) => (
-        <Card key={index}>
+      <Modal show={params.show} onHide={params.onHide} id_cliente='true' centered>
+
+        {clientes.map((cliente, indexCliente) => (
           <Formik
+            key={cliente.id_cliente}
             initialValues={{
               nome: cliente.nome,
               telefone: cliente.telefone,
@@ -139,25 +140,21 @@ export default function AtualizarDadosCliente() {
                     </Col>
                   </Row>
 
-                  <ButtonStyled type="submit" variant="outline-primary">Cadastrar</ButtonStyled>
+                  <ButtonStyled type="submit" variant="outline-primary">Atualizar</ButtonStyled>
                   <hr />
 
                 </CardContent>
               </Form>
             )}
           </Formik >
+        ))}
 
+        <Modal centered size='sm' className="no-print" show={showModal} onHide={() => setShowModal(false)}>
+          <SpinnerStyled animation="border" variant='danger' />
+          <Modal.Title> <ModalTitle>Atualizando Dados!</ModalTitle></Modal.Title>
+        </Modal>
 
-
-        </Card>
-      ))}
-
-      <Modal centered size='sm' className="no-print" show={showModal} onHide={() => setShowModal(false)}>
-        <SpinnerStyled animation="border" variant='danger' />
-        <Modal.Title> <ModalTitle>Cliente Atulizado</ModalTitle></Modal.Title>
-        <Modal.Body><ModalSubTitle>Redirecionando para o pátio</ModalSubTitle></Modal.Body>
       </Modal>
-
     </Container >
   )
 }
@@ -167,15 +164,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 4rem;
-`;
-
-const Card = styled.div`
-  width: 35rem;
-  height: auto;
-  border: 0.15rem solid #8e9cca;
-  border-radius: 0.6rem;
-  background-color: white;
-  box-shadow: 0.15rem 0.2rem 0.4rem 0.1rem #6776ac;
 `;
 
 const CardContent = styled.div`
@@ -194,21 +182,13 @@ const Title = styled.h4`
 const ModalTitle = styled.h4`
   text-align: center;
   padding-top: 2rem;
+  padding-bottom: 2rem;
   color: #000;
   font-weight: bold;
   margin-bottom: 0;
 `;
 
 const SubTitle = styled.h6`
-  text-align: center;
-  color: #8e9cca;
-  font-weight: bold;
-  display: inherit;
-  line-height: 3rem;
-  margin-bottom: 0;
-`;
-
-const ModalSubTitle = styled.h6`
   text-align: center;
   color: #8e9cca;
   font-weight: bold;

@@ -36,9 +36,7 @@ export default function ModalExlcuirCliente(params) {
 
       <Modal centered size='sm' className="no-print" show={showModal} onHide={() => setShowModal(false)}>
         <SpinnerStyled animation="border" variant='danger' />
-        <Modal.Title> <SubTitle>Cliente excluido!</SubTitle></Modal.Title>
-        <Modal.Footer>
-        </Modal.Footer>
+        <Modal.Title> <SubTitle>Excluindo cliente!</SubTitle></Modal.Title>
       </Modal>
     </Container >
   )
@@ -97,12 +95,13 @@ const Container = styled.div`
   margin-bottom: 2rem;
 `;
 
-const SubTitle = styled.h6`
+const SubTitle = styled.h5`
   text-align: center;
   color: #000;
   font-weight: bold;
   display: inherit;
   line-height: 3rem;
+  padding-bottom: 1rem;
 `;
 
 const SubTitleModal = styled.h5`

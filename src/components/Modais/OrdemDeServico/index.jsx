@@ -89,9 +89,7 @@ export default function ModalGerarOrdemDeServico(params) {
 
       <Modal centered size='sm' className="no-print" show={showModal} onHide={() => setShowModal(false)}>
         <SpinnerStyled animation="border" variant='danger' />
-        <Modal.Title> <SubTitle>Ordem de serviço cadastrada!</SubTitle></Modal.Title>
-        <Modal.Footer>
-        </Modal.Footer>
+        <Modal.Title> <SubTitle>Cadastrando Ordem de serviço!</SubTitle></Modal.Title>
       </Modal>
 
     </Container >
@@ -124,12 +122,13 @@ const Title = styled.h3`
   font-weight: bold;
 `;
 
-const SubTitle = styled.h5`
+const SubTitle = styled.h6`
   text-align: center;
-  color: #8e9cca;
+  color: #000;
   font-weight: bold;
   display: inherit;
   line-height: 3rem;
+  padding-bottom: 1rem;
 `;
 
 const FormGroupStyled = styled(Form.Group)`

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 import { Button, Modal, Spinner } from 'react-bootstrap'
@@ -8,20 +8,8 @@ import { api } from '../../../api'
 
 export default function ModalExlcuirCarro(params) {
   const [showModal, setShowModal] = useState(false)
-  const [ordemDeServico, setOrdemDeServico] = useState([])
-  useEffect(() => {
-    api.get(`/clientes/ordemdeservico/listar`)
-      .then((response) => setOrdemDeServico(response.data))
-      .catch((err) => {
-        console.error(err.message)
-      })
-  }, [])
-
-  const idOs = ordemDeServico.map(ordem => ordem).find(element => element.id_carros === params.id_carro)
-  console.log(idOs)
 
   function deletarCarro() {
-    api.delete(`/clientes/ordemdeservico/deletar/${idOs}`)
     api.delete(`/clientes/carros/deletar/${params.id_carro}`)
     setShowModal(true)
 
@@ -50,9 +38,7 @@ export default function ModalExlcuirCarro(params) {
 
       <Modal centered size='sm' className="no-print" show={showModal} onHide={() => setShowModal(false)}>
         <SpinnerStyled animation="border" variant='danger' />
-        <Modal.Title> <SubTitle>Veiculo excluido!</SubTitle></Modal.Title>
-        <Modal.Footer>
-        </Modal.Footer>
+        <Modal.Title> <SubTitle>Excluindo veiculo!</SubTitle></Modal.Title>
       </Modal>
     </Container >
   )
@@ -110,7 +96,7 @@ const Container = styled.div`
   margin-bottom: 2rem;
 `;
 
-const SubTitle = styled.h6`
+const SubTitle = styled.h5`
   text-align: center;
   color: #000;
   font-weight: bold;
@@ -122,5 +108,5 @@ const SubTitleModal = styled.h5`
   text-align: center;
   color: #8e9cca;
   font-weight: bold;
-  padding: 0 2rem 0 2rem;
+  padding: 0 2rem 1rem 2rem;
 `;
