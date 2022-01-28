@@ -151,11 +151,11 @@ export default function AtualizarDadosCliente() {
 
         </Card>
       ))}
-    
-      <Modal centered size='xs' className="no-print" show={showModal} onHide={() => setShowModal(false)}>
+
+      <Modal centered size='sm' className="no-print" show={showModal} onHide={() => setShowModal(false)}>
         <SpinnerStyled animation="border" variant='danger' />
-        <Modal.Title> <Title>Cliente Atulizado</Title></Modal.Title>
-        <Modal.Body><SubTitle>Redirecionando para o pátio</SubTitle></Modal.Body>
+        <Modal.Title> <ModalTitle>Cliente Atulizado</ModalTitle></Modal.Title>
+        <Modal.Body><ModalSubTitle>Redirecionando para o pátio</ModalSubTitle></Modal.Body>
       </Modal>
 
     </Container >
@@ -191,9 +191,26 @@ const Title = styled.h4`
   margin-bottom: 0;
 `;
 
+const ModalTitle = styled.h4`
+  text-align: center;
+  padding-top: 2rem;
+  color: #000;
+  font-weight: bold;
+  margin-bottom: 0;
+`;
+
 const SubTitle = styled.h6`
   text-align: center;
-  color: #000;
+  color: #8e9cca;
+  font-weight: bold;
+  display: inherit;
+  line-height: 3rem;
+  margin-bottom: 0;
+`;
+
+const ModalSubTitle = styled.h6`
+  text-align: center;
+  color: #8e9cca;
   font-weight: bold;
   display: inherit;
   line-height: 3rem;

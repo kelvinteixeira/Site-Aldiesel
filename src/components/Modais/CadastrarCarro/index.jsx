@@ -113,8 +113,6 @@ export default function ModalCadastrarCarro(params) {
       <Modal centered size='sm' className="no-print" show={showModal} onHide={() => setShowModal(false)}>
         <SpinnerStyled animation="border" variant='danger' />
         <Modal.Title> <SubTitle>Novo veiculo cadastrado!</SubTitle></Modal.Title>
-        <Modal.Footer>
-        </Modal.Footer>
       </Modal>
 
     </Container >
@@ -124,6 +122,7 @@ export default function ModalCadastrarCarro(params) {
 const SpinnerStyled = styled(Spinner)`
   margin: auto;
   margin-top: 2rem;
+  margin-bottom: 1rem;
 `;
 
 
@@ -153,6 +152,7 @@ const SubTitle = styled.h5`
   font-weight: bold;
   display: inherit;
   line-height: 3rem;
+  padding-bottom: 1rem;
 `;
 
 const FormGroupStyled = styled(Form.Group)`

@@ -54,8 +54,8 @@ export default function Header() {
 
       <Modal centered size="sm" show={showModal}>
         <SpinnerStyled animation="border" variant='danger' />
-        <Modal.Title><Title>Saindo!</Title></Modal.Title>
-        <Modal.Body><SubTitle>Salvando informações...</SubTitle></Modal.Body>
+        <Modal.Title><TitleModal>Salvando informações</TitleModal></Modal.Title>
+        <Modal.Body><SubTitle>Até a próxima!</SubTitle></Modal.Body>
       </Modal>
 
     </>
@@ -95,14 +95,14 @@ const FormControlStyled = styled(FormControl)`
   color: #8e9cca; 
 }
 `
-const Title = styled.h3`
+const TitleModal = styled.h4`
   text-align: center;
-  padding: 2rem 0 1rem 0;
-  color: #8e9cca;
+  color: #000;
   font-weight: bold;
 `;
 
-const SubTitle = styled.h6`
+
+const SubTitle = styled.h5`
   text-align: center;
   color: #8e9cca;
   font-weight: bold;
@@ -111,4 +111,5 @@ const SubTitle = styled.h6`
 const SpinnerStyled = styled(Spinner)`
   margin: auto;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 `;
