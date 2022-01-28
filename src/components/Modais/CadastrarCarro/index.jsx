@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { Form, Button, Modal, Row, Col, Spinner } from 'react-bootstrap'
 import { Formik, Field, ErrorMessage } from 'formik'
-import { AddCarSchema } from '../../../utils/schema'
+import { AddCarSchema } from '../../../utils/Yup/schema'
 import { dataAtual } from '../../../utils/data'
 import { AiFillCar } from "react-icons/ai";
 import styled from 'styled-components'

@@ -4,10 +4,10 @@ import { useHistory } from 'react-router-dom'
 import { Form, Button, Modal } from 'react-bootstrap'
 import { IoMdLogIn, IoMdLock } from "react-icons/io";
 import { Formik, Field, ErrorMessage } from 'formik'
-import { SignupSchema } from '../../utils/schema'
+import { SignupSchema } from '../../utils/Yup/schema'
 import { FiAlertCircle } from "react-icons/fi";
-import { STORAGE_KEY } from '../../utils/auth'
-import { token } from '../../utils/token'
+import { STORAGE_KEY } from '../../utils/Authorization/auth'
+import { token } from '../../utils/Authorization/token'
 import Logo from '../../Assets/logo.png'
 import styled from 'styled-components'
 

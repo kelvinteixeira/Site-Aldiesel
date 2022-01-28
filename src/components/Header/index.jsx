@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Navbar, Container, Nav, Form, FormControl, Button, Modal, Spinner } from 'react-bootstrap'
 import { AiOutlineUserAdd, AiFillCar, AiOutlineSearch } from "react-icons/ai";
-import { STORAGE_KEY } from '../../utils/auth'
+import { STORAGE_KEY } from '../../utils/Authorization/auth'
 import { useHistory } from 'react-router-dom'
 import Logo from '../../Assets/logo.png'
 import styled from 'styled-components';

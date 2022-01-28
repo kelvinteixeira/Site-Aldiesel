@@ -32,7 +32,7 @@ export default function GerarOrdemDeServico() {
       .then(response => setOrdemDeServico(response.data))
     api.get(`/clientes/carros/listar`)
       .then(response => setCarros(response.data))
-  }, [])
+  }, [id])
 
   function onSubmit(values, actions) {
     api.put(`/clientes/atualizar/${id}`, {

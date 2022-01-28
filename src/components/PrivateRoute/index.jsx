@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import { isLogged } from '../../utils/auth'
+import { isLogged } from '../../utils/Authorization/auth'
 
 const PrivateRoute = (props) => isLogged() ? <Route {...props} /> : <Redirect to='/' />
 
