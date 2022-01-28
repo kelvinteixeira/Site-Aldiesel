@@ -5,6 +5,7 @@ import { Form, Button, Modal } from 'react-bootstrap'
 import { IoMdLogIn, IoMdLock } from "react-icons/io";
 import { Formik, Field, ErrorMessage } from 'formik'
 import { SignupSchema } from '../../utils/schema'
+import { FiAlertCircle } from "react-icons/fi";
 import { STORAGE_KEY } from '../../utils/auth'
 import { token } from '../../utils/token'
 import Logo from '../../Assets/logo.png'
@@ -42,7 +43,7 @@ export default function FormularioLogin() {
           }}
           validationSchema={SignupSchema}
           onSubmit={onSubmit}
-          
+
         >
           {props => (
             <Form onSubmit={props.handleSubmit} >
@@ -77,12 +78,14 @@ export default function FormularioLogin() {
         </Formik >
       </Card>
 
-      <Modal centered size='xs' className="no-print" show={showModal} onHide={handleClose}>
-        <Modal.Title> <Title>Algo deu errado! </Title></Modal.Title>
+      <Modal size='xs' centered className="no-print" show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton></Modal.Header>
+        <FiAlertCircleStyled />
+        <Modal.Title> <TitleModal>Algo deu errado! </TitleModal></Modal.Title>
 
-        <Modal.Body><SubTitle>Usúario ou senha podem estar errados</SubTitle></Modal.Body>
+        <Modal.Body><SubTitle>Usúario ou senha inválidos</SubTitle></Modal.Body>
         <Modal.Footer>
-          <ButtonStyled variant='outline-primary' onClick={handleClose}>Fechar</ButtonStyled>
+          <ModalButtonStyled variant='outline-primary' onClick={handleClose}>Fechar</ModalButtonStyled>
         </Modal.Footer>
       </Modal>
 
@@ -123,7 +126,13 @@ const Title = styled.h3`
   font-weight: bold;
 `;
 
-const SubTitle = styled.h6`
+const TitleModal = styled.h3`
+  text-align: center;
+  color: #000;
+  font-weight: bold;
+`;
+
+const SubTitle = styled.h5`
   text-align: center;
   color: #8e9cca;
   font-weight: bold;
@@ -164,6 +173,20 @@ const ButtonStyled = styled(Button)`
   }
 `;
 
+const ModalButtonStyled = styled(Button)`
+  width: auto;
+  margin: auto;
+  color: #8e9cca;
+  border-color: #8e9cca;
+  transition: ease-in-out 0.5s;
+  font-weight: bold;
+  :hover{
+   background-color: #8e9cca ;
+   border-color: #000 ;
+
+  }
+`;
+
 const IoMdLogInStyled = styled(IoMdLogIn)`
   color: #8e9cca;
 `;
@@ -177,3 +200,12 @@ const MsgError = styled.span`
   font-size: 0.7rem;
   font-weight: bold;
 `;
+
+const FiAlertCircleStyled = styled(FiAlertCircle)`
+  text-align: center;
+  color: #f50b0b;
+  font-size: 2rem;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+`

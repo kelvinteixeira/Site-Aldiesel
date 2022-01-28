@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 import { Form, Button, Modal, Row, Col } from 'react-bootstrap'
 import { Formik, Field, ErrorMessage } from 'formik'
 import { SinginSchema } from '../../utils/schema'
+import { AiOutlineHome, AiOutlineCheckCircle } from "react-icons/ai";
+import { GoInfo } from "react-icons/go";
 import styled from 'styled-components'
 import { api } from '../../api'
-
-
-import { AiOutlineHome } from "react-icons/ai";
-
+import { dataAtual } from '../../utils/data'
 
 export default function FormularioCadastrarCliente() {
   const [showModal, setShowModal] = useState(false)
   const history = useHistory()
+
 
   const goToDashboard = () => history.push('/dashboard')
 
@@ -29,7 +29,8 @@ export default function FormularioCadastrarCliente() {
       endereco_numero: values.numero,
       endereco_bairro: values.bairro,
       endereco_cidade: values.cidade,
-      endereco_estado: values.estado
+      endereco_estado: values.estado,
+      entrada: dataAtual
     })
     actions.setSubmitting(false)
     actions.resetForm()
@@ -47,16 +48,16 @@ export default function FormularioCadastrarCliente() {
             numero: '',
             bairro: '',
             estado: '',
-            cidade: ''
+            cidade: '',
           }}
-          // validationSchema={SinginSchema}
+          validationSchema={SinginSchema}
           onSubmit={onSubmit}
         >
           {props => (
             <Form onSubmit={props.handleSubmit} >
               <CardContent>
 
-                <Title>Cadastrar cliente</Title>
+                <Title> <GoInfoStyled /> Informações do cliente</Title>
 
                 <Row>
                   <Col xs={8}>
@@ -101,8 +102,6 @@ export default function FormularioCadastrarCliente() {
                       </ErrorMessage>
                     </FormGroupStyled>
                   </Col>
-
-
                 </Row>
 
                 <Row>
@@ -146,7 +145,9 @@ export default function FormularioCadastrarCliente() {
       </Card>
 
       <Modal centered size='xs' className="no-print" show={showModal} onHide={handleClose}>
-        <Modal.Title> <Title>Cliente cadastrado com sucesso </Title></Modal.Title>
+        <Modal.Header closeButton></Modal.Header>
+        <AiOutlineCheckCircleStyled />
+        <Modal.Title> <TitleModal>Cliente cadastrado com sucesso!</TitleModal></Modal.Title>
         <Modal.Body><SubTitle>Deseja cadastrar um novo cliente?</SubTitle></Modal.Body>
         <Modal.Footer>
           <DivModalFooter>
@@ -160,11 +161,21 @@ export default function FormularioCadastrarCliente() {
   )
 }
 
+const AiOutlineCheckCircleStyled = styled(AiOutlineCheckCircle)`
+  text-align: center;
+  color: #218629;
+  font-size: 2rem;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+`;
+
 const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 4rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 `;
 
 const Card = styled.div`
@@ -185,6 +196,13 @@ const Title = styled.h3`
   text-align: center;
   padding: 2rem 0 1rem 0;
   color: #8e9cca;
+  font-weight: bold;
+`;
+
+const TitleModal = styled.h3`
+  text-align: center;
+  padding: 0 2.5rem 0 2.5rem;
+  color: #000000;
   font-weight: bold;
 `;
 
@@ -234,7 +252,14 @@ const ButtonStyled = styled(Button)`
 
 const AiOutlineHomeStyled = styled(AiOutlineHome)`
   color: #8e9cca;
-  font-size: 30px;
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+`;
+
+const GoInfoStyled = styled(GoInfo)`
+  color: #8e9cca;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
 `;
 
 const DivModalFooter = styled.div`
@@ -242,6 +267,8 @@ display: flex;
 flex-direction: row;
 justify-content: center;
 align-items: center;
+text-align: center;
+margin: auto;
 `;
 
 const ButtonModalStyled = styled(Button)`

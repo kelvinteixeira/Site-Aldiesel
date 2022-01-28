@@ -10,5 +10,5 @@ let seg = data.getSeconds();        // 0-59
 // let mseg = data.getMilliseconds();   // 0-999
 // let tz = data.getTimezoneOffset(); // em minutos
 
-export const str_data = dia + '/' + (mes + 1) + '/' + ano4;
-export const str_hora = hora + ':' + min + ':' + seg;
+export const dataAtual = dia + '/' + (mes + 1) + '/' + ano4;
+export const horaAtual = hora + ':' + min + ':' + seg;
