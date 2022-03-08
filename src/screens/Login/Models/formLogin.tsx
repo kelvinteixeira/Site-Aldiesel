@@ -1,44 +1,41 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { STORAGE_KEY } from '../../utils/Authorization/auth';
-import { token } from '../../utils/Authorization/token';
-import { SigninSchema } from '../../utils/Yup/schema';
+import { STORAGE_KEY } from '../../../utils/Authorization/auth';
+import { token } from '../../../utils/Authorization/token';
+import { SigninSchema } from '../../../utils/Yup/schema';
 import { Form, Modal } from 'react-bootstrap';
 import { Formik, ErrorMessage } from 'formik';
-import Logo from '../../Assets/logo.png';
-
-import * as Styled from './formLogin.styles'
+import * as Styled from '../Styles/formLogin.styles';
+import Logo from '../../../Assets/logo.png';
 
 type MyFormValues = {
   user: string,
   password: string
-}
+};
 
-export default function FormLogin() {
+export function FormLogin() {
 
-  const [showModal, setShowModal] = useState(false)
-  const history = useHistory()
+  const [showModal, setShowModal] = useState(false);
+  const history = useHistory();
 
   const initialValues: MyFormValues = {
     user: '',
     password: ''
-  }
+  };
 
-  
   function singin(values: MyFormValues) {
-    console.log('singIn')
     if (values.user === process.env.REACT_APP_USER && values.password === process.env.REACT_APP_PASSWORD) {
       localStorage.setItem(STORAGE_KEY, token())
       history.push('/dashboard')
-    }
+    };
     if (values.user === process.env.REACT_APP_USER2 && values.password === process.env.REACT_APP_PASSWORD) {
       localStorage.setItem(STORAGE_KEY, token())
       history.push('/dashboard')
     } else {
       setShowModal(true)
-    }
-  }
+    };
+  };
 
   return (
     < Styled.Container >
@@ -94,6 +91,6 @@ export default function FormLogin() {
       </Modal>
 
     </Styled.Container >
-  )
-}
+  );
+};
 

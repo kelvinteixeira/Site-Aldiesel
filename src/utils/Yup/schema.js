@@ -7,13 +7,13 @@ export const SigninSchema = Yup.object().shape({
 })
 
 export const SingupSchema = Yup.object().shape({
-  nome: Yup.string().required(),
-  telefone: Yup.string().required(),
-  rua: Yup.string().required(),
-  numero: Yup.string().required(),
-  bairro: Yup.string().required(),
-  cidade: Yup.string().required(),
-  estado: Yup.string().required(),
+  name: Yup.string().required(),
+  phone: Yup.string().required(),
+  street: Yup.string().required(),
+  houseNumber: Yup.string().required(),
+  district: Yup.string().required(),
+  state: Yup.string().required(),
+  city: Yup.string().required(),
 })
 
 export const AddCarSchema = Yup.object().shape({
