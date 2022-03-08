@@ -1,12 +1,12 @@
 import * as Yup from 'yup'
 import { FcHighPriority } from "react-icons/fc";
 
-export const SignupSchema = Yup.object().shape({
-  usuario: Yup.string().required(),
-  senha: Yup.string().required(),
+export const SigninSchema = Yup.object().shape({
+  user: Yup.string().required(),
+  password: Yup.string().required(),
 })
 
-export const SinginSchema = Yup.object().shape({
+export const SingupSchema = Yup.object().shape({
   nome: Yup.string().required(),
   telefone: Yup.string().required(),
   rua: Yup.string().required(),

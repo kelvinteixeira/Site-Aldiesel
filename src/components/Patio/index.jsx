@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 
 import ModalAtualizarDadosCliente from '../Modais/AtualizarCliente';
 import { AiOutlineEdit, AiOutlinePrinter } from "react-icons/ai";
-import ModalGerarOrdemDeServico from '../Modais/OrdemDeServico';
+import ModalGerarOrdemDeServico from '../Modais/CadastrarOrdemDeServico';
 import ModalCadastrarCarro from '../Modais/CadastrarCarro';
 import ModalExlcuirCliente from '../Modais/ExcluirCliente';
 import ModalExlcuirCarro from '../Modais/ExcluirCarro';
@@ -113,6 +113,8 @@ export default function TabelaDashboard() {
                 <th>Ano</th>
                 <th>Cor</th>
                 <th>Entrada</th>
+                <th>Problema</th>
+                <th></th>
                 <th>Ações</th>
               </tr>
             </thead>
@@ -121,17 +123,19 @@ export default function TabelaDashboard() {
               <tbody key={carro.id_carros} >
                 <tr>
                   <td className='td-center'>{carro.modelo}</td>
-                  <td className='td-placa td-center'>{carro.placa}</td>
-                  <td className='td-situacao td-center' > {carro.ano}  </td>
-                  <td className='td-situacao td-center' > {carro.cor} </td>
-                  <td className='td-situacao td-center' > {carro.entrada} </td>
-
-                  <td className='td-situacao td-center' >
+                  <td className='td-center'>{carro.placa}</td>
+                  <td className='td-center' > {carro.ano}  </td>
+                  <td className='td-center' > {carro.cor} </td>
+                  <td className='td-center' > {carro.entrada} </td>
+                  <td colSpan={2} className='td-center' > {carro.problema} </td>
+                  <td className='td-center' >
                     <ReactTooltip />
                     <BiFileStyled data-tip='Gerar OS' data-effect='solid' data-background-color='#8e9cca' onClick={() => gerarOs(carro.id_carros)} />
 
                     <ReactTooltip />
                     <AiOutlinePrinterStyled data-tip='Imprimir OS' data-effect='solid' data-background-color='#8e9cca' onClick={() => history.push(`/clientes/ordemdeservico/encontrar/${carro.id_cliente}`)} />
+
+
 
                     <ReactTooltip />
                     <BiTrashStyled data-tip='Excluir veiculo' data-effect='solid' data-background-color='#8e9cca' onClick={() => excluirCarro(carro.id_carros)} />
@@ -156,7 +160,7 @@ export default function TabelaDashboard() {
 
       <ModalGerarOrdemDeServico show={showModalOrdemDeServico} id_carro={idCarro} onHide={() => setShowModalOrdemDeServico(false)} />
 
-      <ModalAtualizarDadosCliente show={showModalAtualizarCliente} id_cliente={idCliente} onHide={() => setShowModalAtualizarCliente(false)}  />
+      <ModalAtualizarDadosCliente show={showModalAtualizarCliente} id_cliente={idCliente} onHide={() => setShowModalAtualizarCliente(false)} />
 
       <Modal centered size='xs' show={showModalOrdemExistente} onHide={() => setShowModalOrdemExistente(false)}>
         <Modal.Header closeButton></Modal.Header>
@@ -169,7 +173,7 @@ export default function TabelaDashboard() {
         <Modal.Header closeButton></Modal.Header>
         <FiAlertCircleStyled />
         <Modal.Title><Title>Ops... algo deu errado!</Title></Modal.Title>
-        <SubTitleModal>Antes de exlcuir o cliente verifique se ele possui veiculos cadastrados em sistema.</SubTitleModal>
+        <SubTitleModal>Antes de exlcuir o cliente, remova os seus veiculos cadastrados.</SubTitleModal>
       </Modal>
 
     </Container>
@@ -196,10 +200,9 @@ const Container = styled.div`
 
 const Card = styled.div`
   display: grid;
-  width: 70%;
   height: auto;
   border: 0.15rem solid #8e9cca;
-  border-radius: 0.6rem;
+  border-radius: 0.3rem;
   background-color: white;
   box-shadow: 0.15rem 0.2rem 0.4rem 0.1rem #6776ac;
   `;
@@ -233,8 +236,8 @@ const SubTitleModal = styled.h5`
   text-align: center;
   color: #8e9cca;
   font-weight: bold;
-  padding-bottom: 1rem;
   margin-bottom: 1rem;
+  padding: 0 1rem 1rem 1rem;
 `
 
 const SubtitleData = styled.h6`

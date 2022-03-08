@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 
 import { Button, Row, Col, Form, Modal, Spinner } from 'react-bootstrap'
+import { Formik, Field, ErrorMessage } from 'formik'
 // import { FormularioOsSchema } from '../../utils/schema'
 import { useParams, useHistory } from 'react-router-dom'
 import { dataAtual, horaAtual } from '../../utils/data'
-import { Formik, Field, ErrorMessage } from 'formik'
 import Logo from '../../Assets/logo.png'
 import styled from 'styled-components'
 import { api } from '../../api'
@@ -15,6 +15,7 @@ export default function GerarOrdemDeServico() {
   const [clientes, setClientes] = useState([])
   const [carros, setCarros] = useState([])
   const [ordemDeServico, setOrdemDeServico] = useState([])
+  const [dtcs, setDtcs] = useState([])
   const history = useHistory()
   const { id } = useParams()
 
@@ -25,6 +26,7 @@ export default function GerarOrdemDeServico() {
     })
   }
 
+
   useEffect(() => {
     api.get(`/clientes/encontrar/${id}`)
       .then((response) => setClientes(response.data))
@@ -32,7 +34,43 @@ export default function GerarOrdemDeServico() {
       .then(response => setOrdemDeServico(response.data))
     api.get(`/clientes/carros/listar`)
       .then(response => setCarros(response.data))
+    api.get(`/clientes/ordemdeservico/dtc/listar`)
+      .then(response => setDtcs(response.data))
   }, [id])
+
+  function getDtcsInfo() {
+    for (let i = 0; i <= 10; i++) {
+      return dtcs.map((info, indexInfo) => (
+        <div key={info.id_dtc}>
+          <Row className='mb-1'>
+            <Col xs={1}>
+              <FieldStyled disabled value={info.codigo} />
+            </Col>
+            <Col xs={4}>
+              <FieldStyled disabled value={info.dtc} />
+            </Col>
+            <Col xs={2}>
+              <FieldStyled disabled value={info.estado} />
+            </Col>
+          </Row>
+        </div>
+      ))
+    }
+  }
+
+  function getProcedimentos() {
+    for (let i = 0; i <= 10; i++) {
+      return dtcs.map((info, indexInfo) => (
+        <div key={info.id_dtc}>
+          <Row className='mb-1'>
+            <Col >
+              <FieldStyled value={info.procedimentos} />
+            </Col>
+          </Row>
+        </div>
+      ))
+    }
+  }
 
   function onSubmit(values, actions) {
     api.put(`/clientes/atualizar/${id}`, {
@@ -58,7 +96,6 @@ export default function GerarOrdemDeServico() {
 
   return (
     <Container>
-      {/* {JSON.stringify(ordem)} */}
       <img className='print logo' src={Logo} alt="img da Aldisel"></img>
       {clientes.map((cliente, indexCliente) => {
         return <div key={cliente.id_cliente}>
@@ -79,22 +116,21 @@ export default function GerarOrdemDeServico() {
                     problema: carro.problema,
                     diagnostico: ordem.diagnostico,
                     situacao: ordem.situacao,
-                    mecanico: ordem.mecanico
-                    // grupos: ordem.grupos
+                    mecanico: ordem.mecanico,
                   }}
                   // validationSchema={FormularioOsSchema}
                   onSubmit={onSubmit}
 
                 >
-
                   {props => (
                     <Form onSubmit={props.handleSubmit} className='form mb-3'>
+                      {console.log(props.values.codigo)}
                       <Row >
                         <Col xs={7}>
                           <Form.Group>
                             <Form.Label>Cliente</Form.Label>
                             <ErrorMessage name='cliente' />
-                            <Field disabled name='cliente' className='form-control input' />
+                            <FieldStyled disabled name='cliente' className='form-control input' />
                           </Form.Group>
                         </Col>
 
@@ -102,14 +138,14 @@ export default function GerarOrdemDeServico() {
                           <Form.Group>
                             <Form.Label>Telefone</Form.Label>
                             <ErrorMessage name='telefone' />
-                            <Field disabled name='telefone' className='form-control input' />
+                            <FieldStyled disabled name='telefone' className='form-control input' />
                           </Form.Group>
                         </Col>
 
                         <Col>
                           <Form.Group>
                             <Form.Label>situacao</Form.Label>
-                            <Field className='form-control input' name='situacao' aria-label="situacaoDTC" />
+                            <FieldStyled className='form-control input' name='situacao' aria-label="situacaoDTC" />
                           </Form.Group>
                         </Col>
                       </Row>
@@ -118,35 +154,35 @@ export default function GerarOrdemDeServico() {
                           <Form.Group>
                             <Form.Label>Mecânico responsável</Form.Label>
                             <ErrorMessage name='mecanico' />
-                            <Field name='mecanico' className='form-control input' />
+                            <FieldStyled name='mecanico' className='form-control input' />
                           </Form.Group>
                         </Col>
                         <Col>
                           <Form.Group>
                             <Form.Label>Modelo do carro</Form.Label>
                             <ErrorMessage name='modeloCarro' />
-                            <Field disabled name='modeloCarro' className='form-control input' />
+                            <FieldStyled disabled name='modeloCarro' className='form-control input' />
                           </Form.Group>
                         </Col>
                         <Col xs={2}>
                           <Form.Group>
                             <Form.Label>Placa</Form.Label>
                             <ErrorMessage name='placa' />
-                            <Field disabled name='placa' className='form-control input' />
+                            <FieldStyled disabled name='placa' className='form-control input' />
                           </Form.Group>
                         </Col>
                         <Col xs={1}>
                           <Form.Group>
                             <Form.Label>Ano</Form.Label>
                             <ErrorMessage name='ano' />
-                            <Field disabled name='ano' className='form-control input' />
+                            <FieldStyled disabled name='ano' className='form-control input' />
                           </Form.Group>
                         </Col>
                         <Col xs={2}>
                           <Form.Group>
                             <Form.Label>Cor</Form.Label>
                             <ErrorMessage name='cor' />
-                            <Field disabled name='cor' className='form-control input' />
+                            <FieldStyled disabled name='cor' className='form-control input' />
                           </Form.Group>
                         </Col>
 
@@ -161,32 +197,48 @@ export default function GerarOrdemDeServico() {
                       <Form.Group>
                         <Field name='diagnostico' className=' form-control input textareasSimples' as='textarea' />
                       </Form.Group>
-
-                      {/* <div>
-                  <h6 className='form-title' >DTCs</h6>
-                  {ordem.grupos.map((campo, indexGrupos) => {
-                    return <div>
-                      <Row className='mb-1'>
-                        <Col xs={1} >
-                          <Form.Label>Cod</Form.Label>
-                          <Field className='form-control input' name={`ordem.grupos[${indexGrupos}].codigo`} />
-                        </Col >
-                        <Col xs={3}>
-                          <Form.Label>Dtc</Form.Label>
-                          <Field className='form-control input' name={`ordem.grupos[${indexGrupos}].dtc`} />
-                        </Col>
+                      <Row>
                         <Col xs={2}>
-                          <Form.Label>Estado</Form.Label>
-                          <Field className='form-control input' name={`ordem.grupos[${indexGrupos}].estado`} />
+                          <Form.Label>Código</Form.Label>
+                        </Col>
+                        <Col>
+                          <Form.Label>Dtc</Form.Label>
+                        </Col>
+                        <Col xs={3}>
+                          <Form.Label>SituaçãoDtc</Form.Label>
                         </Col>
                       </Row>
-                    </div>
-                  })}
-                </div> */}
+                      {getDtcsInfo()}
 
-                      <h6 className='form-title' >Procedimentos</h6>
+                      {/* <FieldArray
+                        name="dtcsInfo"
+                        render={arrayHelpers => (
+                          <div>
+                            {props.values.dtcsInfo.map((dtcs, indexDtcs) => (
+                              <div key={indexDtcs}>
+                                <Row className='mb-1'>
+                                  <Col xs={2}>
+                                    <FieldStyled name={`dtcsInfo[${indexDtcs}].codigo`} />
+                                  </Col>
+                                  <Col>
+                                    <FieldStyled name={`dtcsInfo.${indexDtcs}.dtc`} />
+                                  </Col>
+                                  <Col xs={3}>
+                                    <FieldStyled name={`dtcsInfo.${indexDtcs}.estado`} />
+                                  </Col>
+                                </Row>
 
-                      <Form.Group className='mb-1' controlId="formProcedimentos">
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      /> */}
+
+                        <h6 className='form-title' >Procedimentos</h6>
+                        
+                        {getProcedimentos()}
+
+                      {/* <Form.Group className='mb-1' controlId="formProcedimentos">
                         <Form.Control className='input' autoComplete='off' type="text" />
                       </Form.Group>
                       <Form.Group className='mb-1' controlId="formProcedimentos">
@@ -206,7 +258,7 @@ export default function GerarOrdemDeServico() {
                       </Form.Group>
                       <Form.Group controlId="formProcedimentos">
                         <Form.Control className='input' autoComplete='off' type="text" />
-                      </Form.Group>
+                      </Form.Group> */}
 
                       <h6 className='form-title' >Observações adicionais</h6>
                       <Form.Group className='mb-2' controlId="formObservacoes">
@@ -248,6 +300,23 @@ const Container = styled.div`
   margin-top: 2rem;
 `;
 
+const FieldStyled = styled(Field)`
+  width: 100%;
+  height: 1.5rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  border: 0.1rem solid #8e9cca;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color 0.5s ease-in-out;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+  
+  :hover {
+    border: 0.1rem solid #000;
+  }`
+
 const Title = styled.h4`
   text-align: center;
   padding-top: 2rem;
@@ -264,6 +333,7 @@ const SubTitle = styled.h6`
   line-height: 3rem;
   margin-bottom: 0;
 `;
+
 
 const SpinnerStyled = styled(Spinner)`
   margin: auto;

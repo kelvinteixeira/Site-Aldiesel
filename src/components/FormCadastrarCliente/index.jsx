@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 
 import { Form, Button, Modal, Row, Col } from 'react-bootstrap'
 import { Formik, Field, ErrorMessage } from 'formik'
-import { SinginSchema } from '../../utils/Yup/schema'
+import { SingupSchema } from '../../utils/Yup/schema'
 import { AiOutlineHome, AiOutlineCheckCircle } from "react-icons/ai";
 import { GoInfo } from "react-icons/go";
 import styled from 'styled-components'
@@ -50,7 +50,7 @@ export default function FormularioCadastrarCliente() {
             estado: '',
             cidade: '',
           }}
-          validationSchema={SinginSchema}
+          validationSchema={SingupSchema}
           onSubmit={onSubmit}
         >
           {props => (

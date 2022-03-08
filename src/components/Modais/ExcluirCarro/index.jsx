@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import React, { useEffect, useState } from 'react'
 
 import { Button, Modal, Spinner } from 'react-bootstrap'
 import { FiAlertCircle } from "react-icons/fi";
@@ -8,13 +7,32 @@ import { api } from '../../../api'
 
 export default function ModalExlcuirCarro(params) {
   const [showModal, setShowModal] = useState(false)
+  const [ordemDeServico, setOrdemDeServico] = useState([])
+  const [dtc, setDtc] = useState([])
 
-  function deletarCarro() {
+  useEffect(() => {
+    api.get(`/clientes/ordemdeservico/listar`)
+      .then((response) => setOrdemDeServico(response.data))
+      .catch((err) => {
+        console.error(err.message)
+      })
+    api.get(`/clientes/ordemdeservico/dtc/listar`)
+      .then((response) => setDtc(response.data))
+      .catch((err) => {
+        console.error(err.message)
+      })
+  }, [])
+  // const idDtc = dtc.map(elemento => elemento)
+  // console.log(idDtc)
+  console.log(params.id_carros)
+  // const idOs = ordemDeServico.map(elemento => elemento)
+  // console.log(idOs)
+
+  async function deletarCarro() {
     api.delete(`/clientes/carros/deletar/${params.id_carro}`)
     setShowModal(true)
 
     setTimeout(() => {
-      < Redirect from='/dashboard' to="/dashboard" />
       setShowModal(false)
       params.onHide()
       window.location.reload();
@@ -76,7 +94,6 @@ const FiAlertCircleStyled = styled(FiAlertCircle)`
   font-size: 2rem;
   margin: auto;
   margin-top: 1rem;
-  margin-bottom: 1rem;
 `
 
 const DivModalFooter = styled.div`
@@ -108,5 +125,5 @@ const SubTitleModal = styled.h5`
   text-align: center;
   color: #8e9cca;
   font-weight: bold;
-  padding: 0 2rem 1rem 2rem;
+  padding: 0 1rem 1rem 1rem;
 `;

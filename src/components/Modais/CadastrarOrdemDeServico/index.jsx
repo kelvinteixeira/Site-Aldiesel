@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 
 import { Form, Button, Modal, Row, Col, Spinner } from 'react-bootstrap'
-import { Formik, Field, ErrorMessage } from 'formik'
+import { Formik, Field, ErrorMessage, FieldArray } from 'formik'
 // import { AddCarSchema } from '../../utils/schema'
 import { dataAtual } from '../../../utils/data'
+import { BsGear, BsPin } from "react-icons/bs";
 import { FiTool } from "react-icons/fi";
 import styled from 'styled-components'
 import { api } from '../../../api'
@@ -11,7 +12,7 @@ import { api } from '../../../api'
 export default function ModalGerarOrdemDeServico(params) {
   const [showModal, setShowModal] = useState(false)
 
-  function onSubmit(values, actions) {
+  function onSubmit(values, actions, indexDtcs) {
     api.post(`/clientes/ordemdeservico/adicionar`, {
       diagnostico: values.diagnostico,
       situacao: values.situacao,
@@ -19,27 +20,36 @@ export default function ModalGerarOrdemDeServico(params) {
       data_alteracao: dataAtual,
       id_carros: params.id_carro
     })
+    values.dtcsInfo.map(info => (
+      api.post(`/clientes/ordemdeservico/dtc/adicionar`, {
+        codigo: info.codigo,
+        dtc: info.dtc,
+        estado: info.estado,
+        procedimentos: info.procedimentos,
+        id_carro: params.id_carro
+      })
+    ))
     actions.setSubmitting(false)
     actions.resetForm()
     setShowModal(true)
     setTimeout(() => {
       setShowModal(false)
       params.onHide()
-      window.location.reload();
+      // window.location.reload();
     }, 1000);
   }
 
-
   return (
     < Container >
-      <Modal show={params.show} onHide={params.onHide} id_carro='true' centered >
+      <Modal backdrop="static" show={params.show} onHide={params.onHide} id_carro='true' centered >
         <Modal.Header closeButton></Modal.Header>
         <Formik
           initialValues={{
             diagnostico: '',
             situacao: '',
             mecanico: '',
-
+            dtcsInfo: ['', '', '', '', '', '', '', '', '', '',],
+            procedimentos: ['', '', '', '', '', '', '', '', '',]
           }}
           // validationSchema={AddCarSchema}
           onSubmit={onSubmit}
@@ -57,8 +67,18 @@ export default function ModalGerarOrdemDeServico(params) {
                   </ErrorMessage>
                 </FormGroupStyled>
 
+                
                 <Row>
                   <Col>
+                    <FormGroupStyled >
+                      <Form.Label>Mecânico responsável</Form.Label>
+                      <FieldStyled name='mecanico' />
+                      <ErrorMessage name='mecanico'>
+                        {msg => <MsgError>Mecânico é obrigátorio</MsgError>}
+                      </ErrorMessage>
+                    </FormGroupStyled>
+                  </Col>
+                  <Col xs={4}>
                     <FormGroupStyled >
                       <Form.Label>Situação</Form.Label>
                       <FieldStyled name='situacao' />
@@ -67,16 +87,64 @@ export default function ModalGerarOrdemDeServico(params) {
                       </ErrorMessage>
                     </FormGroupStyled>
                   </Col>
+
                 </Row>
+                <Title ><BsGearStyled /> DTCs </Title>
 
-                <FormGroupStyled >
-                  <Form.Label>Mecânico responsável</Form.Label>
-                  <FieldStyled name='mecanico' />
-                  <ErrorMessage name='mecanico'>
-                    {msg => <MsgError>Mecânico é obrigátorio</MsgError>}
-                  </ErrorMessage>
-                </FormGroupStyled>
 
+                <Row>
+                  <Col xs={2}>
+                    <Form.Label>Código</Form.Label>
+                  </Col>
+                  <Col>
+                    <Form.Label>Dtc</Form.Label>
+                  </Col>
+                  <Col xs={3}>
+                    <Form.Label>Situação</Form.Label>
+                  </Col>
+                  <Col xs={1}>
+                    <Form.Label></Form.Label>
+                  </Col>
+                </Row>
+                <FieldArray
+                  name="dtcsInfo"
+                  render={arrayHelpers => (
+                    <div>
+                      {props.values.dtcsInfo.map((dtcs, indexDtcs) => (
+                        <Row className='mb-1' key={indexDtcs}>
+                          <Col xs={2}>
+                            <FieldStyled name={`dtcsInfo.${indexDtcs}.codigo`} />
+                          </Col>
+                          <Col>
+                            <FieldStyled name={`dtcsInfo.${indexDtcs}.dtc`} />
+                          </Col>
+                          <Col xs={3}>
+                            <FieldStyled name={`dtcsInfo.${indexDtcs}.estado`} />
+                          </Col>
+                        </Row>
+                      ))}
+                    </div>
+
+                  )}
+                />
+
+                <Title ><BsPinStyled /> Procedimentos </Title>
+
+
+                <FieldArray
+                  name="dtcsInfo"
+                  render={arrayHelpers => (
+                    <div>
+                      {props.values.dtcsInfo.map((detalhes, indexDetalhes) => (
+                        <Row className='mb-1' key={indexDetalhes}>
+                          <Col >
+                            <FieldStyled name={`dtcsInfo.${indexDetalhes}.procedimentos`} />
+                          </Col>
+                        </Row>
+                      ))}
+                    </div>
+                  )}
+                />
 
                 <ButtonStyled type="submit" variant="outline-primary">Enviar</ButtonStyled>
                 <hr />
@@ -101,7 +169,6 @@ const SpinnerStyled = styled(Spinner)`
   margin-top: 2rem;
 `;
 
-
 const Container = styled.div`
   display: flex;
   align-items: center;
@@ -117,7 +184,7 @@ const CardContent = styled.div`
 
 const Title = styled.h3`
   text-align: center;
-  padding: 2rem 0 1rem 0;
+  padding-top: 1rem;
   color: #8e9cca;
   font-weight: bold;
 `;
@@ -168,6 +235,17 @@ const ButtonStyled = styled(Button)`
 `;
 
 const FiToolStyled = styled(FiTool)`
+  color: #8e9cca;
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+`;
+
+const BsGearStyled = styled(BsGear)`
+  color: #8e9cca;
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+`;
+const BsPinStyled = styled(BsPin)`
   color: #8e9cca;
   font-size: 2rem;
   margin-bottom: 0.8rem;
