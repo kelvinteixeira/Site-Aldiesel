@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import ModalAtualizarDadosCliente from '../Modais/AtualizarCliente';
-import ModalGerarOrdemDeServico from '../Modais/CadastrarOrdemDeServico';
-import ModalCadastrarCarro from '../Modais/CadastrarCarro';
-import ModalExlcuirCliente from '../Modais/ExcluirCliente';
-import ModalExlcuirCarro from '../Modais/ExcluirCarro';
+import ModalAtualizarDadosCliente from '../../../components/Modais/AtualizarCliente';
+import ModalGerarOrdemDeServico from '../../../components/Modais/CadastrarOrdemDeServico';
+import ModalCadastrarCarro from '../../../components/Modais/CadastrarCarro';
+import ModalExlcuirCliente from '../../../components/Modais/ExcluirCliente';
+import ModalExlcuirCarro from '../../../components/Modais/ExcluirCarro';
 import { Modal } from 'react-bootstrap';
 import ReactTooltip from 'react-tooltip';
-import { api } from '../../api';
-import * as Styled from './Courtyard.styles'
+import { api } from '../../../api';
+import * as Styled from '../Styles/Courtyard.styles'
 
 type carsItems = {
   id_carros: number,

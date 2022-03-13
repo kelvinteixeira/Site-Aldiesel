@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from '../../components/Header'
-import { CourtyardTable } from '../../components/Courtyard/Courtyard'
+import Header from '../../components/Header/header'
+import { CourtyardTable } from './Models/Courtyard'
 
 export function ScreenDashboard() {
 

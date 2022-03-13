@@ -10,4 +10,12 @@ body {
   background: #c9d6ff;
   background: linear-gradient(to right, #c9d6ff, #e2e2e2);
 }
- 
+
+@media print {
+  img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+}
