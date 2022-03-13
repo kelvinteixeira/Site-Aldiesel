@@ -21,7 +21,7 @@ export default function ModalExlcuirCliente(params) {
 
   return (
     < Container >
-      <Modal centered size='xs' className="no-print" id_cliente='true' show={params.show} onHide={params.onHide}>
+      <Modal centered size='xs' className="no-print" id_costumer='true' show={params.show} onHide={params.onHide}>
         <Modal.Header closeButton></Modal.Header>
         <FiAlertCircleStyled />
         <Modal.Title> <TitleModal>Deseja excluir esse cliente?</TitleModal></Modal.Title>

@@ -10,15 +10,15 @@ import { api } from '../../../api'
 
 export default function ModalCadastrarCarro(params) {
   const [showModal, setShowModal] = useState(false)
-
   function onSubmit(values, actions) {
-    api.post(`/clientes/carros/adicionar/${params.id_cliente}`, {
+    api.post(`/clientes/carros/adicionar/${params.id_costumer
+      }`, {
       modelo: values.modelo,
       placa: values.placa,
       ano: values.ano,
       cor: values.cor,
       problema: values.problema,
-      id_cliente: params.id_cliente,
+      id_cliente: params.id_costumer,
       entrada: dataAtual
     })
     actions.setSubmitting(false)
@@ -33,7 +33,7 @@ export default function ModalCadastrarCarro(params) {
 
   return (
     < Container >
-      <Modal show={params.show} onHide={params.onHide} id_cliente='true' centered>
+      <Modal show={params.show} onHide={params.onHide} id_costumer='true' centered>
         <Modal.Header closeButton></Modal.Header>
         <Formik
           initialValues={{

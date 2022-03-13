@@ -22,14 +22,10 @@ export default function ModalExlcuirCarro(params) {
         console.error(err.message)
       })
   }, [])
-  // const idDtc = dtc.map(elemento => elemento)
-  // console.log(idDtc)
-  console.log(params.id_carros)
-  // const idOs = ordemDeServico.map(elemento => elemento)
-  // console.log(idOs)
+
 
   async function deletarCarro() {
-    api.delete(`/clientes/carros/deletar/${params.id_carro}`)
+    api.delete(`/clientes/carros/deletar/${params.id_car}`)
     setShowModal(true)
 
     setTimeout(() => {
@@ -41,7 +37,7 @@ export default function ModalExlcuirCarro(params) {
 
   return (
     < Container >
-      <Modal centered size='xs' className="no-print" id_carro='true' show={params.show} onHide={params.onHide}>
+      <Modal centered size='xs' className="no-print" id_car='true' show={params.show} onHide={params.onHide}>
         <Modal.Header closeButton></Modal.Header>
         <FiAlertCircleStyled />
         <Modal.Title> <TitleModal>Deseja excluir esse veiculo?</TitleModal></Modal.Title>

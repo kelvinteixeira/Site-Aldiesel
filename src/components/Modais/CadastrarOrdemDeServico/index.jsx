@@ -41,7 +41,7 @@ export default function ModalGerarOrdemDeServico(params) {
 
   return (
     < Container >
-      <Modal backdrop="static" show={params.show} onHide={params.onHide} id_carro='true' centered >
+      <Modal backdrop="static" show={params.show} onHide={params.onHide} id_car='true' centered >
         <Modal.Header closeButton></Modal.Header>
         <Formik
           initialValues={{

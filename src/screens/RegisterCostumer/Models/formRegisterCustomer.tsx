@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Form, Modal, Row, Col } from 'react-bootstrap';
-import * as Styled from './formRegisterCustomer.styles';
-import { SingupSchema } from '../../utils/Yup/schema';
+import * as Styled from '../Styles/formRegisterCustomer.styles';
+import { SingupSchema } from '../../../utils/Yup/schema';
 import { Formik, ErrorMessage } from 'formik';
-import { dataAtual } from '../../utils/data';
-import { api } from '../../api';
+import { dataAtual } from '../../../utils/data';
+import { api } from '../../../api';
 
 type FormValues = {
   name: string,
@@ -16,6 +16,11 @@ type FormValues = {
   district: string,
   state: string,
   city: string,
+}
+
+type FormActions = {
+  setSubmitting: (props: boolean) => void
+  resetForm: () => void
 }
 
 export function FormRegisterCostumer() {
@@ -34,7 +39,7 @@ export function FormRegisterCostumer() {
     city: '',
   }
 
-  function register(values: FormValues, actions: any) {
+  function register(values: FormValues, actions: FormActions) {
     console.log(actions)
     api.post('/clientes/adicionar', {
       nome: values.name,

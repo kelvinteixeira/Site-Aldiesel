@@ -1,8 +1,8 @@
 import React from 'react'
 import Header from '../../components/Header'
-import {FormRegisterCostumer} from '../../components/FormRegisterCustomer/formRegisterCustomer'
+import { FormRegisterCostumer } from './Models/formRegisterCustomer'
 
-export function RegisterCostumer() {
+export function ScreenRegisterCostumer() {
 
   return (
     <>

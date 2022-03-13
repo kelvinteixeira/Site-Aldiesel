@@ -12,12 +12,14 @@ export default function ModalAtualizarDadosCliente(params) {
   const [clientes, setClientes] = useState([])
 
   useEffect(() => {
-    api.get(`/clientes/encontrar/${params.id_cliente}`)
+    api.get(`/clientes/encontrar/${params.id_costumer
+      }`)
       .then((response) => setClientes(response.data))
-  }, [params.id_cliente])
+  }, [params.id_costumer])
 
   function onSubmit(values, actions) {
-    api.put(`/clientes/atualizar/${params.id_cliente}`, {
+    api.put(`/clientes/atualizar/${params.id_costumer
+      }`, {
       nome: values.nome,
       telefone: values.telefone,
       endereco_rua: values.rua,
@@ -38,7 +40,7 @@ export default function ModalAtualizarDadosCliente(params) {
 
   return (
     < Container >
-      <Modal show={params.show} onHide={params.onHide} id_cliente='true' centered>
+      <Modal show={params.show} onHide={params.onHide} id_costumer='true' centered>
 
         {clientes.map((cliente, indexCliente) => (
           <Formik
