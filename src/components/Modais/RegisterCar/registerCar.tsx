@@ -33,7 +33,7 @@ type FormActions = {
   setSubmitting: (props: boolean) => void
   resetForm: () => void
 }
-export default function ModalCadastrarCarro(params: ModalDeleteCostumerProps) {
+export function ModalRegisterCar(params: ModalDeleteCostumerProps) {
   const [showModal, setShowModal] = useState(false)
   function onSubmit(values: FormValues, actions: FormActions) {
     api.post(`/clientes/carros/adicionar/${params.id_costumer
