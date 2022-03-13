@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
 import { ScreenRegisterCostumer } from './screens/RegisterCostumer/RegisterCostumer';
-import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './components/PrivateRoute/privateRoute';
 import OrdemDeServico from './screens/OrdemDeServico';
 import { ScreenDashboard } from './screens/Dashboard/Dashboard';
 import { ScreenLogin } from './screens/Login/Login';

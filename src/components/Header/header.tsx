@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import * as Styled from './header.styles';
 import Logo from '../../Assets/logo.png';
 
-export default function Header() {
+export function Header() {
   const [showModal, setShowModal] = useState(false);
   const history = useHistory()
 

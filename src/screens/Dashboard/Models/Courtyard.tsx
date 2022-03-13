@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import ModalAtualizarDadosCliente from '../../../components/Modais/AtualizarCliente';
-import ModalGerarOrdemDeServico from '../../../components/Modais/CadastrarOrdemDeServico';
-import ModalCadastrarCarro from '../../../components/Modais/CadastrarCarro';
-import ModalExlcuirCliente from '../../../components/Modais/ExcluirCliente';
-import ModalExlcuirCarro from '../../../components/Modais/ExcluirCarro';
+import ModalAtualizarDadosCliente from '../../../components/Modais/UpdateCostumer';
+import ModalGerarOrdemDeServico from '../../../components/Modais/RegisterServiceOrder';
+import ModalCadastrarCarro from '../../../components/Modais/RegisterCar';
+import ModalExlcuirCliente from '../../../components/Modais/DeleteCostumer';
+import { ModalDeleteCar } from '../../../components/Modais/DeleteCar/deleteCar';
 import { Modal } from 'react-bootstrap';
 import ReactTooltip from 'react-tooltip';
 import { api } from '../../../api';
@@ -169,7 +169,7 @@ export function CourtyardTable() {
       }
       <ModalCadastrarCarro show={showModalRegisterCar} id_costumer={idCostumer} onHide={() => setShowModalRegisterCar(false)} />
 
-      <ModalExlcuirCarro show={showModalDeleteCar} id_car={idCar} onHide={() => setShowModalDeleteCar(false)} />
+      <ModalDeleteCar show={showModalDeleteCar} id_car={idCar} onHide={() => setShowModalDeleteCar(false)} />
 
       <ModalExlcuirCliente show={showModalDeleteCostumer} id_costumer={idCostumer} onHide={() => setShowModalDeleteCostumer(false)} />
 
