@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
-import ModalAtualizarDadosCliente from '../../../components/Modais/UpdateCostumer';
+import { ModalUpdateCostumer } from '../../../components/Modais/UpdateCostumer/updateCostumer';
+import { ModalDeleteCostumer } from '../../../components/Modais/DeleteCostumer/deleteCostumer';
 import ModalGerarOrdemDeServico from '../../../components/Modais/RegisterServiceOrder';
 import { ModalRegisterCar } from '../../../components/Modais/RegisterCar/registerCar';
-import { ModalDeleteCostumer } from '../../../components/Modais/DeleteCostumer/deleteCostumer';
 import { ModalDeleteCar } from '../../../components/Modais/DeleteCar/deleteCar';
-import { Modal } from 'react-bootstrap';
-import ReactTooltip from 'react-tooltip';
-import { api } from '../../../api';
 import * as Styled from '../Styles/Courtyard.styles'
+import ReactTooltip from 'react-tooltip';
+import { Modal } from 'react-bootstrap';
+import { api } from '../../../api';
 
 type carsItems = {
   id_carros: number,
@@ -175,7 +175,7 @@ export function CourtyardTable() {
 
       <ModalGerarOrdemDeServico show={showModalServiceOrder} id_car={idCar} onHide={() => setShowModalServiceOrder(false)} />
 
-      <ModalAtualizarDadosCliente show={showModalUpdateCostumer} id_costumer={idCostumer} onHide={() => setShowModalUpdateCostumer(false)} />
+      <ModalUpdateCostumer show={showModalUpdateCostumer} id_costumer={idCostumer} onHide={() => setShowModalUpdateCostumer(false)} />
 
       <Modal centered show={showModalExistingServiceOrder} onHide={() => setShowModalExistingServiceOrder(false)}>
         <Modal.Header closeButton></Modal.Header>

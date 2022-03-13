@@ -21,20 +21,21 @@ type FormValues = {
   problem: string,
 }
 
-const initialValues: FormValues = {
-  model: '',
-  licensePlate: '',
-  year: '',
-  collor: '',
-  problem: ''
-}
-
 type FormActions = {
   setSubmitting: (props: boolean) => void
   resetForm: () => void
 }
 export function ModalRegisterCar(params: ModalDeleteCostumerProps) {
   const [showModal, setShowModal] = useState(false)
+
+  const initialValues: FormValues = {
+    model: '',
+    licensePlate: '',
+    year: '',
+    collor: '',
+    problem: ''
+  }
+
   function onSubmit(values: FormValues, actions: FormActions) {
     api.post(`/clientes/carros/adicionar/${params.id_costumer
       }`, {
