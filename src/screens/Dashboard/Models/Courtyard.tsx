@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import ModalAtualizarDadosCliente from '../../../components/Modais/UpdateCostumer';
 import ModalGerarOrdemDeServico from '../../../components/Modais/RegisterServiceOrder';
 import ModalCadastrarCarro from '../../../components/Modais/RegisterCar';
-import ModalExlcuirCliente from '../../../components/Modais/DeleteCostumer';
+import { ModalDeleteCostumer } from '../../../components/Modais/DeleteCostumer/deleteCostumer';
 import { ModalDeleteCar } from '../../../components/Modais/DeleteCar/deleteCar';
 import { Modal } from 'react-bootstrap';
 import ReactTooltip from 'react-tooltip';
@@ -171,7 +171,7 @@ export function CourtyardTable() {
 
       <ModalDeleteCar show={showModalDeleteCar} id_car={idCar} onHide={() => setShowModalDeleteCar(false)} />
 
-      <ModalExlcuirCliente show={showModalDeleteCostumer} id_costumer={idCostumer} onHide={() => setShowModalDeleteCostumer(false)} />
+      <ModalDeleteCostumer show={showModalDeleteCostumer} id_costumer={idCostumer} onHide={() => setShowModalDeleteCostumer(false)} />
 
       <ModalGerarOrdemDeServico show={showModalServiceOrder} id_car={idCar} onHide={() => setShowModalServiceOrder(false)} />
 
