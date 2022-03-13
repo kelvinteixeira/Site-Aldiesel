@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 
 import ModalAtualizarDadosCliente from '../../../components/Modais/UpdateCostumer';
 import ModalGerarOrdemDeServico from '../../../components/Modais/RegisterServiceOrder';
-import ModalCadastrarCarro from '../../../components/Modais/RegisterCar';
+import ModalCadastrarCarro from '../../../components/Modais/RegisterCar/registerCar';
 import { ModalDeleteCostumer } from '../../../components/Modais/DeleteCostumer/deleteCostumer';
 import { ModalDeleteCar } from '../../../components/Modais/DeleteCar/deleteCar';
 import { Modal } from 'react-bootstrap';

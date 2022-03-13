@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { Form, Modal, Row, Col } from 'react-bootstrap';
 import * as Styled from '../Styles/formRegisterCustomer.styles';
-import { SingupSchema } from '../../../utils/Yup/schema';
+import { ClientInfoSchema } from '../../../utils/Yup/schema';
 import { Formik, ErrorMessage } from 'formik';
 import { dataAtual } from '../../../utils/data';
 import { api } from '../../../api';
@@ -61,7 +61,7 @@ export function FormRegisterCostumer() {
       <Styled.Card>
         <Formik
           initialValues={initialValues}
-          validationSchema={SingupSchema}
+          validationSchema={ClientInfoSchema}
           onSubmit={register}
         >
           {props => (

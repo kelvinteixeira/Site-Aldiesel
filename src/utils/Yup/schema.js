@@ -6,7 +6,7 @@ export const SigninSchema = Yup.object().shape({
   password: Yup.string().required(),
 })
 
-export const SingupSchema = Yup.object().shape({
+export const ClientInfoSchema = Yup.object().shape({
   name: Yup.string().required(),
   phone: Yup.string().required(),
   street: Yup.string().required(),
@@ -16,22 +16,12 @@ export const SingupSchema = Yup.object().shape({
   city: Yup.string().required(),
 })
 
-export const AddCarSchema = Yup.object().shape({
-  modelo: Yup.string().required(),
-  placa: Yup.string().required(),
-  ano: Yup.string().required(),
-  cor: Yup.string().required(),
-  problema: Yup.string().required(),
-})
-
-export const UpdateClient = Yup.object().shape({
-  nome: Yup.string().required(),
-  telefone: Yup.string().required(),
-  rua: Yup.string().required(),
-  numero: Yup.string().required(),
-  bairro: Yup.string().required(),
-  cidade: Yup.string().required(),
-  estado: Yup.string().required(),
+export const RegisterCarSchema = Yup.object().shape({
+  model: Yup.string().required(),
+  licensePlate: Yup.string().required(),
+  year: Yup.string().required(),
+  collor: Yup.string().required(),
+  problem: Yup.string().required(),
 })
 
 export const FormularioOsSchema = Yup.object().shape({

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { Form, Button, Modal, Row, Col, Spinner } from 'react-bootstrap'
 import { Formik, Field, ErrorMessage } from 'formik'
-import { UpdateClient } from '../../../utils/Yup/schema'
+import { ClientInfoSchema } from '../../../utils/Yup/schema'
 import { AiOutlineHome } from "react-icons/ai";
 import styled from 'styled-components'
 import { api } from '../../../api'
@@ -54,7 +54,7 @@ export default function ModalAtualizarDadosCliente(params) {
               estado: cliente.endereco_estado,
               cidade: cliente.endereco_cidade,
             }}
-            validationSchema={UpdateClient}
+            validationSchema={ClientInfoSchema}
             onSubmit={onSubmit}
           >
             {props => (
