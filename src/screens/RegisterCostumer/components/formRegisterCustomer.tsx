@@ -5,8 +5,9 @@ import { Form, Modal, Row, Col } from 'react-bootstrap';
 import * as Styled from '../Styles/formRegisterCustomer.styles';
 import { ClientInfoSchema } from '../../../utils/Yup/schema';
 import { Formik, ErrorMessage } from 'formik';
-import { dataAtual } from '../../../utils/data';
+import { currentDate } from '../../../utils/data';
 import { api } from '../../../api';
+import { FormActions } from '../../../shared/GlobalTypes';
 
 type FormValues = {
   name: string,
@@ -16,11 +17,6 @@ type FormValues = {
   district: string,
   state: string,
   city: string,
-}
-
-type FormActions = {
-  setSubmitting: (props: boolean) => void
-  resetForm: () => void
 }
 
 export function FormRegisterCostumer() {
@@ -49,7 +45,7 @@ export function FormRegisterCostumer() {
       endereco_bairro: values.district,
       endereco_estado: values.state,
       endereco_cidade: values.city,
-      entrada: dataAtual
+      entrada: currentDate
     })
     actions.setSubmitting(false)
     actions.resetForm()

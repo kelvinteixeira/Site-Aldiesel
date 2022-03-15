@@ -1,4 +1,4 @@
-import { FormLogin } from './Models/formLogin'
+import { FormLogin } from './components/formLogin'
 
 export function ScreenLogin() {
 

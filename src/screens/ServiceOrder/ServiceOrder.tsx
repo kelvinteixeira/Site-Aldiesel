@@ -1,13 +1,13 @@
 import React from 'react'
+import { FormServiceOrder } from './components/formServiceOrder'
 import { Header } from '../../components/Header/header'
-import { CourtyardTable } from './Models/Courtyard'
 
-export function ScreenDashboard() {
+export function ScreenServiceOrder() {
 
   return (
     <>
       <Header />
-      <CourtyardTable />
+      <FormServiceOrder />
     </>
   )
 }

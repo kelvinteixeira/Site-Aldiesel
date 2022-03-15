@@ -3,13 +3,13 @@ import React, { useState } from 'react'
 import { Form, Button, Modal, Row, Col, Spinner } from 'react-bootstrap'
 import { Formik, Field, ErrorMessage, FieldArray } from 'formik'
 // import { AddCarSchema } from '../../utils/schema'
-import { dataAtual } from '../../../utils/data'
+import { currentDate } from '../../../utils/data'
 import { BsGear, BsPin } from "react-icons/bs";
 import { FiTool } from "react-icons/fi";
 import styled from 'styled-components'
 import { api } from '../../../api'
 
-export default function ModalGerarOrdemDeServico(params) {
+export function ModalRegisterServiceOrder(params) {
   const [showModal, setShowModal] = useState(false)
 
   function onSubmit(values, actions, indexDtcs) {
@@ -17,7 +17,7 @@ export default function ModalGerarOrdemDeServico(params) {
       diagnostico: values.diagnostico,
       situacao: values.situacao,
       mecanico: values.mecanico,
-      data_alteracao: dataAtual,
+      data_alteracao: currentDate,
       id_carros: params.id_carro
     })
     values.dtcsInfo.map(info => (

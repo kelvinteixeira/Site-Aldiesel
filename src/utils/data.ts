@@ -6,5 +6,5 @@ let hora = data.getHours();
 let min = data.getMinutes();        
 let seg = data.getSeconds();       
 
-export const dataAtual = dia + '/' + (mes + 1) + '/' + ano4;
-export const horaAtual = hora + ':' + min + ':' + seg;
+export const currentDate = dia + '/' + (mes + 1) + '/' + ano4;
+export const currentHour = hora + ':' + min + ':' + seg;

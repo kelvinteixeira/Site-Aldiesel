@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { RegisterCarSchema } from '../../../utils/Yup/schema';
 import { Form, Modal, Row, Col } from 'react-bootstrap';
 import { Formik, ErrorMessage, Field } from 'formik';
-import { dataAtual } from '../../../utils/data';
+import { currentDate } from '../../../utils/data';
 import { api } from '../../../api';
 import * as Styled from './registerCar.styles'
 
@@ -45,7 +45,7 @@ export function ModalRegisterCar(params: ModalDeleteCostumerProps) {
       cor: values.collor,
       problema: values.problem,
       id_cliente: params.id_costumer,
-      entrada: dataAtual
+      entrada: currentDate
     })
     actions.setSubmitting(false)
     actions.resetForm()

@@ -25,11 +25,8 @@ export function FormLogin() {
   };
 
   function singin(values: MyFormValues) {
-    if (values.user === process.env.REACT_APP_USER && values.password === process.env.REACT_APP_PASSWORD) {
-      localStorage.setItem(STORAGE_KEY, token())
-      history.push('/dashboard')
-    };
-    if (values.user === process.env.REACT_APP_USER2 && values.password === process.env.REACT_APP_PASSWORD) {
+    const users = [process.env.REACT_APP_USER, process.env.REACT_APP_USER2].includes(values.user)
+    if (users && values.password === process.env.REACT_APP_PASSWORD) {
       localStorage.setItem(STORAGE_KEY, token())
       history.push('/dashboard')
     } else {
