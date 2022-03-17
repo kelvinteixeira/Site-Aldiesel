@@ -9,10 +9,8 @@ import { ModalDeleteCar } from '../../../components/Modals/DeleteCar/deleteCar';
 import { CarItems, CostumerItems } from '../../../shared/GlobalTypes';
 import * as Styled from '../Styles/Courtyard.styles';
 import ReactTooltip from 'react-tooltip';
-import { Modal } from 'react-bootstrap';
+import { Accordion, Modal } from 'react-bootstrap';
 import { api } from '../../../api';
-
-
 
 export function CourtyardTable() {
   const [showModalUpdateCostumer, setShowModalUpdateCostumer] = useState(false)
@@ -88,65 +86,70 @@ export function CourtyardTable() {
   return (
     <Styled.Container>
       {costumers.map((costumer: CostumerItems) => (
-        <Styled.Card className='mb-3' key={costumer.id} >
-          <Styled.FirstRow >
-            <Styled.DivNome>
-              <Styled.Title>Cliente:</Styled.Title>
-              <Styled.SubTitle>{costumer.name}</Styled.SubTitle>
-            </Styled.DivNome>
-            <Styled.SubtitleData>{costumer.entryDate}</Styled.SubtitleData>
-            <Styled.DivIcons>
-              <ReactTooltip />
-              <Styled.AiOutlineEditStyled data-effect='solid' data-background-color='#8e9cca' data-tip='Atualizar dados do cliente' onClick={() => updateCostumer(costumer.id)} />
-
-              <ReactTooltip />
-              <Styled.BiTrashStyled data-tip='Excluir cliente' data-effect='solid' data-background-color='#8e9cca' onClick={() => deleteCostumer(costumer.id)} />
-            </Styled.DivIcons>
-          </Styled.FirstRow>
-          <hr />
-
-          <Styled.TableStyled size='sm' hover   >
-            <thead>
-              <tr>
-                <th>Veículo</th>
-                <th>Placa</th>
-                <th>Ano</th>
-                <th>Cor</th>
-                <th>Entrada</th>
-                <th>Problema</th>
-                <th></th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            {cars.map((car: CarItems) => (
-              (costumer.id === car.idCostumer) &&
-              <tbody key={car.id} >
-                <tr>
-                  <td>{car.model}</td>
-                  <td>{car.licensePlate}</td>
-                  <td>{car.year}  </td>
-                  <td>{car.color} </td>
-                  <td>{car.entryDate} </td>
-                  <td colSpan={2}>{car.problem} </td>
-                  <td>
+        <Styled.AccordionStlyed className='mb-3 '>
+          <Accordion.Item eventKey="0">
+              <Accordion.Header key={costumer.id}>
+                <Styled.FirstRow >
+                  <Styled.DivNome>
+                    <Styled.Title>Cliente:</Styled.Title>
+                    <Styled.SubTitle>{costumer.name}</Styled.SubTitle>
+                  </Styled.DivNome>
+                  <Styled.SubtitleData>{costumer.entryDate}</Styled.SubtitleData>
+                  <Styled.DivIcons>
                     <ReactTooltip />
-                    <Styled.BiFileStyled data-tip='Gerar OS' data-effect='solid' data-background-color='#8e9cca' onClick={() => generateServiceOrder(car.id)} />
+                    <Styled.AiOutlineEditStyled data-effect='solid' data-background-color='#8e9cca' data-tip='Atualizar dados do cliente' onClick={() => updateCostumer(costumer.id)} />
 
                     <ReactTooltip />
-                    <Styled.AiOutlinePrinterStyled data-tip='Imprimir OS' data-effect='solid' data-background-color='#8e9cca' onClick={() => history.push(`/clientes/ordemdeservico/encontrar/${car.idCostumer}`)} />
+                    <Styled.BiTrashStyled data-tip='Excluir cliente' data-effect='solid' data-background-color='#8e9cca' onClick={() => deleteCostumer(costumer.id)} />
+                  </Styled.DivIcons>
+                </Styled.FirstRow>
+              </Accordion.Header>
 
-                    <ReactTooltip />
-                    <Styled.BiTrashStyled data-tip='Excluir veiculo' data-effect='solid' data-background-color='#8e9cca' onClick={() => deleteCar(car.id)} />
-                  </td>
-                </tr>
-              </tbody>
-            ))}
+              <Accordion.Body>
+                <Styled.TableStyled size='sm' hover   >
+                  <thead>
+                    <tr>
+                      <th>Veículo</th>
+                      <th>Placa</th>
+                      <th>Ano</th>
+                      <th>Cor</th>
+                      <th>Entrada</th>
+                      <th>Problema</th>
+                      <th></th>
+                      <th>Ações</th>
+                    </tr>
+                  </thead>
+                  {cars.map((car: CarItems) => (
+                    (costumer.id === car.idCostumer) &&
+                    <tbody key={car.id} >
+                      <tr>
+                        <td>{car.model}</td>
+                        <td>{car.licensePlate}</td>
+                        <td>{car.year}  </td>
+                        <td>{car.color} </td>
+                        <td>{car.entryDate} </td>
+                        <td colSpan={2}>{car.problem} </td>
+                        <td>
+                          <ReactTooltip />
+                          <Styled.BiFileStyled data-tip='Gerar OS' data-effect='solid' data-background-color='#8e9cca' onClick={() => generateServiceOrder(car.id)} />
 
-          </Styled.TableStyled>
-          <Styled.DivButtons>
-            <Styled.ButtonStyled onClick={() => addCar(costumer.id)} variant='outline-primary'> Adicionar Carro </Styled.ButtonStyled>
-          </Styled.DivButtons>
-        </Styled.Card>
+                          <ReactTooltip />
+                          <Styled.AiOutlinePrinterStyled data-tip='Imprimir OS' data-effect='solid' data-background-color='#8e9cca' onClick={() => history.push(`/clientes/ordemdeservico/encontrar/${car.idCostumer}`)} />
+
+                          <ReactTooltip />
+                          <Styled.BiTrashStyled data-tip='Excluir veiculo' data-effect='solid' data-background-color='#8e9cca' onClick={() => deleteCar(car.id)} />
+                        </td>
+                      </tr>
+                    </tbody>
+                  ))}
+
+                </Styled.TableStyled>
+                <Styled.DivButtons>
+                  <Styled.ButtonStyled onClick={() => addCar(costumer.id)} variant='outline-primary'> Adicionar Carro </Styled.ButtonStyled>
+                </Styled.DivButtons>
+              </Accordion.Body>
+          </Accordion.Item>
+        </Styled.AccordionStlyed>
       ))
       }
       <ModalRegisterCar show={showModalRegisterCar} idCostumer={idCostumer} onHide={() => setShowModalRegisterCar(false)} />
@@ -173,6 +176,7 @@ export function CourtyardTable() {
         <Styled.SubTitleModal>Antes de exlcuir o cliente, remova os seus veiculos cadastrados.</Styled.SubTitleModal>
       </Modal>
     </Styled.Container>
+
   )
 }
 

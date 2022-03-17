@@ -53,7 +53,7 @@ export function ModalRegisterCar(params: ModalDeleteCostumerProps) {
     setTimeout(() => {
       setShowModal(false)
       params.onHide()
-      // window.location.reload();
+      window.location.reload();
     }, 1000);
   }
 

@@ -1,4 +1,4 @@
-import { Button, Table } from "react-bootstrap";
+import { Accordion, Button, Table } from "react-bootstrap";
 import { AiOutlineEdit, AiOutlinePrinter } from "react-icons/ai";
 import { BiFile, BiTrash } from "react-icons/bi";
 import { FiAlertCircle } from "react-icons/fi";
@@ -9,7 +9,7 @@ export const TableStyled = styled(Table)`
   font-weight:bold ;
   width: auto ;
   margin: 1rem ;
-
+  width: 100%;
 `
 
 export const FiAlertCircleStyled = styled(FiAlertCircle)`
@@ -29,13 +29,13 @@ export const Container = styled.div`
   margin-top: 2rem;
 `;
 
-export const Card = styled.div`
+export const AccordionStlyed = styled(Accordion)`
   display: grid;
-  height: auto;
   border: 0.15rem solid #8e9cca;
   border-radius: 0.3rem;
   background-color: white;
   box-shadow: 0.15rem 0.2rem 0.4rem 0.1rem #6776ac;
+  width: 80%;
   `;
 
 export const FirstRow = styled.div`
@@ -72,6 +72,7 @@ export const SubTitleModal = styled.h5`
 `
 
 export const SubtitleData = styled.h6`
+  margin-top: .5rem;
   text-align: left;
   color: #000000;
   font-weight: bold;
@@ -120,7 +121,6 @@ export const AiOutlinePrinterStyled = styled(AiOutlinePrinter)`
 `;
 
 export const DivButtons = styled.div`
-  display: inline;
   text-align: right;
   margin-bottom: 1rem;
 `;
