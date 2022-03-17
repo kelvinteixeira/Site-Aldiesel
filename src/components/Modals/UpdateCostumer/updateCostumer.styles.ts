@@ -63,18 +63,11 @@ export const FieldStyled = styled(Field)`
   }
   `
 
-export const ButtonStyled = styled(Button)`
-  color: #8e9cca;
-  border-color: #8e9cca;
+export const DivButtons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 3rem;
-  width: 100%;
-  transition: ease-in-out 0.5s;
-  font-weight: bold;
-  :hover{
-   background-color: #8e9cca ;
-   border-color: #000 ;
-
-  }
 `;
 
 export const AiOutlineHomeStyled = styled(AiOutlineHome)`

@@ -6,6 +6,7 @@ import { Formik, ErrorMessage, Field } from 'formik';
 import { currentDate } from '../../../utils/data';
 import { api } from '../../../api';
 import * as Styled from './registerCar.styles'
+import { AldieselButton } from '../../AldieselButton/aldieselButton';
 
 type ModalDeleteCostumerProps = {
   idCostumer: number | undefined,
@@ -120,7 +121,9 @@ export function ModalRegisterCar(params: ModalDeleteCostumerProps) {
                   </Styled.FormGroupStyled>
                 </Col>
 
-                <Styled.ButtonStyled type="submit" variant="outline-primary">Adicionar</Styled.ButtonStyled>
+                <Styled.DivButtons>
+                  <AldieselButton type="submit" title='Adicionar'></AldieselButton>
+                </Styled.DivButtons>
                 <hr />
 
               </Styled.CardContent>

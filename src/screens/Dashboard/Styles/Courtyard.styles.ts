@@ -4,6 +4,7 @@ import { BiFile, BiTrash } from "react-icons/bi";
 import { FiAlertCircle } from "react-icons/fi";
 import styled from "styled-components";
 
+
 export const TableStyled = styled(Table)`
   border-collapse: separate !important;
   font-weight:bold ;

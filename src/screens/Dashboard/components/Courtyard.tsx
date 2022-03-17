@@ -5,6 +5,7 @@ import { ModalRegisterServiceOrder } from '../../../components/Modals/RegisterSe
 import { ModalUpdateCostumer } from '../../../components/Modals/UpdateCostumer/updateCostumer';
 import { ModalDeleteCostumer } from '../../../components/Modals/DeleteCostumer/deleteCostumer';
 import { ModalRegisterCar } from '../../../components/Modals/RegisterCar/registerCar';
+import { AldieselButton } from "../../../components/AldieselButton/aldieselButton";
 import { ModalDeleteCar } from '../../../components/Modals/DeleteCar/deleteCar';
 import { CarItems, CostumerItems } from '../../../shared/GlobalTypes';
 import * as Styled from '../Styles/Courtyard.styles';
@@ -88,66 +89,69 @@ export function CourtyardTable() {
       {costumers.map((costumer: CostumerItems) => (
         <Styled.AccordionStlyed className='mb-3 '>
           <Accordion.Item eventKey="0">
-              <Accordion.Header key={costumer.id}>
-                <Styled.FirstRow >
-                  <Styled.DivNome>
-                    <Styled.Title>Cliente:</Styled.Title>
-                    <Styled.SubTitle>{costumer.name}</Styled.SubTitle>
-                  </Styled.DivNome>
-                  <Styled.SubtitleData>{costumer.entryDate}</Styled.SubtitleData>
-                  <Styled.DivIcons>
-                    <ReactTooltip />
-                    <Styled.AiOutlineEditStyled data-effect='solid' data-background-color='#8e9cca' data-tip='Atualizar dados do cliente' onClick={() => updateCostumer(costumer.id)} />
+            <Accordion.Header key={costumer.id}>
+              <Styled.FirstRow >
+                <Styled.DivNome>
+                  <Styled.Title>Cliente:</Styled.Title>
+                  <Styled.SubTitle>{costumer.name}</Styled.SubTitle>
+                </Styled.DivNome>
+                <Styled.SubtitleData>{costumer.entryDate}</Styled.SubtitleData>
+                <Styled.DivIcons>
+                  <ReactTooltip />
+                  <Styled.AiOutlineEditStyled data-effect='solid' data-background-color='#8e9cca' data-tip='Atualizar dados do cliente' onClick={() => updateCostumer(costumer.id)} />
 
-                    <ReactTooltip />
-                    <Styled.BiTrashStyled data-tip='Excluir cliente' data-effect='solid' data-background-color='#8e9cca' onClick={() => deleteCostumer(costumer.id)} />
-                  </Styled.DivIcons>
-                </Styled.FirstRow>
-              </Accordion.Header>
+                  <ReactTooltip />
+                  <Styled.BiTrashStyled data-tip='Excluir cliente' data-effect='solid' data-background-color='#8e9cca' onClick={() => deleteCostumer(costumer.id)} />
+                </Styled.DivIcons>
+              </Styled.FirstRow>
+            </Accordion.Header>
 
-              <Accordion.Body>
-                <Styled.TableStyled size='sm' hover   >
-                  <thead>
+            <Accordion.Body>
+              <Styled.TableStyled size='sm' hover   >
+                <thead>
+                  <tr>
+                    <th>Veículo</th>
+                    <th>Placa</th>
+                    <th>Ano</th>
+                    <th>Cor</th>
+                    <th>Entrada</th>
+                    <th>Problema</th>
+                    <th></th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                {cars.map((car: CarItems) => (
+                  (costumer.id === car.idCostumer) &&
+                  <tbody key={car.id} >
                     <tr>
-                      <th>Veículo</th>
-                      <th>Placa</th>
-                      <th>Ano</th>
-                      <th>Cor</th>
-                      <th>Entrada</th>
-                      <th>Problema</th>
-                      <th></th>
-                      <th>Ações</th>
+                      <td>{car.model}</td>
+                      <td>{car.licensePlate}</td>
+                      <td>{car.year}  </td>
+                      <td>{car.color} </td>
+                      <td>{car.entryDate} </td>
+                      <td colSpan={2}>{car.problem} </td>
+                      <td>
+                        <ReactTooltip />
+                        <Styled.BiFileStyled data-tip='Gerar OS' data-effect='solid' data-background-color='#8e9cca' onClick={() => generateServiceOrder(car.id)} />
+
+                        <ReactTooltip />
+                        <Styled.AiOutlinePrinterStyled data-tip='Imprimir OS' data-effect='solid' data-background-color='#8e9cca' onClick={() => history.push(`/clientes/ordemdeservico/encontrar/${car.idCostumer}`)} />
+
+                        <ReactTooltip />
+                        <Styled.BiTrashStyled data-tip='Excluir veiculo' data-effect='solid' data-background-color='#8e9cca' onClick={() => deleteCar(car.id)} />
+                      </td>
                     </tr>
-                  </thead>
-                  {cars.map((car: CarItems) => (
-                    (costumer.id === car.idCostumer) &&
-                    <tbody key={car.id} >
-                      <tr>
-                        <td>{car.model}</td>
-                        <td>{car.licensePlate}</td>
-                        <td>{car.year}  </td>
-                        <td>{car.color} </td>
-                        <td>{car.entryDate} </td>
-                        <td colSpan={2}>{car.problem} </td>
-                        <td>
-                          <ReactTooltip />
-                          <Styled.BiFileStyled data-tip='Gerar OS' data-effect='solid' data-background-color='#8e9cca' onClick={() => generateServiceOrder(car.id)} />
+                  </tbody>
+                ))}
 
-                          <ReactTooltip />
-                          <Styled.AiOutlinePrinterStyled data-tip='Imprimir OS' data-effect='solid' data-background-color='#8e9cca' onClick={() => history.push(`/clientes/ordemdeservico/encontrar/${car.idCostumer}`)} />
-
-                          <ReactTooltip />
-                          <Styled.BiTrashStyled data-tip='Excluir veiculo' data-effect='solid' data-background-color='#8e9cca' onClick={() => deleteCar(car.id)} />
-                        </td>
-                      </tr>
-                    </tbody>
-                  ))}
-
-                </Styled.TableStyled>
-                <Styled.DivButtons>
-                  <Styled.ButtonStyled onClick={() => addCar(costumer.id)} variant='outline-primary'> Adicionar Carro </Styled.ButtonStyled>
-                </Styled.DivButtons>
-              </Accordion.Body>
+              </Styled.TableStyled>
+              <Styled.DivButtons>
+                <AldieselButton
+                  onClick={() => addCar(costumer.id)}
+                  title='Adicionar carro'>
+                </AldieselButton>
+              </Styled.DivButtons>
+            </Accordion.Body>
           </Accordion.Item>
         </Styled.AccordionStlyed>
       ))

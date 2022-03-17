@@ -8,6 +8,7 @@ import * as Styled from '../Styles/formLogin.styles';
 import { Form, Modal } from 'react-bootstrap';
 import { Formik, ErrorMessage } from 'formik';
 import Logo from '../../../Assets/logo.png';
+import { AldieselButton } from '../../../components/AldieselButton/aldieselButton';
 
 type FormValues = {
   user: string,
@@ -68,7 +69,9 @@ export function FormLogin() {
                   </ErrorMessage>
                 </Styled.FormGroupStyled>
 
-                <Styled.ButtonStyled type="submit" variant="outline-primary">Entrar</Styled.ButtonStyled>
+                <Styled.DivButtons>
+                  <AldieselButton type="submit" title='Entrar'></AldieselButton>
+                </Styled.DivButtons>
                 <hr />
 
               </Styled.CardContent>

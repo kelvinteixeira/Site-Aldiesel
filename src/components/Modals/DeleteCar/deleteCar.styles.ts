@@ -1,4 +1,4 @@
-import { Button, Spinner } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 import { FiAlertCircle } from "react-icons/fi";
 import styled from "styled-components";
 
@@ -7,20 +7,6 @@ export const SpinnerStyled = styled(Spinner)`
   margin-top: 2rem;
 `;
 
-
-export const ButtonModalStyled = styled(Button)`
-  color: #8e9cca;
-  border-color: #8e9cca;
-  width: 100%;
-  margin-right: 1rem;
-  transition: ease-in-out 0.5s;
-  font-weight: bold;
-  :hover{
-   background-color: #8e9cca ;
-   border-color: #000 ;
-
-  }
-`;
 export const TitleModal = styled.h3`
   text-align: center;
   padding: 2rem 0 1rem 0;

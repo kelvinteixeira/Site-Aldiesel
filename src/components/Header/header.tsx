@@ -6,6 +6,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { useHistory } from 'react-router-dom';
 import * as Styled from './header.styles';
 import Logo from '../../Assets/logo.png';
+import { AldieselButton } from '../AldieselButton/aldieselButton';
 
 export function Header() {
   const [showModal, setShowModal] = useState(false);
@@ -46,8 +47,8 @@ export function Header() {
                 className="me-2"
                 aria-label="Search"
               />
-              <Styled.ButtonStyled className="me-2" variant='outline' ><AiOutlineSearch /></Styled.ButtonStyled>
-              <Styled.ButtonStyled onClick={singout} variant='outline' >Sair</Styled.ButtonStyled>
+              <AldieselButton className="me-2" icon={<AiOutlineSearch />}></AldieselButton>
+              <AldieselButton onClick={singout} title='Sair'></AldieselButton>
             </Styled.FormStyled>
           </Navbar.Collapse>
         </Container>

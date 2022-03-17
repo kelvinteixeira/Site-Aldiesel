@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import * as Styled from './deleteCar.styles';
 import { Modal } from 'react-bootstrap';
 import { api } from '../../../api';
+import { AldieselButton } from '../../AldieselButton/aldieselButton';
 
 type ModalDeleteCarProps = {
   idCar: number | undefined,
@@ -33,8 +34,8 @@ export function ModalDeleteCar(props: ModalDeleteCarProps) {
         <Modal.Body><Styled.SubTitleModal>Os dados desse veiculo serão removidos definitavemente</Styled.SubTitleModal></Modal.Body>
         <Modal.Footer>
           <Styled.DivModalFooter>
-            <Styled.ButtonModalStyled variant='outline-primary' onClick={deleteCar}>Confirmar</Styled.ButtonModalStyled>
-            <Styled.ButtonModalStyled variant='outline-primary' onClick={props.onHide}>Cancelar</Styled.ButtonModalStyled>
+            <AldieselButton title='Confirmar' onClick={deleteCar}></AldieselButton>
+            <AldieselButton title='Cancelar' onClick={props.onHide}></AldieselButton>
           </Styled.DivModalFooter>
         </Modal.Footer>
       </Modal>

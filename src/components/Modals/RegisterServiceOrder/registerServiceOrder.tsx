@@ -7,6 +7,7 @@ import * as Styled from './registerServiceOrder.styles';
 // import { AddCarSchema } from '../../utils/schema';
 import { currentDate } from '../../../utils/data';
 import { api } from '../../../api';
+import { AldieselButton } from '../../AldieselButton/aldieselButton';
 
 type ModalRegisterServiceOrderProps = {
   idCar: number | undefined,
@@ -164,7 +165,9 @@ export function ModalRegisterServiceOrder(params: ModalRegisterServiceOrderProps
                   )}
                 />
 
-                <Styled.ButtonStyled type="submit" variant="outline-primary">Enviar</Styled.ButtonStyled>
+                <Styled.DivButtons>
+                  <AldieselButton type="submit" title='Cadastrar'></AldieselButton>
+                </Styled.DivButtons>
                 <hr />
 
               </Styled.CardContent>

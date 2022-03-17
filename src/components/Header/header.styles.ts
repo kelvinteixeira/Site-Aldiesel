@@ -1,4 +1,4 @@
-import { Button, Form, FormControl, Navbar, Spinner } from "react-bootstrap";
+import { Form, FormControl, Navbar, Spinner } from "react-bootstrap";
 import { AiFillCar, AiOutlineUserAdd } from "react-icons/ai";
 import styled from "styled-components";
 
@@ -16,18 +16,6 @@ font-size: 1.5rem;
 
 export const AiFillCarStyled = styled(AiFillCar)`
 font-size: 1.5rem;
-`;
-
-export const ButtonStyled = styled(Button)`
-  color: #8e9cca;
-  border-color: #8e9cca;
-  transition: ease-in-out 0.5s;
-  font-weight: bold;
-  :hover{
-   background-color: #8e9cca ;
-   border-color: #000 ;
-   color: #fff
-  }
 `;
 
 export const FormControlStyled = styled(FormControl)`

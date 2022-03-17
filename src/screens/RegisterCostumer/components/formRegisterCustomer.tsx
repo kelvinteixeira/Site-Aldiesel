@@ -8,6 +8,7 @@ import { Formik, ErrorMessage } from 'formik';
 import { currentDate } from '../../../utils/data';
 import { api } from '../../../api';
 import { FormActions } from '../../../shared/GlobalTypes';
+import { AldieselButton } from '../../../components/AldieselButton/aldieselButton';
 
 type FormValues = {
   name: string,
@@ -141,7 +142,9 @@ export function FormRegisterCostumer() {
                   </Col>
                 </Row>
 
-                <Styled.ButtonStyled type="submit" variant="outline-primary">Cadastrar</Styled.ButtonStyled>
+                <Styled.DivButtons>
+                  <AldieselButton type="submit" title='Cadastrar'></AldieselButton>
+                </Styled.DivButtons>
                 <hr />
 
               </Styled.CardContent>
@@ -157,8 +160,8 @@ export function FormRegisterCostumer() {
         <Modal.Body><Styled.SubTitle>Deseja cadastrar um novo cliente?</Styled.SubTitle></Modal.Body>
         <Modal.Footer>
           <Styled.DivModalFooter>
-            <Styled.ButtonModalStyled variant='outline-primary' onClick={() => setShowModal(false)}>Confirmar</Styled.ButtonModalStyled>
-            <Styled.ButtonModalStyled variant='outline-primary' onClick={goToDashboard}>Cancelar</Styled.ButtonModalStyled>
+            <AldieselButton title='Confirmar' onClick={() => setShowModal(false)}></AldieselButton>
+            <AldieselButton title='Cancelar' onClick={goToDashboard}></AldieselButton>
           </Styled.DivModalFooter>
         </Modal.Footer>
       </Modal>

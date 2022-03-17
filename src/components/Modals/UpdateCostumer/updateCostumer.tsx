@@ -6,6 +6,7 @@ import * as Styled from './updateCostumer.styles';
 import { Formik, ErrorMessage } from 'formik';
 import { api } from '../../../api';
 import { CostumerItems } from '../../../shared/GlobalTypes';
+import { AldieselButton } from '../../AldieselButton/aldieselButton';
 
 type ModalDeleteCostumerProps = {
   idCostumer: number,
@@ -103,7 +104,7 @@ export function ModalUpdateCostumer(params: ModalDeleteCostumerProps) {
                         </ErrorMessage>
                       </Styled.FormGroupStyled>
                     </Col>
-                    
+
                   </Row>
 
                   <Styled.Title>  <Styled.AiOutlineHomeStyled /> Informações do endereço</Styled.Title>
@@ -160,7 +161,9 @@ export function ModalUpdateCostumer(params: ModalDeleteCostumerProps) {
                     </Col>
                   </Row>
 
-                  <Styled.ButtonStyled type="submit" variant="outline-primary">Atualizar</Styled.ButtonStyled>
+                  <Styled.DivButtons>
+                    <AldieselButton type="submit" title='Atualizar'></AldieselButton>
+                  </Styled.DivButtons>
                   <hr />
 
                 </Styled.CardContent>

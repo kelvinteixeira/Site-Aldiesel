@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import { Modal } from 'react-bootstrap'
 import { api } from '../../../api'
+import { AldieselButton } from '../../AldieselButton/aldieselButton'
 import * as Styled from './deleteCostumer.styles'
 
 type ModalDeleteCostumerProps = {
@@ -34,8 +35,8 @@ export function ModalDeleteCostumer(props: ModalDeleteCostumerProps) {
         <Modal.Body><Styled.SubTitleModal>Os dados desse cliente serão removidos definitavemente</Styled.SubTitleModal></Modal.Body>
         <Modal.Footer>
           <Styled.DivModalFooter>
-            <Styled.ButtonModalStyled variant='outline-primary' onClick={deleteCostumer}>Confirmar</Styled.ButtonModalStyled>
-            <Styled.ButtonModalStyled variant='outline-primary' onClick={props.onHide}>Cancelar</Styled.ButtonModalStyled>
+            <AldieselButton title='Confirmar' onClick={deleteCostumer}></AldieselButton>
+            <AldieselButton title='Cancelar' onClick={props.onHide}></AldieselButton>
           </Styled.DivModalFooter>
         </Modal.Footer>
       </Modal>

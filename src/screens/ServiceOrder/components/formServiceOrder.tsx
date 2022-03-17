@@ -10,6 +10,7 @@ import Logo from '../../../Assets/logo.png'
 import { api } from '../../../api';
 import '../Styles/formOs.css'
 import { CarItems, FormActions, CostumerItems, ServiceOrderItems, DtcItems } from '../../../shared/GlobalTypes';
+import { AldieselButton } from '../../../components/AldieselButton/aldieselButton';
 
 export type FormValues = {
   costumer: string,
@@ -32,7 +33,7 @@ export function FormServiceOrder() {
   const [cars, setCars] = useState([])
   const [dtcs, setDtcs] = useState([])
   const history = useHistory()
-  const { id } = useParams<{id: string}>()
+  const { id } = useParams<{ id: string }>()
 
   function gerarOs() {
     window.print()
@@ -224,12 +225,19 @@ export function FormServiceOrder() {
                       </Form.Group>
 
                       <Styled.DivButtons>
-                        <Styled.ButtonStyled className='no-print btn' disabled={!props.isValid} variant="outline-primary" type="submit">
-                          Atualizar OS
-                        </Styled.ButtonStyled>
-                        <Styled.ButtonStyled onClick={gerarOs} className='no-print btn' disabled={!props.isValid} variant="outline-primary" type="button">
-                          Imprimir
-                        </Styled.ButtonStyled>
+                          <AldieselButton
+                            className='no-print btn'
+                            disabled={!props.isValid}
+                            type="submit"
+                            title='Atualizar Ordem de Serviço'>
+                        </AldieselButton>
+                        <AldieselButton
+                          className='no-print btn'
+                          onClick={gerarOs}
+                          disabled={!props.isValid}
+                          type="button"
+                          title='Imprimir'>
+                        </AldieselButton>
                       </Styled.DivButtons>
                     </Form>
                   )}

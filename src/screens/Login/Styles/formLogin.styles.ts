@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { Field } from 'formik';
 import { IoMdLogIn, IoMdLock } from "react-icons/io";
 import { FiAlertCircle } from "react-icons/fi";
@@ -70,32 +70,11 @@ export const FieldStyled = styled(Field)`
   }
   `
 
-export const ButtonStyled = styled(Button)`
-  color: #8e9cca;
-  border-color: #8e9cca;
-  margin-top: 2rem;
-  width: 100%;
-  transition: ease-in-out 0.5s;
-  font-weight: bold;
-  :hover{
-   background-color: #8e9cca ;
-   border-color: #000 ;
-
-  }
-`;
-
-export const ModalButtonStyled = styled(Button)`
-  width: auto;
-  margin: auto;
-  color: #8e9cca;
-  border-color: #8e9cca;
-  transition: ease-in-out 0.5s;
-  font-weight: bold;
-  :hover{
-   background-color: #8e9cca ;
-   border-color: #000 ;
-
-  }
+export const DivButtons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
 `;
 
 export const IoMdLogInStyled = styled(IoMdLogIn)`

@@ -54,18 +54,3 @@ export const DivButtons = styled.div`
   display: inline;
   text-align: center;
 `;
-
-export const ButtonStyled = styled(Button)`
-  color: #8e9cca;
-  border-color: #8e9cca;
-  transition: ease-in-out 0.5s;
-  width: auto;
-  font-weight: bold;
-  margin-right: 1rem;
-  line-height: 1rem;
-  :hover{
-   background-color: #8e9cca ;
-   border-color: #000 ;
-
-  }
-`;
