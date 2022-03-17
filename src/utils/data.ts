@@ -1,10 +1,10 @@
-let data = new Date();
-let dia = data.getDate();           
-let mes = data.getMonth();          
-let ano4 = data.getFullYear();       
-let hora = data.getHours();          
-let min = data.getMinutes();        
-let seg = data.getSeconds();       
+let date = new Date();
+let day = date.getDate();           
+let month = date.getMonth();          
+let year = date.getFullYear();       
+let hour = date.getHours();          
+let min = date.getMinutes();        
+let seg = date.getSeconds();       
 
-export const currentDate = dia + '/' + (mes + 1) + '/' + ano4;
-export const currentHour = hora + ':' + min + ':' + seg;
+export const currentDate = day + '/' + (month + 1) + '/' + year;
+export const currentHour = hour + ':' + min + ':' + seg;

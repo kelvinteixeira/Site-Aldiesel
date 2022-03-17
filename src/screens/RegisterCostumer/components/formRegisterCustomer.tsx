@@ -36,16 +36,15 @@ export function FormRegisterCostumer() {
   }
 
   function register(values: FormValues, actions: FormActions) {
-    console.log(actions)
     api.post('/clientes/adicionar', {
-      nome: values.name,
-      telefone: values.phone,
-      endereco_rua: values.street,
-      endereco_numero: values.houseNumber,
-      endereco_bairro: values.district,
-      endereco_estado: values.state,
-      endereco_cidade: values.city,
-      entrada: currentDate
+      name: values.name,
+      phone: values.phone,
+      street: values.street,
+      houseNumber: values.houseNumber,
+      district: values.district,
+      state: values.state,
+      city: values.city,
+      entryDate: currentDate
     })
     actions.setSubmitting(false)
     actions.resetForm()

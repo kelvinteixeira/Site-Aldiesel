@@ -8,7 +8,7 @@ import { api } from '../../../api';
 import * as Styled from './registerCar.styles'
 
 type ModalDeleteCostumerProps = {
-  id_costumer: number | undefined,
+  idCostumer: number | undefined,
   onHide: () => void,
   show: boolean
 }
@@ -17,7 +17,7 @@ type FormValues = {
   model: string,
   licensePlate: string,
   year: string,
-  collor: string,
+  color: string,
   problem: string,
 }
 
@@ -32,20 +32,20 @@ export function ModalRegisterCar(params: ModalDeleteCostumerProps) {
     model: '',
     licensePlate: '',
     year: '',
-    collor: '',
+    color: '',
     problem: ''
   }
 
   function onSubmit(values: FormValues, actions: FormActions) {
-    api.post(`/clientes/carros/adicionar/${params.id_costumer
+    api.post(`/carros/adicionar/${params.idCostumer
       }`, {
-      modelo: values.model,
-      placa: values.licensePlate,
-      ano: values.year,
-      cor: values.collor,
-      problema: values.problem,
-      id_cliente: params.id_costumer,
-      entrada: currentDate
+      model: values.model,
+      licensePlate: values.licensePlate,
+      year: values.year,
+      color: values.color,
+      problem: values.problem,
+      idCostumer: params.idCostumer,
+      entryDate: currentDate
     })
     actions.setSubmitting(false)
     actions.resetForm()
@@ -53,7 +53,7 @@ export function ModalRegisterCar(params: ModalDeleteCostumerProps) {
     setTimeout(() => {
       setShowModal(false)
       params.onHide()
-      window.location.reload();
+      // window.location.reload();
     }, 1000);
   }
 
@@ -102,8 +102,8 @@ export function ModalRegisterCar(params: ModalDeleteCostumerProps) {
                   <Col>
                     <Styled.FormGroupStyled  >
                       <Form.Label>Cor</Form.Label>
-                      <Styled.FieldStyled name='collor' />
-                      <ErrorMessage name='collor'>
+                      <Styled.FieldStyled name='color' />
+                      <ErrorMessage name='color'>
                         {msg => <Styled.MsgError>Cor é obrigátorio</Styled.MsgError>}
                       </ErrorMessage>
                     </Styled.FormGroupStyled>

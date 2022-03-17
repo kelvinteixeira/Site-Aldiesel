@@ -5,7 +5,7 @@ import { Modal } from 'react-bootstrap';
 import { api } from '../../../api';
 
 type ModalDeleteCarProps = {
-  id_car: number | undefined,
+  idCar: number | undefined,
   onHide: () => void,
   show: boolean
 }
@@ -14,7 +14,7 @@ export function ModalDeleteCar(props: ModalDeleteCarProps) {
   const [showModal, setShowModal] = useState(false)
   
   async function deleteCar() {
-    await api.delete(`/clientes/carros/deletar/${props.id_car}`)
+    await api.delete(`/carros/deletar/${props.idCar}`)
     setShowModal(true)
 
     setTimeout(() => {

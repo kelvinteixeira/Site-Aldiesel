@@ -4,12 +4,12 @@ import { useHistory } from 'react-router-dom';
 import { STORAGE_KEY } from '../../../utils/Authorization/auth';
 import { token } from '../../../utils/Authorization/token';
 import { SigninSchema } from '../../../utils/Yup/schema';
+import * as Styled from '../Styles/formLogin.styles';
 import { Form, Modal } from 'react-bootstrap';
 import { Formik, ErrorMessage } from 'formik';
-import * as Styled from '../Styles/formLogin.styles';
 import Logo from '../../../Assets/logo.png';
 
-type MyFormValues = {
+type FormValues = {
   user: string,
   password: string
 };
@@ -19,12 +19,12 @@ export function FormLogin() {
   const [showModal, setShowModal] = useState(false);
   const history = useHistory();
 
-  const initialValues: MyFormValues = {
+  const initialValues: FormValues = {
     user: '',
     password: ''
   };
 
-  function singin(values: MyFormValues) {
+  function singin(values: FormValues) {
     const users = [process.env.REACT_APP_USER, process.env.REACT_APP_USER2].includes(values.user)
     if (users && values.password === process.env.REACT_APP_PASSWORD) {
       localStorage.setItem(STORAGE_KEY, token())

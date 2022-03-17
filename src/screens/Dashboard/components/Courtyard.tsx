@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { ModalRegisterServiceOrder } from '../../../components/Modals/RegisterServiceOrder/registerServiceOrder';
 import { ModalUpdateCostumer } from '../../../components/Modals/UpdateCostumer/updateCostumer';
 import { ModalDeleteCostumer } from '../../../components/Modals/DeleteCostumer/deleteCostumer';
-import { ModalRegisterServiceOrder } from '../../../components/Modals/RegisterServiceOrder/registerServiceOrder';
 import { ModalRegisterCar } from '../../../components/Modals/RegisterCar/registerCar';
 import { ModalDeleteCar } from '../../../components/Modals/DeleteCar/deleteCar';
+import { CarItems, CostumerItems } from '../../../shared/GlobalTypes';
 import * as Styled from '../Styles/Courtyard.styles';
 import ReactTooltip from 'react-tooltip';
 import { Modal } from 'react-bootstrap';
 import { api } from '../../../api';
-import { CarItems, CostumerItems } from '../../../shared/GlobalTypes';
 
 
 
@@ -25,7 +25,7 @@ export function CourtyardTable() {
   const [showModalExistingServiceOrder, setShowModalExistingServiceOrder] = useState(false)
   const [showModalServiceOrder, setShowModalServiceOrder] = useState(false)
 
-  const [idCostumer, setIdCostumer] = useState<number>()
+  const [idCostumer, setIdCostumer] = useState<number>(0)
   const [serviceOrder, setServiceOrder] = useState([])
   const [costumers, setCostumers] = useState([])
   const [idCar, setIdCar] = useState<number>()
@@ -38,12 +38,12 @@ export function CourtyardTable() {
       .catch((err) => {
         console.error("Erro" + err)
       })
-    api.get('/clientes/carros/listar')
+    api.get('/carros/listar')
       .then((response) => setCars(response.data))
       .catch((err) => {
         console.error(err.message)
       })
-    api.get(`/clientes/ordemdeservico/listar`)
+    api.get(`/ordemdeservico/listar`)
       .then((response) => setServiceOrder(response.data))
       .catch((err) => {
         console.error(err.message)
@@ -61,8 +61,8 @@ export function CourtyardTable() {
   }
 
   function updateCostumer(id: number) {
-    setShowModalUpdateCostumer(true)
     setIdCostumer(id)
+    setShowModalUpdateCostumer(true)
   }
 
   function addCar(id: number) {
@@ -149,15 +149,15 @@ export function CourtyardTable() {
         </Styled.Card>
       ))
       }
-      <ModalRegisterCar show={showModalRegisterCar} id_costumer={idCostumer} onHide={() => setShowModalRegisterCar(false)} />
+      <ModalRegisterCar show={showModalRegisterCar} idCostumer={idCostumer} onHide={() => setShowModalRegisterCar(false)} />
 
-      <ModalDeleteCar show={showModalDeleteCar} id_car={idCar} onHide={() => setShowModalDeleteCar(false)} />
+      <ModalDeleteCar show={showModalDeleteCar} idCar={idCar} onHide={() => setShowModalDeleteCar(false)} />
 
-      <ModalDeleteCostumer show={showModalDeleteCostumer} id_costumer={idCostumer} onHide={() => setShowModalDeleteCostumer(false)} />
+      <ModalDeleteCostumer show={showModalDeleteCostumer} idCostumer={idCostumer} onHide={() => setShowModalDeleteCostumer(false)} />
 
-      <ModalRegisterServiceOrder show={showModalServiceOrder} id_car={idCar} onHide={() => setShowModalServiceOrder(false)} />
+      <ModalRegisterServiceOrder show={showModalServiceOrder} idCar={idCar} onHide={() => setShowModalServiceOrder(false)} />
 
-      <ModalUpdateCostumer show={showModalUpdateCostumer} id_costumer={idCostumer} onHide={() => setShowModalUpdateCostumer(false)} />
+      <ModalUpdateCostumer show={showModalUpdateCostumer} idCostumer={idCostumer} onHide={() => setShowModalUpdateCostumer(false)} />
 
       <Modal centered show={showModalExistingServiceOrder} onHide={() => setShowModalExistingServiceOrder(false)}>
         <Modal.Header closeButton></Modal.Header>

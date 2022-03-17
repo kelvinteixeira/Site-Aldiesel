@@ -5,7 +5,7 @@ import { api } from '../../../api'
 import * as Styled from './deleteCostumer.styles'
 
 type ModalDeleteCostumerProps = {
-  id_costumer: number | undefined,
+  idCostumer: number | undefined,
   onHide: () => void,
   show: boolean
 }
@@ -15,7 +15,7 @@ export function ModalDeleteCostumer(props: ModalDeleteCostumerProps) {
   const [showModal, setShowModal] = useState(false)
 
   function deleteCostumer() {
-    api.delete(`/clientes/deletar/${props.id_costumer
+    api.delete(`/clientes/deletar/${props.idCostumer
       }`)
     setShowModal(true)
     setTimeout(() => {

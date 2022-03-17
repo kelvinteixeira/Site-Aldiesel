@@ -5,9 +5,10 @@ import { Form, Modal, Row, Col } from 'react-bootstrap';
 import * as Styled from './updateCostumer.styles';
 import { Formik, ErrorMessage } from 'formik';
 import { api } from '../../../api';
+import { CostumerItems } from '../../../shared/GlobalTypes';
 
 type ModalDeleteCostumerProps = {
-  id_costumer: number | undefined,
+  idCostumer: number,
   onHide: () => void,
   show: boolean
 }
@@ -27,37 +28,25 @@ type FormValues = {
   state: string
 }
 
-type Costumer = {
-  id_cliente: number
-  nome: string,
-  telefone: string,
-  endereco_rua: string,
-  endereco_numero: string,
-  endereco_bairro: string,
-  endereco_cidade: string,
-  endereco_estado: string
-}
-
 export function ModalUpdateCostumer(params: ModalDeleteCostumerProps) {
   const [showModal, setShowModal] = useState(false)
   const [costumers, setCostumers] = useState([])
 
   useEffect(() => {
-    api.get(`/clientes/encontrar/${params.id_costumer
-      }`)
+    api.get(`/clientes/encontrar/${params.idCostumer}`)
       .then((response) => setCostumers(response.data))
-  }, [params.id_costumer])
+  }, [params.idCostumer])
 
   function onSubmit(values: FormValues, actions: FormActions) {
-    api.put(`/clientes/atualizar/${params.id_costumer
+    api.put(`/clientes/atualizar/${params.idCostumer
       }`, {
-      nome: values.name,
-      telefone: values.phone,
-      endereco_rua: values.street,
-      endereco_numero: values.houseNumber,
-      endereco_bairro: values.district,
-      endereco_cidade: values.city,
-      endereco_estado: values.state,
+      name: values.name,
+      phone: values.phone,
+      street: values.street,
+      houseNumber: values.houseNumber,
+      district: values.district,
+      city: values.city,
+      state: values.state,
     })
     actions.setSubmitting(false)
     actions.resetForm()
@@ -73,17 +62,17 @@ export function ModalUpdateCostumer(params: ModalDeleteCostumerProps) {
     < Styled.Container >
       <Modal show={params.show} onHide={params.onHide} id_costumer='true' centered>
 
-        {costumers.map((costumer: Costumer) => (
+        {costumers.map((costumer: CostumerItems) => (
           <Formik
-            key={costumer.id_cliente}
+            key={costumer.id}
             initialValues={{
-              name: costumer.nome,
-              phone: costumer.telefone,
-              street: costumer.endereco_rua,
-              houseNumber: costumer.endereco_numero,
-              district: costumer.endereco_bairro,
-              state: costumer.endereco_estado,
-              city: costumer.endereco_cidade,
+              name: costumer.name,
+              phone: costumer.phone,
+              street: costumer.street,
+              houseNumber: costumer.houseNumber,
+              district: costumer.district,
+              state: costumer.state,
+              city: costumer.city,
             }}
             validationSchema={ClientInfoSchema}
             onSubmit={onSubmit}

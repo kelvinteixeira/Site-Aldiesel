@@ -12,16 +12,16 @@ import '../Styles/formOs.css'
 import { CarItems, FormActions, CostumerItems, ServiceOrderItems, DtcItems } from '../../../shared/GlobalTypes';
 
 export type FormValues = {
-  cliente: string,
-  telefone: string,
-  modeloCarro: string,
-  placa: string,
-  ano: string,
-  cor: string,
-  problema: string,
-  diagnostico: string,
-  situacao: string,
-  mecanico: string,
+  costumer: string,
+  phone: string,
+  model: string,
+  licensePlate: string,
+  year: string,
+  color: string,
+  problem: string,
+  diagnosis: string,
+  situation: string,
+  mechanic: string,
 }
 
 
@@ -44,11 +44,11 @@ export function FormServiceOrder() {
   useEffect(() => {
     api.get(`/clientes/encontrar/${id}`)
       .then((response) => setCostumers(response.data))
-    api.get(`/clientes/ordemdeservico/listar`)
+    api.get(`/ordemdeservico/listar`)
       .then(response => setServiceOrder(response.data))
-    api.get(`/clientes/carros/listar`)
+    api.get(`/carros/listar`)
       .then(response => setCars(response.data))
-    api.get(`/clientes/ordemdeservico/dtc/listar`)
+    api.get(`/dtc/listar`)
       .then(response => setDtcs(response.data))
   }, [id])
 
@@ -88,9 +88,9 @@ export function FormServiceOrder() {
 
   function onSubmit(values: FormValues, actions: FormActions) {
     api.put(`/clientes/atualizar/${id}`, {
-      situacao: values.situacao,
-      mecanico: values.mecanico,
-      carro_problema: values.problema,
+      situacao: values.situation,
+      mecanico: values.mechanic,
+      carro_problema: values.problem,
     })
     actions.setSubmitting(false)
     actions.resetForm()
@@ -113,16 +113,16 @@ export function FormServiceOrder() {
                 <Formik
                   key={order.id}
                   initialValues={{
-                    cliente: costumer.name,
-                    telefone: costumer.phone,
-                    modeloCarro: car.model,
-                    placa: car.licensePlate,
-                    ano: car.year,
-                    cor: car.color,
-                    problema: car.problem,
-                    diagnostico: order.diagnosis,
-                    situacao: order.situation,
-                    mecanico: order.mechanic,
+                    costumer: costumer.name,
+                    phone: costumer.phone,
+                    model: car.model,
+                    licensePlate: car.licensePlate,
+                    year: car.year,
+                    color: car.color,
+                    problem: car.problem,
+                    diagnosis: order.diagnosis,
+                    situation: order.situation,
+                    mechanic: order.mechanic,
                   }}
                   // validationSchema={FormularioOsSchema}
                   onSubmit={onSubmit}
@@ -133,23 +133,23 @@ export function FormServiceOrder() {
                         <Col xs={7}>
                           <Form.Group>
                             <Form.Label>Cliente</Form.Label>
-                            <ErrorMessage name='cliente' />
-                            <Styled.FieldStyled disabled name='cliente' className='form-control input' />
+                            <ErrorMessage name='costumer' />
+                            <Styled.FieldStyled disabled name='costumer' className='form-control input' />
                           </Form.Group>
                         </Col>
 
                         <Col>
                           <Form.Group>
                             <Form.Label>Telefone</Form.Label>
-                            <ErrorMessage name='telefone' />
-                            <Styled.FieldStyled disabled name='telefone' className='form-control input' />
+                            <ErrorMessage name='phone' />
+                            <Styled.FieldStyled disabled name='phone' className='form-control input' />
                           </Form.Group>
                         </Col>
 
                         <Col>
                           <Form.Group>
                             <Form.Label>situacao</Form.Label>
-                            <Styled.FieldStyled className='form-control input' name='situacao' aria-label="situacaoDTC" />
+                            <Styled.FieldStyled className='form-control input' name='situation' aria-label="situacaoDTC" />
                           </Form.Group>
                         </Col>
                       </Row>
@@ -157,36 +157,36 @@ export function FormServiceOrder() {
                         <Col xs={4}>
                           <Form.Group>
                             <Form.Label>Mecânico responsável</Form.Label>
-                            <ErrorMessage name='mecanico' />
-                            <Styled.FieldStyled name='mecanico' className='form-control input' />
+                            <ErrorMessage name='mechanic' />
+                            <Styled.FieldStyled name='mechanic' className='form-control input' />
                           </Form.Group>
                         </Col>
                         <Col>
                           <Form.Group>
                             <Form.Label>Modelo do carro</Form.Label>
-                            <ErrorMessage name='modeloCarro' />
-                            <Styled.FieldStyled disabled name='modeloCarro' className='form-control input' />
+                            <ErrorMessage name='model' />
+                            <Styled.FieldStyled disabled name='model' className='form-control input' />
                           </Form.Group>
                         </Col>
                         <Col xs={2}>
                           <Form.Group>
                             <Form.Label>Placa</Form.Label>
-                            <ErrorMessage name='placa' />
-                            <Styled.FieldStyled disabled name='placa' className='form-control input' />
+                            <ErrorMessage name='licensePlate' />
+                            <Styled.FieldStyled disabled name='licensePlate' className='form-control input' />
                           </Form.Group>
                         </Col>
                         <Col xs={1}>
                           <Form.Group>
                             <Form.Label>Ano</Form.Label>
-                            <ErrorMessage name='ano' />
-                            <Styled.FieldStyled disabled name='ano' className='form-control input' />
+                            <ErrorMessage name='year' />
+                            <Styled.FieldStyled disabled name='year' className='form-control input' />
                           </Form.Group>
                         </Col>
                         <Col xs={2}>
                           <Form.Group>
                             <Form.Label>Cor</Form.Label>
-                            <ErrorMessage name='cor' />
-                            <Styled.FieldStyled disabled name='cor' className='form-control input' />
+                            <ErrorMessage name='color' />
+                            <Styled.FieldStyled disabled name='color' className='form-control input' />
                           </Form.Group>
                         </Col>
 
@@ -194,12 +194,12 @@ export function FormServiceOrder() {
 
                       <h6 className='form-title' >Descrição do problema</h6>
                       <Form.Group>
-                        <Field name='problema' className='form-control input textareasSimples' as='textarea' />
+                        <Field name='problem' className='form-control input textareasSimples' as='textarea' />
                       </Form.Group>
 
                       <h6 className='form-title' >Diagnóstico</h6>
                       <Form.Group>
-                        <Field name='diagnostico' className=' form-control input textareasSimples' as='textarea' />
+                        <Field name='diagnosis' className=' form-control input textareasSimples' as='textarea' />
                       </Form.Group>
                       <Row>
                         <Col xs={2}>
