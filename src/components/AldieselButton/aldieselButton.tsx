@@ -22,7 +22,6 @@ export const ButtonStyled = styled.button`
   border: .1rem solid #8e9cca;
   border-radius: .3rem;
   background-color: #ffffff;
-  border-color: #8e9cca;
   color: #8e9cca;
 
   transition: ease-in-out 0.5s;

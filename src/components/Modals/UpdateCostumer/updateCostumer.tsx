@@ -162,7 +162,7 @@ export function ModalUpdateCostumer(params: ModalDeleteCostumerProps) {
                   </Row>
 
                   <Styled.DivButtons>
-                    <AldieselButton type="submit" title='Atualizar'></AldieselButton>
+                    <AldieselButton type="submit" title='Atualizar dados'></AldieselButton>
                   </Styled.DivButtons>
                   <hr />
 

@@ -1,5 +1,5 @@
 import { Accordion, Button, Table } from "react-bootstrap";
-import { AiOutlineEdit, AiOutlinePrinter } from "react-icons/ai";
+import { AiOutlineInfoCircle, AiOutlinePrinter } from "react-icons/ai";
 import { BiFile, BiTrash } from "react-icons/bi";
 import { FiAlertCircle } from "react-icons/fi";
 import styled from "styled-components";
@@ -91,7 +91,7 @@ export const DivIcons = styled.div`
   margin-right: 1rem;
   `;
 
-export const AiOutlineEditStyled = styled(AiOutlineEdit)`
+export const AiOutlineInfoCircleStyled = styled(AiOutlineInfoCircle)`
   margin-left: 1rem;
   margin-top: 0.1rem;
   color: #696a6b;

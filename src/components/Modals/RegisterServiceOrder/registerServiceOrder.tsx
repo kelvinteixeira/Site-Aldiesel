@@ -10,25 +10,26 @@ import { api } from '../../../api';
 import { AldieselButton } from '../../AldieselButton/aldieselButton';
 
 type ModalRegisterServiceOrderProps = {
-  idCar: number | undefined,
+  idCar: number,
   onHide: () => void
   show: boolean
+}
+
+type DtcsInfoItems = {
+  actions: string
+  code: string,
+  dtc: string,
+  dtcState: string
+  idServiceOrder: number,
 }
 
 type FormValues = {
   situation: string,
   diagnosis: string,
   mechanic: string,
-  dtcsInfo: any
+  dtcsInfo: Array<DtcsInfoItems>
 }
 
-type DtcsInfoItems = {
-  actions: Array<string>
-  code: string,
-  dtc: string,
-  dtcState: string
-  idServiceOrder: number,
-}
 
 export function ModalRegisterServiceOrder(params: ModalRegisterServiceOrderProps) {
   const [showModal, setShowModal] = useState(false)
@@ -37,11 +38,11 @@ export function ModalRegisterServiceOrder(params: ModalRegisterServiceOrderProps
     api.post(`/ordemdeservico/adicionar`, {
       diagnosis: values.diagnosis,
       situation: values.situation,
-      mechanin: values.mechanic,
+      mechanic: values.mechanic,
       changeDate: currentDate,
       idCar: params.idCar
     })
-    values.dtcsInfo.map((info: any) => (
+    values.dtcsInfo.map((info) => (
       api.post(`/dtc/adicionar`, {
         code: info.code,
         dtc: info.dtc,
@@ -69,8 +70,14 @@ export function ModalRegisterServiceOrder(params: ModalRegisterServiceOrderProps
             diagnosis: '',
             situation: '',
             mechanic: '',
-            dtcsInfo: ['', '', '', '', '', '', '', '', '', '',],
-            actions: ['', '', '', '', '', '', '', '', '',]
+            dtcsInfo: [{
+              code: '',
+              dtc: '',
+              dtcState: '',
+              actions: '',
+              idServiceOrder: params.idCar
+            }],
+            // actions: ['', '', '', '', '', '', '', '', '',]
           }}
           // validationSchema={AddCarSchema}
           onSubmit={onSubmit}
@@ -119,10 +126,7 @@ export function ModalRegisterServiceOrder(params: ModalRegisterServiceOrderProps
                     <Form.Label>Dtc</Form.Label>
                   </Col>
                   <Col xs={3}>
-                    <Form.Label>Situação</Form.Label>
-                  </Col>
-                  <Col xs={1}>
-                    <Form.Label></Form.Label>
+                    <Form.Label>SituaçãoDTC</Form.Label>
                   </Col>
                 </Row>
                 <FieldArray
@@ -130,17 +134,19 @@ export function ModalRegisterServiceOrder(params: ModalRegisterServiceOrderProps
                   render={arrayHelpers => (
                     <div>
                       {props.values.dtcsInfo.map((dtcs, indexDtcs) => (
-                        <Row className='mb-1' key={indexDtcs}>
-                          <Col xs={2}>
-                            <Styled.FieldStyled name={`dtcsInfo.${indexDtcs}.code`} />
-                          </Col>
-                          <Col>
-                            <Styled.FieldStyled name={`dtcsInfo.${indexDtcs}.dtc`} />
-                          </Col>
-                          <Col xs={3}>
-                            <Styled.FieldStyled name={`dtcsInfo.${indexDtcs}.dtcState`} />
-                          </Col>
-                        </Row>
+                        <>
+                          <Row className='mb-1' key={indexDtcs}>
+                            <Col xs={2}>
+                              <Styled.FieldStyled name={`dtcsInfo.${indexDtcs}.code`} />
+                            </Col>
+                            <Col>
+                              <Styled.FieldStyled name={`dtcsInfo.${indexDtcs}.dtc`} />
+                            </Col>
+                            <Col xs={3}>
+                              <Styled.FieldStyled name={`dtcsInfo.${indexDtcs}.dtcState`} />
+                            </Col>
+                          </Row>
+                        </>
                       ))}
                     </div>
 
@@ -157,7 +163,7 @@ export function ModalRegisterServiceOrder(params: ModalRegisterServiceOrderProps
                       {props.values.dtcsInfo.map((detalhes, indexDetalhes) => (
                         <Row className='mb-1' key={indexDetalhes}>
                           <Col >
-                            <Styled.FieldStyled name={`dtcsInfo.${indexDetalhes}.procedimentos`} />
+                            <Styled.FieldStyled name={`dtcsInfo.${indexDetalhes}.actions`} />
                           </Col>
                         </Row>
                       ))}

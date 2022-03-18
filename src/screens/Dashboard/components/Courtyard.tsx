@@ -27,7 +27,7 @@ export function CourtyardTable() {
   const [idCostumer, setIdCostumer] = useState<number>(0)
   const [serviceOrder, setServiceOrder] = useState([])
   const [costumers, setCostumers] = useState([])
-  const [idCar, setIdCar] = useState<number>()
+  const [idCar, setIdCar] = useState<number>(0)
   const [cars, setCars] = useState([])
   const history = useHistory()
 
@@ -98,7 +98,7 @@ export function CourtyardTable() {
                 <Styled.SubtitleData>{costumer.entryDate}</Styled.SubtitleData>
                 <Styled.DivIcons>
                   <ReactTooltip />
-                  <Styled.AiOutlineEditStyled data-effect='solid' data-background-color='#8e9cca' data-tip='Atualizar dados do cliente' onClick={() => updateCostumer(costumer.id)} />
+                  <Styled.AiOutlineInfoCircleStyled data-effect='solid' data-background-color='#8e9cca' data-tip='Informações do cliente' onClick={() => updateCostumer(costumer.id)} />
 
                   <ReactTooltip />
                   <Styled.BiTrashStyled data-tip='Excluir cliente' data-effect='solid' data-background-color='#8e9cca' onClick={() => deleteCostumer(costumer.id)} />
