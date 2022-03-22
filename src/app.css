@@ -19,3 +19,9 @@ body {
     margin: auto;
   }
 }
+
+.accordion-button:not(.collapsed) {
+  color: none;
+  background-color: transparent !important;
+  box-shadow: none;
+}

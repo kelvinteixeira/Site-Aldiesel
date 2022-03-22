@@ -7,7 +7,7 @@ import { ModalDeleteCostumer } from '../../../components/Modals/DeleteCostumer/d
 import { ModalRegisterCar } from '../../../components/Modals/RegisterCar/registerCar';
 import { AldieselButton } from "../../../components/AldieselButton/aldieselButton";
 import { ModalDeleteCar } from '../../../components/Modals/DeleteCar/deleteCar';
-import { CarItems, CostumerItems } from '../../../shared/GlobalTypes';
+import { CarItems, CostumerItems, ServiceOrderItems } from '../../../shared/GlobalTypes';
 import * as Styled from '../Styles/Courtyard.styles';
 import ReactTooltip from 'react-tooltip';
 import { Accordion, Modal } from 'react-bootstrap';
@@ -25,32 +25,29 @@ export function CourtyardTable() {
   const [showModalServiceOrder, setShowModalServiceOrder] = useState(false)
 
   const [idCostumer, setIdCostumer] = useState<number>(0)
-  const [serviceOrder, setServiceOrder] = useState([])
-  const [costumers, setCostumers] = useState([])
+  const [serviceOrder, setServiceOrder] = useState<Array<ServiceOrderItems>>([])
+  const [costumers, setCostumers] = useState<Array<CostumerItems>>([])
   const [idCar, setIdCar] = useState<number>(0)
-  const [cars, setCars] = useState([])
+  const [cars, setCars] = useState<Array<CarItems>>([])
   const history = useHistory()
+
+
 
   useEffect(() => {
     api.get('/clientes/listar/')
-      .then((response) => setCostumers(response.data))
+      .then((response) => {
+        setCostumers(response.data.costumers)
+        setCars(response.data.cars)
+        setServiceOrder(response.data.serviceOrders)
+      })
       .catch((err) => {
         console.error("Erro" + err)
       })
-    api.get('/carros/listar')
-      .then((response) => setCars(response.data))
-      .catch((err) => {
-        console.error(err.message)
-      })
-    api.get(`/ordemdeservico/listar`)
-      .then((response) => setServiceOrder(response.data))
-      .catch((err) => {
-        console.error(err.message)
-      })
   }, [])
 
+
   function generateServiceOrder(id: number) {
-    const idServiceOrder = serviceOrder.map((order: { id_car: number }) => order.id_car).find(element => element === id)
+    const idServiceOrder = serviceOrder.map((order) => order.idCar).find(element => element === id)
     if (idServiceOrder) {
       setShowModalExistingServiceOrder(true)
     } else {
@@ -75,7 +72,7 @@ export function CourtyardTable() {
   }
 
   function deleteCostumer(id: number) {
-    const idCars = cars.map((car: CarItems) => car.idCostumer).find(element => element === id)
+    const idCars = cars.map((car) => car.idCostumer).find(element => element === id)
     if (idCars) {
       setShowModalExistingCar(true)
     } else {
@@ -86,10 +83,10 @@ export function CourtyardTable() {
 
   return (
     <Styled.Container>
-      {costumers.map((costumer: CostumerItems) => (
-        <Styled.AccordionStlyed className='mb-3 '>
+      {costumers.map((costumer) =>
+        <Styled.AccordionStyled className='mb-3 ' key={costumer.id}>
           <Accordion.Item eventKey="0">
-            <Accordion.Header key={costumer.id}>
+            <Accordion.Header >
               <Styled.FirstRow >
                 <Styled.DivNome>
                   <Styled.Title>Cliente:</Styled.Title>
@@ -117,6 +114,7 @@ export function CourtyardTable() {
                     <th>Entrada</th>
                     <th>Problema</th>
                     <th></th>
+                    <th>Situação</th>
                     <th>Ações</th>
                   </tr>
                 </thead>
@@ -130,6 +128,7 @@ export function CourtyardTable() {
                       <td>{car.color} </td>
                       <td>{car.entryDate} </td>
                       <td colSpan={2}>{car.problem} </td>
+                      <td>{serviceOrder.map(item => item.situation)}</td>
                       <td>
                         <ReactTooltip />
                         <Styled.BiFileStyled data-tip='Gerar OS' data-effect='solid' data-background-color='#8e9cca' onClick={() => generateServiceOrder(car.id)} />
@@ -153,8 +152,8 @@ export function CourtyardTable() {
               </Styled.DivButtons>
             </Accordion.Body>
           </Accordion.Item>
-        </Styled.AccordionStlyed>
-      ))
+        </Styled.AccordionStyled>
+      )
       }
       <ModalRegisterCar show={showModalRegisterCar} idCostumer={idCostumer} onHide={() => setShowModalRegisterCar(false)} />
 

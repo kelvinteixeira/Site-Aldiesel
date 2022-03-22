@@ -8,6 +8,7 @@ import * as Styled from './registerServiceOrder.styles';
 import { currentDate } from '../../../utils/data';
 import { api } from '../../../api';
 import { AldieselButton } from '../../AldieselButton/aldieselButton';
+import { dtcItemsForm } from './dtcItemsValues'
 
 type ModalRegisterServiceOrderProps = {
   idCar: number,
@@ -20,7 +21,6 @@ type DtcsInfoItems = {
   code: string,
   dtc: string,
   dtcState: string
-  idServiceOrder: number,
 }
 
 type FormValues = {
@@ -35,22 +35,19 @@ export function ModalRegisterServiceOrder(params: ModalRegisterServiceOrderProps
   const [showModal, setShowModal] = useState(false)
 
   function onSubmit(values: FormValues, actions: FormActions) {
+    console.log(values)
     api.post(`/ordemdeservico/adicionar`, {
       diagnosis: values.diagnosis,
       situation: values.situation,
       mechanic: values.mechanic,
       changeDate: currentDate,
-      idCar: params.idCar
+      idCar: params.idCar,
+      code: values.dtcsInfo.map(item => item.code),
+      dtc: values.dtcsInfo.map(item => item.dtc),
+      dtcState: values.dtcsInfo.map(item => item.dtcState),
+      actions: values.dtcsInfo.map(item => item.actions),
+      idServiceOrder: params.idCar
     })
-    values.dtcsInfo.map((info) => (
-      api.post(`/dtc/adicionar`, {
-        code: info.code,
-        dtc: info.dtc,
-        dtcState: info.dtcState,
-        idServiceOrder: params.idCar,
-        actions: info.actions,
-      })
-    ))
     actions.setSubmitting(false)
     actions.resetForm()
     setShowModal(true)
@@ -70,14 +67,7 @@ export function ModalRegisterServiceOrder(params: ModalRegisterServiceOrderProps
             diagnosis: '',
             situation: '',
             mechanic: '',
-            dtcsInfo: [{
-              code: '',
-              dtc: '',
-              dtcState: '',
-              actions: '',
-              idServiceOrder: params.idCar
-            }],
-            // actions: ['', '', '', '', '', '', '', '', '',]
+            dtcsInfo: dtcItemsForm,
           }}
           // validationSchema={AddCarSchema}
           onSubmit={onSubmit}
@@ -89,18 +79,17 @@ export function ModalRegisterServiceOrder(params: ModalRegisterServiceOrderProps
 
                 <Styled.FormGroupStyled >
                   <Form.Label >Diagnóstico</Form.Label>
-                  <Field as='textarea' name='diagnostico' className='form-control input textareasSimples' />
-                  <ErrorMessage name='diagnostico'>
+                  <Field as='textarea' name='diagnosis' className='form-control input textareasSimples' />
+                  <ErrorMessage name='diagnosis'>
                     {msg => <Styled.MsgError>diagnóstico é obrigátorio</Styled.MsgError>}
                   </ErrorMessage>
                 </Styled.FormGroupStyled>
-
                 <Row>
                   <Col>
                     <Styled.FormGroupStyled >
                       <Form.Label>Mecânico responsável</Form.Label>
-                      <Styled.FieldStyled name='mecanico' />
-                      <ErrorMessage name='mecanico'>
+                      <Styled.FieldStyled name='mechanic' />
+                      <ErrorMessage name='mechanic'>
                         {msg => <Styled.MsgError>Mecânico é obrigátorio</Styled.MsgError>}
                       </ErrorMessage>
                     </Styled.FormGroupStyled>
@@ -108,8 +97,8 @@ export function ModalRegisterServiceOrder(params: ModalRegisterServiceOrderProps
                   <Col xs={4}>
                     <Styled.FormGroupStyled >
                       <Form.Label>Situação</Form.Label>
-                      <Styled.FieldStyled name='situacao' />
-                      <ErrorMessage name='situacao'>
+                      <Styled.FieldStyled name='situation' />
+                      <ErrorMessage name='situation'>
                         {msg => <Styled.MsgError>Situação é obrigátorio</Styled.MsgError>}
                       </ErrorMessage>
                     </Styled.FormGroupStyled>
@@ -126,30 +115,29 @@ export function ModalRegisterServiceOrder(params: ModalRegisterServiceOrderProps
                     <Form.Label>Dtc</Form.Label>
                   </Col>
                   <Col xs={3}>
-                    <Form.Label>SituaçãoDTC</Form.Label>
+                    <Form.Label>Situação</Form.Label>
                   </Col>
                 </Row>
+
                 <FieldArray
                   name="dtcsInfo"
                   render={arrayHelpers => (
                     <div>
+
                       {props.values.dtcsInfo.map((dtcs, indexDtcs) => (
-                        <>
-                          <Row className='mb-1' key={indexDtcs}>
-                            <Col xs={2}>
-                              <Styled.FieldStyled name={`dtcsInfo.${indexDtcs}.code`} />
-                            </Col>
-                            <Col>
-                              <Styled.FieldStyled name={`dtcsInfo.${indexDtcs}.dtc`} />
-                            </Col>
-                            <Col xs={3}>
-                              <Styled.FieldStyled name={`dtcsInfo.${indexDtcs}.dtcState`} />
-                            </Col>
-                          </Row>
-                        </>
+                        <Row className='mb-1' key={indexDtcs}>
+                          <Col xs={2}>
+                            <Styled.FieldStyled name={`dtcsInfo.${indexDtcs}.code`} />
+                          </Col>
+                          <Col>
+                            <Styled.FieldStyled name={`dtcsInfo.${indexDtcs}.dtc`} />
+                          </Col>
+                          <Col xs={3}>
+                            <Styled.FieldStyled name={`dtcsInfo.${indexDtcs}.dtcState`} />
+                          </Col>
+                        </Row>
                       ))}
                     </div>
-
                   )}
                 />
 

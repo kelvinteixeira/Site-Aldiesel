@@ -1,5 +1,5 @@
 import { Field } from "formik";
-import { Button, Form, Spinner } from "react-bootstrap";
+import { Form, Spinner } from "react-bootstrap";
 import { AiOutlineHome } from "react-icons/ai";
 import styled from "styled-components";
 
@@ -8,7 +8,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 4rem;
-`;
+  `;
 
 export const CardContent = styled.div`
   padding: 3rem, 2rem;

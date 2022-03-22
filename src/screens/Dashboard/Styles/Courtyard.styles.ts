@@ -30,8 +30,9 @@ export const Container = styled.div`
   margin-top: 2rem;
 `;
 
-export const AccordionStlyed = styled(Accordion)`
+export const AccordionStyled = styled(Accordion)`
   display: grid;
+  column-gap: 1rem;
   border: 0.15rem solid #8e9cca;
   border-radius: 0.3rem;
   background-color: white;

@@ -1,0 +1,51 @@
+export const dtcItemsForm = [{
+  code: '',
+  dtc: '',
+  dtcState: '',
+  actions: '',
+}, {
+  code: '',
+  dtc: '',
+  dtcState: '',
+  actions: '',
+}, {
+  code: '',
+  dtc: '',
+  dtcState: '',
+  actions: '',
+}, {
+  code: '',
+  dtc: '',
+  dtcState: '',
+  actions: '',
+}, {
+  code: '',
+  dtc: '',
+  dtcState: '',
+  actions: '',
+}, {
+  code: '',
+  dtc: '',
+  dtcState: '',
+  actions: '',
+}, {
+  code: '',
+  dtc: '',
+  dtcState: '',
+  actions: '',
+}, {
+  code: '',
+  dtc: '',
+  dtcState: '',
+  actions: '',
+}, {
+  code: '',
+  dtc: '',
+  dtcState: '',
+  actions: '',
+}, {
+  code: '',
+  dtc: '',
+  dtcState: '',
+  actions: '',
+},]
