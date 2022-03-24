@@ -24,7 +24,6 @@ export function FormRegisterCostumer() {
 
   const [showModal, setShowModal] = useState(false)
   const history = useHistory()
-  const goToDashboard = () => history.push('/dashboard')
 
   const initialValues: FormValues = {
     name: '',
@@ -161,7 +160,7 @@ export function FormRegisterCostumer() {
         <Modal.Footer>
           <Styled.DivModalFooter>
             <AldieselButton title='Confirmar' onClick={() => setShowModal(false)}></AldieselButton>
-            <AldieselButton title='Cancelar' onClick={goToDashboard}></AldieselButton>
+            <AldieselButton title='Cancelar' onClick={() => history.push('/patio')}></AldieselButton>
           </Styled.DivModalFooter>
         </Modal.Footer>
       </Modal>

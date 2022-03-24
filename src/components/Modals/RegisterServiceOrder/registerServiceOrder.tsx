@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 
+import { AldieselButton } from '../../AldieselButton/aldieselButton';
 import { Formik, Field, ErrorMessage, FieldArray } from 'formik';
 import { FormActions } from '../../../shared/GlobalTypes';
 import { Form, Modal, Row, Col } from 'react-bootstrap';
 import * as Styled from './registerServiceOrder.styles';
 // import { AddCarSchema } from '../../utils/schema';
 import { currentDate } from '../../../utils/data';
-import { api } from '../../../api';
-import { AldieselButton } from '../../AldieselButton/aldieselButton';
 import { dtcItemsForm } from './dtcItemsValues'
+import { api } from '../../../api';
 
 type ModalRegisterServiceOrderProps = {
   idCar: number,
@@ -42,12 +42,16 @@ export function ModalRegisterServiceOrder(params: ModalRegisterServiceOrderProps
       mechanic: values.mechanic,
       changeDate: currentDate,
       idCar: params.idCar,
-      code: values.dtcsInfo.map(item => item.code),
-      dtc: values.dtcsInfo.map(item => item.dtc),
-      dtcState: values.dtcsInfo.map(item => item.dtcState),
-      actions: values.dtcsInfo.map(item => item.actions),
-      idServiceOrder: params.idCar
     })
+    values.dtcsInfo.map(item => (
+      api.post('/ordemdeservico/adicionar', {
+        code: item.code,
+        dtc: item.dtc,
+        dtcState: item.dtcState,
+        actions: item.actions,
+        idServiceOrder: params.idCar
+      })
+    ))
     actions.setSubmitting(false)
     actions.resetForm()
     setShowModal(true)

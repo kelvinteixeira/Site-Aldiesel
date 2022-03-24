@@ -1,5 +1,5 @@
 import { Form, FormControl, Navbar, Spinner } from "react-bootstrap";
-import { AiFillCar, AiOutlineUserAdd } from "react-icons/ai";
+import { AiFillCar, AiOutlineUser, AiOutlineUserAdd } from "react-icons/ai";
 import styled from "styled-components";
 
 export const NavbarStyled = styled(Navbar)`
@@ -11,6 +11,10 @@ export const ImgLogo = styled.img`
 `;
 
 export const AiOutlineUserAddStyled = styled(AiOutlineUserAdd)`
+font-size: 1.5rem;
+`;
+
+export const AiOutlineUserStyled = styled(AiOutlineUser)`
 font-size: 1.5rem;
 `;
 

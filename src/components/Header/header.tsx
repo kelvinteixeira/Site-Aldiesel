@@ -12,9 +12,6 @@ export function Header() {
   const [showModal, setShowModal] = useState(false);
   const history = useHistory()
 
-  const goToDashboard = () => history.push('/dashboard')
-  const goToCadastrarCliente = () => history.push('/cadastrarcliente')
-
   const singout = () => {
     setShowModal(true);
     localStorage.removeItem(STORAGE_KEY)
@@ -37,8 +34,9 @@ export function Header() {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link onClick={goToCadastrarCliente} ><Styled.AiOutlineUserAddStyled /> Cadastrar Cliente</Nav.Link>
-              <Nav.Link onClick={goToDashboard} ><Styled.AiFillCarStyled /> Pátio</Nav.Link>
+              <Nav.Link onClick={() => history.push('/cadastrarcliente')} ><Styled.AiOutlineUserAddStyled /> Cadastrar Cliente</Nav.Link>
+              <Nav.Link onClick={() => history.push('/patio')} ><Styled.AiFillCarStyled /> Pátio</Nav.Link>
+              <Nav.Link onClick={() => history.push('/clientes')} ><Styled.AiOutlineUserStyled /> Registro de clientes</Nav.Link>
             </Nav>
             <Styled.FormStyled>
               <Styled.FormControlStyled

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
+import { CarItems, FormActions, CostumerItems, ServiceOrderItems, DtcItems } from '../../../shared/GlobalTypes';
+import { AldieselButton } from '../../../components/AldieselButton/aldieselButton';
+import { currentDate, currentHour } from '../../../utils/data';
+import * as Styled from '../Styles/formServiceOrder.styles';
 // import { FormularioOsSchema } from '../../utils/schema';
 import { useParams, useHistory } from 'react-router-dom';
 import { Row, Col, Form, Modal } from 'react-bootstrap';
-import { currentDate, currentHour } from '../../../utils/data';
 import { Formik, Field, ErrorMessage } from 'formik';
-import * as Styled from '../Styles/formServiceOrder.styles';
 import Logo from '../../../Assets/logo.png'
 import { api } from '../../../api';
 import '../Styles/formOs.css'
-import { CarItems, FormActions, CostumerItems, ServiceOrderItems, DtcItems } from '../../../shared/GlobalTypes';
-import { AldieselButton } from '../../../components/AldieselButton/aldieselButton';
 
 export type FormValues = {
   costumer: string,
