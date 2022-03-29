@@ -3,49 +3,59 @@ export const dtcItemsForm = [{
   dtc: '',
   dtcState: '',
   actions: '',
+  idServiceOrder: 0
 }, {
   code: '',
   dtc: '',
   dtcState: '',
   actions: '',
+  idServiceOrder: 0
 }, {
   code: '',
   dtc: '',
   dtcState: '',
   actions: '',
+  idServiceOrder: 0
 }, {
   code: '',
   dtc: '',
   dtcState: '',
   actions: '',
+  idServiceOrder: 0
 }, {
   code: '',
   dtc: '',
   dtcState: '',
   actions: '',
+  idServiceOrder: 0
 }, {
   code: '',
   dtc: '',
   dtcState: '',
   actions: '',
+  idServiceOrder: 0
 }, {
   code: '',
   dtc: '',
   dtcState: '',
   actions: '',
+  idServiceOrder: 0
 }, {
   code: '',
   dtc: '',
   dtcState: '',
   actions: '',
+  idServiceOrder: 0
 }, {
   code: '',
   dtc: '',
   dtcState: '',
   actions: '',
+  idServiceOrder: 0
 }, {
   code: '',
   dtc: '',
   dtcState: '',
   actions: '',
+  idServiceOrder: 0
 },]

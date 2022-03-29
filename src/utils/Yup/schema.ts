@@ -22,3 +22,9 @@ export const RegisterCarSchema = Yup.object().shape({
   color: Yup.string().required(),
   problem: Yup.string().required(),
 })
+
+export const RegisterOrderSchema = Yup.object().shape({
+  diagnosis: Yup.string().required(),
+  situation: Yup.string().required(),
+  mechanic: Yup.string().required(),
+})

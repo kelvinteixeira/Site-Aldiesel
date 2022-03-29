@@ -4,19 +4,19 @@ import { Route, BrowserRouter, Switch } from 'react-router-dom';
 import { ScreenRegisterCostumer } from './screens/RegisterCostumer/RegisterCostumer';
 import { ScreenServiceOrder } from './screens/ServiceOrder/ServiceOrder';
 import PrivateRoute from './components/PrivateRoute/privateRoute';
-import { ScreenDashboard } from './screens/Dashboard/Dashboard';
+import { ScreenCourtyard } from './screens/Courtyard/Courtyard';
+import { ScreenCostumers } from './screens/Costumers/Costumers'
 import { ScreenLogin } from './screens/Login/Login';
-import { Costumers } from './screens/Costumers/Costumers'
 
 export default function Routing() {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={ScreenLogin} />
-        <PrivateRoute path="/patio" exact component={ScreenDashboard} />
-        <PrivateRoute path="/clientes" exact component={Costumers} />
+        <PrivateRoute path="/patio" exact component={ScreenCourtyard} />
+        <PrivateRoute path="/clientes" exact component={ScreenCostumers} />
         <PrivateRoute path="/cadastrarcliente" exact component={ScreenRegisterCostumer} />
-        <PrivateRoute path="/clientes/ordemdeservico/encontrar/:id" exact component={ScreenServiceOrder} />
+        <PrivateRoute path="/ordemdeservico/encontrar/:id" exact component={ScreenServiceOrder} />
       </Switch>
     </BrowserRouter>
   )

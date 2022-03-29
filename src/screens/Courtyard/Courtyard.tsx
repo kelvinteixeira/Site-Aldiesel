@@ -1,8 +1,8 @@
 import React from 'react'
 import { Header } from '../../components/Header/header'
-import { CourtyardTable } from './components/Courtyard'
+import { CourtyardTable } from './components/CourtyardTable'
 
-export function ScreenDashboard() {
+export function ScreenCourtyard() {
 
   return (
     <>

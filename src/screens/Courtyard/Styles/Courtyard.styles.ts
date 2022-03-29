@@ -50,11 +50,22 @@ export const FirstRow = styled.div`
   font-weight: bold;
   `;
 
-export const Title = styled.h4`
+export const SelectStyled = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const AccordionTitle = styled.h4`
   text-align: center;
   color: #000;
   font-weight: bold;
   display: inherit;
+`;
+
+export const Title = styled.h4`
+  color: #000;
+  font-weight: bold;
+  margin: 2rem 2rem 2rem 9rem;
 `;
 
 export const SubTitle = styled.h5`
