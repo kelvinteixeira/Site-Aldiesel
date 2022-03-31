@@ -8,6 +8,7 @@ export type CostumerItems = {
   city: string,
   state: string,
   entryDate?: string
+  costumerState?: string
 }
 
 export type CarItems = {

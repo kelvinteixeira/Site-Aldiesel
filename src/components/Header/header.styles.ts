@@ -48,5 +48,6 @@ export const SpinnerStyled = styled(Spinner)`
 
 export const FormStyled = styled(Form)`
   display: flex;
+  justify-content: flex-end;
   width: 25rem;
 `

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import { ClientInfoSchema } from '../../../utils/Yup/schema';
 import { Form, Modal, Row, Col } from 'react-bootstrap';
 import * as Styled from './InfoCostumer.styles';
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import { api } from '../../../api';
 import { CostumerItems } from '../../../shared/GlobalTypes';
 import { AldieselButton } from '../../AldieselButton/aldieselButton';

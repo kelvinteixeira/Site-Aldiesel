@@ -1,4 +1,4 @@
-import { Accordion, Button, Table } from "react-bootstrap";
+import { Accordion, Form, Table } from "react-bootstrap";
 import { AiOutlineInfoCircle, AiOutlinePrinter } from "react-icons/ai";
 import { BiFile, BiTrash } from "react-icons/bi";
 import { FiAlertCircle } from "react-icons/fi";
@@ -50,9 +50,18 @@ export const FirstRow = styled.div`
   font-weight: bold;
   `;
 
-export const SelectStyled = styled.div`
+export const SelectDiv = styled.div`
   display: flex;
-  flex-direction: row;
+  margin-left: 12%;
+  text-align: center;
+  align-items: center;
+  margin-top: 2rem;
+`;
+
+export const FormSelect = styled(Form.Select)`
+  width: 13rem; 
+  height: 2rem;
+  border: 0.15rem solid #8e9cca;
 `;
 
 export const AccordionTitle = styled.h4`
@@ -67,10 +76,17 @@ export const Title = styled.h4`
   font-weight: bold;
   margin: 2rem 2rem 2rem 9rem;
 `;
+export const FilterTitle = styled.h5`
+  color: #000;
+  font-weight: bold;
+  margin-right: .7rem;
+  display: inherit;
+  margin-top: .5rem;
+`;
 
 export const SubTitle = styled.h5`
   text-align: left;
-  color: #8e9cca;
+  color: #000;
   font-weight: bold;
   display: inherit;
   line-height: 1.9rem;
@@ -85,8 +101,6 @@ export const SubTitleModal = styled.h5`
 `
 
 export const SubtitleData = styled.h6`
-  margin-top: .5rem;
-  text-align: left;
   color: #000000;
   font-weight: bold;
 `;
@@ -138,17 +152,3 @@ export const DivButtons = styled.div`
   margin-bottom: 1rem;
 `;
 
-export const ButtonStyled = styled(Button)`
-  color: #8e9cca;
-  border-color: #8e9cca;
-  transition: ease-in-out 0.5s;
-  width: auto;
-  font-weight: bold;
-  margin-right: 1rem;
-  line-height: 1rem;
-  :hover{
-   background-color: #8e9cca ;
-   border-color: #000 ;
-
-  }
-`;
