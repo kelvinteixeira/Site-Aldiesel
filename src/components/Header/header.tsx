@@ -43,9 +43,6 @@ export function Header() {
               <Nav.Link onClick={() => history.push("/patio")}>
                 <Styled.AiFillCarStyled /> Pátio
               </Nav.Link>
-              <Nav.Link onClick={() => history.push("/clientes")}>
-                <Styled.AiOutlineUserStyled /> Registro de clientes
-              </Nav.Link>
             </Nav>
             <Styled.FormStyled>
               <AldieselButton onClick={singout} title="Sair"></AldieselButton>

@@ -1,5 +1,5 @@
 import { Accordion, Form, Table } from "react-bootstrap";
-import { AiOutlineInfoCircle, AiOutlinePrinter } from "react-icons/ai";
+import { AiOutlineCheckCircle, AiOutlineInfoCircle, AiOutlinePrinter } from "react-icons/ai";
 import { BiFile, BiTrash } from "react-icons/bi";
 import { FiAlertCircle } from "react-icons/fi";
 import styled from "styled-components";
@@ -90,6 +90,18 @@ export const SubTitle = styled.h5`
   font-weight: bold;
   display: inherit;
   line-height: 1.9rem;
+`;
+
+export const AiOutlineCheckCircleStyled = styled(AiOutlineCheckCircle)`
+  color: #008000;
+  font-size: 1.9rem;
+  margin-bottom: .5rem;
+`;
+
+export const FiAlertCircleToastStyled = styled(FiAlertCircle)`
+  color: #f50b0b;
+  font-size: 1.9rem;
+  margin-bottom: .5rem;
 `;
 
 export const SubTitleModal = styled.h5`

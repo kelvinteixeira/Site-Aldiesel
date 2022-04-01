@@ -3,6 +3,7 @@ import { Form } from 'react-bootstrap';
 import { Field } from 'formik';
 import { IoMdLogIn, IoMdLock } from "react-icons/io";
 import { FiAlertCircle } from "react-icons/fi";
+import { AiOutlineCheckCircle } from 'react-icons/ai';
 
 export const Container = styled.div`
   display: flex;
@@ -91,11 +92,14 @@ export const MsgError = styled.span`
   font-weight: bold;
 `;
 
-export const FiAlertCircleStyled = styled(FiAlertCircle)`
-  text-align: center;
+export const AiOutlineCheckCircleStyled = styled(AiOutlineCheckCircle)`
+  color: #008000;
+  font-size: 1.9rem;
+  margin-bottom: .5rem;
+`;
+
+export const FiAlertCircleToastStyled = styled(FiAlertCircle)`
   color: #f50b0b;
-  font-size: 2rem;
-  margin: auto;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-`
+  font-size: 1.9rem;
+  margin-bottom: .5rem;
+`;

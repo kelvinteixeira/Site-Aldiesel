@@ -1,32 +1,32 @@
 import React, { useState } from "react";
 
-import { Modal, Toast, ToastContainer } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { api } from "../../../api";
 import { AldieselButton } from "../../AldieselButton/aldieselButton";
+import { AldielselToast } from "../../AldieselToast/toast";
 import * as Styled from "./deleteCostumer.styles";
-import { seconds } from "../../../utils/data";
 
 type ModalDeleteCostumerProps = {
   idCostumer: number | undefined;
   onHide: () => void;
   show: boolean;
-  showToast: boolean
 };
 
 export function ModalDeleteCostumer(props: ModalDeleteCostumerProps) {
-  const [showModal, setShowModal] = useState(false);
-  const [showToast, setShowToast] = useState(false);
- 
+  const [showToastSuccess, setShowToastSuccess] = useState(false);
+  const [showToastError, setShowToastError] = useState(false);
 
-  function deleteCostumer() {
-    api.delete(`/clientes/deletar/${props.idCostumer}`);
-    setShowModal(true);
-    setTimeout(() => {
-      setShowModal(false);
+  async function deleteCostumer() {
+    try {
+      await api.delete(`/clientes/deletar/${props.idCostumer}`);
       props.onHide();
-      // window.location.reload();
-    }, 1000);
-    setShowToast(true);
+      setShowToastSuccess(true);
+      setTimeout(() => {
+        // window.location.reload();
+      }, 1000);
+    } catch {
+      setShowToastError(true);
+    }
   }
 
   return (
@@ -41,7 +41,6 @@ export function ModalDeleteCostumer(props: ModalDeleteCostumerProps) {
         <Modal.Header closeButton></Modal.Header>
         <Styled.FiAlertCircleStyled />
         <Modal.Title>
-          {" "}
           <Styled.TitleModal>Deseja excluir esse cliente?</Styled.TitleModal>
         </Modal.Title>
         <Modal.Body>
@@ -62,29 +61,26 @@ export function ModalDeleteCostumer(props: ModalDeleteCostumerProps) {
           </Styled.DivModalFooter>
         </Modal.Footer>
       </Modal>
-      {/* <Modal
-        centered
-        size="sm"
-        className="no-print"
-        show={showModal}
-        onHide={() => setShowModal(false)}
-      >
-        <Styled.SpinnerStyled animation="border" variant="danger" />
-        <Modal.Title>
-          {" "}
-          <Styled.SubTitle>Excluindo cliente...</Styled.SubTitle>
-        </Modal.Title>
-      </Modal> */}
-      <ToastContainer position="bottom-end" className="mb-3 me-3">
-        <Toast show={showToast} onClose={() => setShowToast(false)} animation autohide delay={4000}>
-          <Toast.Header closeButton>
-            <strong className="me-auto">Aldiesel</strong>
-            <small>Messagem</small>
-          </Toast.Header>
-          <Toast.Body >Cliente excluido com sucesso</Toast.Body>
-        </Toast>
-      </ToastContainer>
-      ;
+
+      <AldielselToast
+        show={showToastSuccess}
+        onClose={() => setShowToastSuccess(false)}
+        animation={true}
+        autohide={true}
+        delay={5000}
+        icon={<Styled.AiOutlineCheckCircleStyled />}
+        message="Cliente excluido com sucesso!"
+      />
+
+      <AldielselToast
+        show={showToastError}
+        onClose={() => setShowToastError(false)}
+        animation
+        autohide
+        delay={5000}
+        icon={<Styled.FiAlertCircleToastStyled />}
+        message="Não foi possível excluir o cliente!"
+      />
     </Styled.Container>
   );
 }

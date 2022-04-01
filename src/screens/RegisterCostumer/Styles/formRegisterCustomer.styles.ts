@@ -1,16 +1,21 @@
 import { Field } from "formik";
 import { Button, Form } from "react-bootstrap";
 import { AiOutlineCheckCircle, AiOutlineHome } from "react-icons/ai";
+import { FiAlertCircle } from "react-icons/fi";
 import { GoInfo } from "react-icons/go";
 import styled from "styled-components";
 
 export const AiOutlineCheckCircleStyled = styled(AiOutlineCheckCircle)`
-  text-align: center;
-  color: #218629;
-  font-size: 2rem;
-  margin: auto;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  color: #008000;
+  font-size: 1.9rem;
+  margin-bottom: .5rem;
+`;
+
+
+export const FiAlertCircleToastStyled = styled(FiAlertCircle)`
+  color: #f50b0b;
+  font-size: 1.9rem;
+  margin-bottom: .5rem;
 `;
 
 export const Container = styled.div`

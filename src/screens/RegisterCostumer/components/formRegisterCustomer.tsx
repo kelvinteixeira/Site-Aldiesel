@@ -9,6 +9,7 @@ import { currentDate } from "../../../utils/data";
 import { api } from "../../../api";
 import { FormActions } from "../../../shared/GlobalTypes";
 import { AldieselButton } from "../../../components/AldieselButton/aldieselButton";
+import { AldielselToast } from "../../../components/AldieselToast/toast";
 
 type FormValues = {
   name: string;
@@ -23,6 +24,11 @@ type FormValues = {
 
 export function FormRegisterCostumer() {
   const [showModal, setShowModal] = useState(false);
+  const [showRegisterCostumerSuccess, setShowRegisterCostumerSuccess] =
+    useState(false);
+  
+  const [showRegisterCostumerError, setShowRegisterCostumerError] =
+    useState(false);
   const history = useHistory();
 
   const initialValues: FormValues = {
@@ -37,20 +43,24 @@ export function FormRegisterCostumer() {
   };
 
   function register(values: FormValues, actions: FormActions) {
-    api.post("/clientes/adicionar", {
-      name: values.name,
-      phone: values.phone,
-      street: values.street,
-      houseNumber: values.houseNumber,
-      district: values.district,
-      state: values.state,
-      city: values.city,
-      entryDate: currentDate,
-      costumerState: "ativo",
-    });
-    actions.setSubmitting(false);
-    actions.resetForm();
-    setShowModal(true);
+    try {
+      api.post("/clientes/adicionar", {
+        name: values.name,
+        phone: values.phone,
+        street: values.street,
+        houseNumber: values.houseNumber,
+        district: values.district,
+        state: values.state,
+        city: values.city,
+        entryDate: currentDate,
+        costumerState: "ativo",
+      });
+      actions.setSubmitting(false);
+      actions.resetForm();
+      setShowRegisterCostumerSuccess(true);
+    } catch {
+      setShowRegisterCostumerError(true)
+    }
   }
 
   return (
@@ -212,6 +222,26 @@ export function FormRegisterCostumer() {
           </Styled.DivModalFooter>
         </Modal.Footer>
       </Modal>
+
+      <AldielselToast
+        show={showRegisterCostumerSuccess}
+        onClose={() => setShowRegisterCostumerSuccess(false)}
+        animation
+        autohide
+        delay={5000}
+        icon={<Styled.AiOutlineCheckCircleStyled />}
+        message="Cliente cadastrado com sucesso!"
+      />
+
+      <AldielselToast
+        show={showRegisterCostumerError}
+        onClose={() => setShowRegisterCostumerError(false)}
+        animation
+        autohide
+        delay={5000}
+        icon={<Styled.FiAlertCircleToastStyled />}
+        message="Não foi possível cadastrar cliente!"
+      />
     </Styled.Container>
   );
 }

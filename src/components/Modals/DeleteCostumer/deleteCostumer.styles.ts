@@ -1,6 +1,7 @@
 import { Spinner } from "react-bootstrap";
 import { FiAlertCircle } from "react-icons/fi";
 import styled from "styled-components";
+import { AiOutlineCheckCircle } from "react-icons/ai";
 
 export const SpinnerStyled = styled(Spinner)`
   margin: auto;
@@ -14,15 +15,26 @@ export const TitleModal = styled.h3`
   font-weight: bold;
 `;
 
+export const AiOutlineCheckCircleStyled = styled(AiOutlineCheckCircle)`
+  color: #008000;
+  font-size: 1.9rem;
+  margin-bottom: .5rem;
+`;
+
+export const FiAlertCircleToastStyled = styled(FiAlertCircle)`
+  color: #f50b0b;
+  font-size: 1.9rem;
+  margin-bottom: .5rem;
+`;
 
 export const FiAlertCircleStyled = styled(FiAlertCircle)`
   text-align: center;
   color: #f50b0b;
-  font-size: 2rem;
+  font-size: 1.9rem;
   margin: auto;
   margin-top: 1rem;
-  margin-bottom: 1rem;
-`
+  margin-bottom: .5rem;
+`;
 
 export const DivModalFooter = styled.div`
 display: flex;

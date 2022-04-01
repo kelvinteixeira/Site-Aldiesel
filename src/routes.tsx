@@ -5,7 +5,6 @@ import { ScreenRegisterCostumer } from './screens/RegisterCostumer/RegisterCostu
 import { ScreenServiceOrder } from './screens/ServiceOrder/ServiceOrder';
 import PrivateRoute from './components/PrivateRoute/privateRoute';
 import { ScreenCourtyard } from './screens/Courtyard/Courtyard';
-import { ScreenCostumers } from './screens/Costumers/Costumers'
 import { ScreenLogin } from './screens/Login/Login';
 
 export default function Routing() {
@@ -14,7 +13,6 @@ export default function Routing() {
       <Switch>
         <Route path="/" exact component={ScreenLogin} />
         <PrivateRoute path="/patio" exact component={ScreenCourtyard} />
-        <PrivateRoute path="/clientes" exact component={ScreenCostumers} />
         <PrivateRoute path="/cadastrarcliente" exact component={ScreenRegisterCostumer} />
         <PrivateRoute path="/ordemdeservico/encontrar/:id" exact component={ScreenServiceOrder} />
       </Switch>

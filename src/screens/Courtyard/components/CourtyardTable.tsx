@@ -12,33 +12,37 @@ import {
 import { ModalRegisterCar } from "../../../components/Modals/RegisterCar/registerCar";
 import { AldieselButton } from "../../../components/AldieselButton/aldieselButton";
 import { ModalDeleteCar } from "../../../components/Modals/DeleteCar/deleteCar";
-import { Accordion, Modal } from "react-bootstrap";
+import { Accordion } from "react-bootstrap";
 import * as Styled from "../Styles/Courtyard.styles";
 import ReactTooltip from "react-tooltip";
 import { api } from "../../../api";
+import { AldielselToast } from "../../../components/AldieselToast/toast";
 
 export function CourtyardTable() {
   const [showModalUpdateCostumer, setShowModalUpdateCostumer] = useState(false);
   const [showModalDeleteCostumer, setShowModalDeleteCostumer] = useState(false);
-  const [showToastDeleteCostumer, setShowToastDeleteCostumer] = useState(false);
-
+  const [showModalServiceOrder, setShowModalServiceOrder] = useState(false);
   const [showModalRegisterCar, setShowModalRegisterCar] = useState(false);
-  const [showModalExistingCar, setShowModalExistingCar] = useState(false);
   const [showModalDeleteCar, setShowModalDeleteCar] = useState(false);
 
-  const [showModalExistingServiceOrder, setShowModalExistingServiceOrder] =
-    useState(false);
-  const [showModalServiceOrder, setShowModalServiceOrder] = useState(false);
-
-  const [idCostumer, setIdCostumer] = useState<number>(0);
   const [serviceOrders, setServiceOrders] = useState<Array<ServiceOrderItems>>(
     []
   );
   const [costumers, setCostumers] = useState<Array<CostumerItems>>([]);
-  const [idCar, setIdCar] = useState<number>(0);
   const [cars, setCars] = useState<Array<CarItems>>([]);
+
+  const [idCostumer, setIdCostumer] = useState<number>(0);
+  const [idCar, setIdCar] = useState<number>(0);
+
   const [filter, setFilter] = useState("");
   const [costumerState, setCostumerState] = useState(false);
+
+  const [showDeleteCostumerError, setShowDeleteCostumerError] = useState(false);
+  const [showGenerateServiceOrderError, setShowGenerateServiceOrderError] =
+    useState(false);
+  const [showActiveCostumer, setShowActiveCostumer] = useState(false);
+  const [showArchiveCostumer, setShowArchiveCostumer] = useState(false);
+
   const history = useHistory();
 
   useEffect(() => {
@@ -88,7 +92,7 @@ export function CourtyardTable() {
       .map((order) => order.idCar)
       .find((element) => element === id);
     if (idServiceOrder) {
-      setShowModalExistingServiceOrder(true);
+      setShowGenerateServiceOrderError(true);
     } else {
       setShowModalServiceOrder(true);
       setIdCar(id);
@@ -115,10 +119,10 @@ export function CourtyardTable() {
       .map((car) => car.idCostumer)
       .find((element) => element === id);
     if (idCars) {
-      setShowModalExistingCar(true);
+      setShowDeleteCostumerError(true);
     } else {
-      setShowModalDeleteCostumer(true);
       setIdCostumer(id);
+      setShowModalDeleteCostumer(true);
     }
   }
 
@@ -127,6 +131,12 @@ export function CourtyardTable() {
       costumerState: value,
     });
     setCostumerState(condition);
+
+    if (value === "ativo") {
+      setShowActiveCostumer(true);
+    } else {
+      setShowArchiveCostumer(true);
+    }
   }
 
   return (
@@ -233,6 +243,8 @@ export function CourtyardTable() {
                                 }
                               />
 
+                              {function goToServiceOrder() {}}
+
                               <ReactTooltip />
                               <Styled.BiTrashStyled
                                 data-tip="Excluir veiculo"
@@ -256,7 +268,7 @@ export function CourtyardTable() {
                       onClick={() =>
                         handleCostumerState(costumer.id, "arquivado", true)
                       }
-                      title="Arquivar Cliente"
+                      title="Arquivar cliente"
                     />
                   ) : (
                     <AldieselButton
@@ -271,6 +283,7 @@ export function CourtyardTable() {
             </Accordion.Item>
           </Styled.AccordionStyled>
         ))}
+
         <ModalRegisterCar
           show={showModalRegisterCar}
           idCostumer={idCostumer}
@@ -287,7 +300,6 @@ export function CourtyardTable() {
           show={showModalDeleteCostumer}
           idCostumer={idCostumer}
           onHide={() => setShowModalDeleteCostumer(false)}
-          showToast={showToastDeleteCostumer}
         />
 
         <ModalRegisterServiceOrder
@@ -302,39 +314,45 @@ export function CourtyardTable() {
           onHide={() => setShowModalUpdateCostumer(false)}
         />
 
-        <Modal
-          centered
-          show={showModalExistingServiceOrder}
-          onHide={() => setShowModalExistingServiceOrder(false)}
-        >
-          <Modal.Header closeButton></Modal.Header>
-          <Styled.FiAlertCircleStyled />
-          <Modal.Title>
-            <Styled.AccordionTitle>
-              Ops... algo deu errado!
-            </Styled.AccordionTitle>
-          </Modal.Title>
-          <Styled.SubTitleModal>
-            Essa ordem de serviço já foi cadastrada.
-          </Styled.SubTitleModal>
-        </Modal>
+        <AldielselToast
+          show={showDeleteCostumerError}
+          onClose={() => setShowDeleteCostumerError(false)}
+          animation
+          autohide
+          delay={5000}
+          icon={<Styled.FiAlertCircleToastStyled />}
+          message="Não é possível excluir clientes que possuem carros ativos!"
+        />
 
-        <Modal
-          centered
-          show={showModalExistingCar}
-          onHide={() => setShowModalExistingCar(false)}
-        >
-          <Modal.Header closeButton></Modal.Header>
-          <Styled.FiAlertCircleStyled />
-          <Modal.Title>
-            <Styled.AccordionTitle>
-              Ops... algo deu errado!
-            </Styled.AccordionTitle>
-          </Modal.Title>
-          <Styled.SubTitleModal>
-            Antes de exlcuir o cliente, remova os seus veiculos cadastrados.
-          </Styled.SubTitleModal>
-        </Modal>
+        <AldielselToast
+          show={showGenerateServiceOrderError}
+          onClose={() => setShowGenerateServiceOrderError(false)}
+          animation
+          autohide
+          delay={5000}
+          icon={<Styled.FiAlertCircleToastStyled />}
+          message="Essa ordem de serviço já foi gerada!"
+        />
+
+        <AldielselToast
+          show={showArchiveCostumer}
+          onClose={() => setShowArchiveCostumer(false)}
+          animation
+          autohide
+          delay={5000}
+          icon={<Styled.AiOutlineCheckCircleStyled />}
+          message="Cliente arquivado com sucesso!"
+        />
+
+        <AldielselToast
+          show={showActiveCostumer}
+          onClose={() => setShowActiveCostumer(false)}
+          animation
+          autohide
+          delay={5000}
+          icon={<Styled.AiOutlineCheckCircleStyled />}
+          message="Cliente reativado com sucesso!"
+        />
       </Styled.Container>
     </>
   );
